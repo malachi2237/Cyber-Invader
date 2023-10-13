@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Enemies/Enemy.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Enemies/Glitchy.tscn" type="PackedScene" id=2]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -19,3 +20,6 @@ rotate = false
 
 [node name="Enemy" parent="PathExample/EnemyFollowPath" instance=ExtResource( 1 )]
 rotation = -1.46337
+
+[node name="Glitchy" parent="." instance=ExtResource( 2 )]
+position = Vector2( 524, 104 )
