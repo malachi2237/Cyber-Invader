@@ -8,6 +8,16 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Node",
+"class": "BulletSpawner",
+"language": "GDScript",
+"path": "res://Bullets/BulletSpawner.gd"
+} ]
+_global_script_class_icons={
+"BulletSpawner": ""
+}
+
 [application]
 
 config/name="Digi Bullet Hell"
