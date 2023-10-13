@@ -1,8 +1,10 @@
-extends Node
+extends Node2D
 
 class_name BulletSpawner
 
-export(NodePath) var bullet_prefab
+export(String) var bullet_override;
+
+onready var bullet_prefab = preload("res://Bullets/Bullet.tscn")
 
 var shoot_timer
 var rotator
@@ -17,19 +19,25 @@ export(int) var spawn_point_count = 1
 func _ready():
 	var step = 2 * PI / spawn_point_count
 	
+	if (bullet_override):
+		bullet_prefab = load(bullet_override)
+		
 	shoot_timer = Timer.new()
 	rotator = Node2D.new()
 	
 	add_child(shoot_timer)
 	add_child(rotator)
 	
+
 	for i in range(spawn_point_count):
 		var spawn_point = Node2D.new()
 		var pos = Vector2(radius, 0).rotated(step * i)
 		spawn_point.position = pos
 		spawn_point.rotation = pos.angle()
 		rotator.add_child(spawn_point)
-		
+	
+	rotator.rotate(deg2rad(initial_rotation))
+	
 	shoot_timer.wait_time = shot_timer
 	shoot_timer.connect("timeout", self, "_volley")
 	shoot_timer.start()
@@ -47,4 +55,4 @@ func _volley() -> void:
 		scene.add_child(bullet)
 		
 		bullet.position = s.global_position
-		bullet.rotation = s.global_rotation
+		bullet.rotation = s.global_rotation + deg2rad(90)
