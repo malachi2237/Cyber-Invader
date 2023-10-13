@@ -2,14 +2,18 @@ extends Area2D
 
 # Declare member variables here.
 onready var warpTimer: Timer = $WarpTimer
+onready var shadowClone: Sprite = $ShadowClone
+onready var warpAnim: AnimationPlayer = $GlitchyAnimationPlayer
 onready var screenSize:Vector2 = get_viewport().get_visible_rect().size
 onready var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 onready var newSpot: Vector2 = self.position
 onready var warping: bool = false
+var animationList
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	randomize()
+	animationList = warpAnim.get_animation_list()
 	pass
 
 
@@ -19,17 +23,17 @@ func _ready() -> void:
 
 func warpIn() -> void:
 	self.position = newSpot
-	self.visible = true
-	makeShot()
+	warpAnim.play("GlitchyFadeIn")
 
 func chooseSpot() -> void:
 	#choose random spot
 	newSpot = Vector2(
 		rng.randf_range(0, screenSize.x),
 		rng.randf_range(0, screenSize.y))
+	shadowClone.global_position = newSpot
 
 func warpOut() -> void:
-	self.visible = false
+	warpAnim.play("GlitchyFadeOut")
 	chooseSpot()
 
 func makeShot() -> void:
@@ -42,10 +46,16 @@ func deathShot() -> void:
 
 
 func _on_WarpTimer_timeout() -> void:
-	if not warping:
+	if not warping and not warpAnim.is_playing():
 		warpOut()
+	elif warping and not warpAnim.is_playing():
+		warpIn()
+
+func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
+	if not warping:
 		warping = true
 	elif warping:
+		makeShot()
 		warping = false
-		warpIn()
 	warpTimer.start()
+
