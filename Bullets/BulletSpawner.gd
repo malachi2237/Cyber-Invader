@@ -2,7 +2,7 @@ extends Node
 
 class_name BulletSpawner
 
-const bullet_scene = preload("res://Bullet.tscn")
+export(NodePath) var bullet_prefab
 
 var shoot_timer
 var rotator
@@ -40,7 +40,7 @@ func _process(delta):
 	
 func _volley() -> void:
 	for s in rotator.get_children():
-		var bullet = bullet_scene.instance()
+		var bullet = bullet_prefab.instance()
 		var root = get_tree().get_root()
 		var scene = root.get_child(root.get_child_count()-1)
 		
