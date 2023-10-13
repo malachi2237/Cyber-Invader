@@ -1,4 +1,4 @@
-extends Area2D
+extends Enemy
 
 # Declare member variables here.
 onready var warpTimer: Timer = $WarpTimer
