@@ -1,4 +1,4 @@
-extends Area2D
+extends Enemy
 
 # Declare member variables here.
 onready var warpTimer: Timer = $WarpTimer
@@ -24,17 +24,18 @@ func _ready() -> void:
 func warpIn() -> void:
 	self.position = newSpot
 	warpAnim.play("GlitchyFadeIn")
+	shadowClone.visible = false
 
 func chooseSpot() -> void:
 	#choose random spot
 	newSpot = Vector2(
 		rng.randf_range(0, screenSize.x),
 		rng.randf_range(0, screenSize.y))
+	shadowClone.visible = true
 	shadowClone.global_position = newSpot
 
 func warpOut() -> void:
 	warpAnim.play("GlitchyFadeOut")
-	chooseSpot()
 
 func makeShot() -> void:
 	pass
@@ -46,13 +47,14 @@ func deathShot() -> void:
 
 
 func _on_WarpTimer_timeout() -> void:
-	if not warping and not warpAnim.is_playing():
+	if not warping:
 		warpOut()
-	elif warping and not warpAnim.is_playing():
+	elif warping:
 		warpIn()
 
-func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
+func _on_AnimationPlayer_animation_finished(_anim_name: String) -> void:
 	if not warping:
+		chooseSpot()
 		warping = true
 	elif warping:
 		makeShot()

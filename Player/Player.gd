@@ -19,14 +19,14 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	DEBUG_hurt()
 	movementInput()
 	shoot()
-	hurt()
+	test_dead()
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	move()
 
 func _input(event: InputEvent) -> void:
@@ -44,7 +44,7 @@ func movementInput() -> void:
 	dir = dir.normalized()
 
 func move() -> void:
-	self.move_and_collide(speed*dir)
+	var _a = self.move_and_collide(speed*dir)
 
 func shoot() -> void:
 	if Input.is_action_pressed("player_shoot") and canFire:
@@ -60,7 +60,7 @@ func shoot() -> void:
 func DEBUG_hurt() -> void:
 	hurt = Input.is_action_just_pressed("debug_player_hurt")
 
-func hurt() -> void:
+func test_dead() -> void:
 	if hurt:
 		get_tree().quit()
 

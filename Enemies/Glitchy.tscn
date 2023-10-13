@@ -2,13 +2,26 @@
 
 [ext_resource path="res://Enemies/Glitchy.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
-[ext_resource path="res://Enemies/EnemiesGlitchyFadeIn.tres" type="Animation" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 15.0
 
 [sub_resource type="Animation" id=2]
-resource_name = "GlitchyFadeOut"
+resource_name = "GlitchyFadeIn"
+tracks/0/type = "value"
+tracks/0/path = NodePath("EnemySprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.85098, 0.0901961, 0.768627, 0 ), Color( 0.85098, 0.0901961, 0.768627, 1 ) ]
+}
+
+[sub_resource type="Animation" id=3]
 tracks/0/type = "value"
 tracks/0/path = NodePath("EnemySprite:modulate")
 tracks/0/interp = 1
@@ -41,8 +54,8 @@ texture = ExtResource( 2 )
 shape = SubResource( 1 )
 
 [node name="GlitchyAnimationPlayer" type="AnimationPlayer" parent="."]
-anims/GlitchyFadeIn = ExtResource( 3 )
-anims/GlitchyFadeOut = SubResource( 2 )
+anims/GlitchyFadeIn = SubResource( 2 )
+anims/GlitchyFadeOut = SubResource( 3 )
 
 [node name="WarpTimer" type="Timer" parent="."]
 autostart = true

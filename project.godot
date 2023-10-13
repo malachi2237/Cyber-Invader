@@ -13,9 +13,15 @@ _global_script_classes=[ {
 "class": "BulletSpawner",
 "language": "GDScript",
 "path": "res://Bullets/BulletSpawner.gd"
+}, {
+"base": "Area2D",
+"class": "Enemy",
+"language": "GDScript",
+"path": "res://Enemies/Enemy.gd"
 } ]
 _global_script_class_icons={
-"BulletSpawner": ""
+"BulletSpawner": "",
+"Enemy": ""
 }
 
 [application]
