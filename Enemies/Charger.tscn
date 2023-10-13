@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Enemies/Charger.gd" type="Script" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 15.0
+
+[node name="Charger" type="Area2D"]
+script = ExtResource( 1 )
+attackPos = Vector2( 10, 10 )
+
+[node name="ChargerSprite" type="Sprite" parent="."]
+modulate = Color( 0.12549, 0.352941, 0.0313726, 1 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 2 )
+
+[node name="EnemyBox" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="AimTimer" type="Timer" parent="."]
+
+[node name="ShotTimer" type="Timer" parent="."]
+
+[node name="chargeLag" type="Timer" parent="."]
+
+[connection signal="timeout" from="AimTimer" to="." method="_on_AimTimer_timeout"]
+[connection signal="timeout" from="ShotTimer" to="." method="_on_ShotTimer_timeout"]
+[connection signal="timeout" from="chargeLag" to="." method="_on_chargeLag_timeout"]
