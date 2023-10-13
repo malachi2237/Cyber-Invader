@@ -14,3 +14,8 @@ texture = ExtResource( 2 )
 
 [node name="PlayerBox" type="CollisionShape2D" parent="."]
 shape = SubResource( 4 )
+
+[node name="FireRate" type="Timer" parent="."]
+wait_time = 0.2
+
+[connection signal="timeout" from="FireRate" to="." method="_on_FireRate_timeout"]

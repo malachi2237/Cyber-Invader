@@ -5,6 +5,8 @@ extends KinematicBody2D
 # var a: int = 2
 # var b: String = "text"
 
+var canFire: bool = true
+onready var fireTimer = get_node("FireRate")
 var dir: Vector2 = Vector2(0,0)
 export var speed: float = 10.0
 var hurt:bool = false
@@ -20,6 +22,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	DEBUG_hurt()
 	movementInput()
+	shoot()
 	hurt()
 
 
@@ -44,9 +47,14 @@ func move() -> void:
 	self.move_and_collide(speed*dir)
 
 func shoot() -> void:
-	if Input.is_action_just_pressed("player_shoot"):
-		print("BANG")
-		bullet.instance()
+	if Input.is_action_pressed("player_shoot") and canFire:
+		canFire = false
+		fireTimer.start()
+		var bul_inst = bullet.instance()
+		bul_inst.position = self.position
+		var root = get_tree().get_root()
+		var current_scene = root.get_child(root.get_child_count()-1)
+		current_scene.add_child(bul_inst)
 
 
 func DEBUG_hurt() -> void:
@@ -59,3 +67,5 @@ func hurt() -> void:
 func power() -> void:
 	pass
 
+func _on_FireRate_timeout() -> void:
+	canFire = true

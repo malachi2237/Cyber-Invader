@@ -57,6 +57,5 @@ transform = Transform2D( 14, 0, 0, 1, 0, 0 )
 material = SubResource( 3 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-bullet = ExtResource( 2 )
 
 [node name="Bullet" parent="." instance=ExtResource( 2 )]

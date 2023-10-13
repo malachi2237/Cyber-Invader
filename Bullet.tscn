@@ -8,6 +8,7 @@
 [node name="Bullet" type="Area2D"]
 position = Vector2( 192, 91 )
 script = ExtResource( 1 )
+shotSpeed = 800
 
 [node name="BulletSprite" type="Sprite" parent="."]
 modulate = Color( 1, 0, 0, 1 )
