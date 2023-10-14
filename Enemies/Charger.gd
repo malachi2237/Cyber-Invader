@@ -67,7 +67,7 @@ func sequence(nextMood, targetPos, delta) -> void:
 			curSeq = Sequence.aim
 
 func aim(targetPos, _delta) -> void:
-	bulletSpawner.shotsEnabled = false
+	bulletSpawner.stop_firing()
 	if aimTimer.is_stopped():
 		aimTimer.start()
 	look_at(targetPos)
@@ -75,7 +75,7 @@ func aim(targetPos, _delta) -> void:
 
 func charge(targetPos, delta) -> void:
 	# periodically shoot while charging
-	bulletSpawner.shotsEnabled = true
+	bulletSpawner.start_firing()
 	translate(speed*moveDir*delta)
 	# charge goes to target position, with a follow through
 	if position.distance_to(targetPos) < 1:

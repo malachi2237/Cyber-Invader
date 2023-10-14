@@ -51,7 +51,7 @@ func deathShot() -> void:
 func _on_WarpTimer_timeout() -> void:
 	if not warping:
 		warpOut()
-		bulletSpawner.shotsEnabled = false
+		bulletSpawner.stop_firing()
 	elif warping:
 		warpIn()
 
@@ -60,7 +60,7 @@ func _on_AnimationPlayer_animation_finished(_anim_name: String) -> void:
 		chooseSpot()
 		warping = true
 	elif warping:
-		bulletSpawner.shotsEnabled = true
+		bulletSpawner.start_firing()
 		warping = false
 	warpTimer.start()
 
