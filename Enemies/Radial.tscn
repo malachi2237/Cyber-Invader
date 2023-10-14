@@ -22,17 +22,19 @@ shape = SubResource( 1 )
 [node name="BigSlow" type="Node2D" parent="."]
 script = ExtResource( 3 )
 bullet_override = ExtResource( 4 )
-fire_on_start = true
-enable_duration = true
-duration = 1.0
+enable_bursts = true
+burst_duration = 0.5
+burst_interval = 1.2
 rotation_speed = 0.0
 spawn_point_count = 7
 
 [node name="SmallFast" type="Node2D" parent="."]
 script = ExtResource( 3 )
 bullet_override = ExtResource( 4 )
-enable_duration = true
-duration = 0.75
+initial_delay = 1.0
+enable_bursts = true
+burst_duration = 0.2
+burst_interval = 1.5
 initial_rotation = 25.71
 rotation_speed = 0.0
 shot_timer = 0.05
