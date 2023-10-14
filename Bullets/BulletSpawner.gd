@@ -10,6 +10,7 @@ var duration_timer
 var shoot_timer
 var rotator
 
+export(float) var arc_size = 360.0
 export(bool) var fire_on_start = false
 export(bool) var enable_duration = false
 export(float) var duration = 5.0
@@ -26,7 +27,7 @@ export(bool) var useTimer = true
 signal stopped_firing
 
 func _ready():
-	var step = 2 * PI / spawn_point_count
+	var step = deg2rad(arc_size) / spawn_point_count
 
 	if (bullet_override):
 		bullet_prefab = bullet_override
