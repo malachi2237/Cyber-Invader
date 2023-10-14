@@ -16,3 +16,4 @@ mono_crash.*.json
 
 # Wwise addon binaries
 addons/wwise
+wwise/GeneratedSoundBanks/wwise_ids.gd
