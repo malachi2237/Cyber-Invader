@@ -12,7 +12,8 @@ export var speed: float = 10
 onready var aimTimer: Timer = $AimTimer
 onready var chargeLag: Timer = $ChargeLag
 onready var bulletSpawner: BulletSpawner = $BulletSpawner
-
+onready var player
+var hasPlayer: bool = false
 var moveDir:Vector2 = Vector2(0,0)
 
 enum Mood{
@@ -31,6 +32,11 @@ var curSeq = Sequence.aim
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	# need a better object management to
+	# capture the player position for the charger
+	#player = get_node("/root/GameScene/Player")
+	#if player:
+	#	hasPlayer = true
 	pass # Replace with function body.
 
 
@@ -43,6 +49,8 @@ func _physics_process(delta: float) -> void:
 			regroup(delta)
 
 func attack(delta) -> void:
+	if curSeq == Sequence.aim and hasPlayer:
+		attackPos = player.position
 	sequence(Mood.regroup, attackPos, delta)
 
 func regroup(delta) -> void:
@@ -70,7 +78,7 @@ func charge(targetPos, delta) -> void:
 	bulletSpawner.shotsEnabled = true
 	translate(speed*moveDir*delta)
 	# charge goes to target position, with a follow through
-	if position.distance_to(targetPos) < 0.5:
+	if position.distance_to(targetPos) < 1:
 		chargeLag.start()
 
 

@@ -22,4 +22,4 @@ shape = SubResource( 1 )
 
 [node name="BulletSpawner" parent="." instance=ExtResource( 3 )]
 bullet_override = ExtResource( 4 )
-spawn_point_count = 5
+radius = 10.0
