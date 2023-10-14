@@ -23,10 +23,7 @@ shape = SubResource( 1 )
 [node name="AimTimer" type="Timer" parent="."]
 one_shot = true
 
-[node name="ShotTimer" type="Timer" parent="."]
-one_shot = true
-
-[node name="chargeLag" type="Timer" parent="."]
+[node name="ChargeLag" type="Timer" parent="."]
 wait_time = 0.1
 one_shot = true
 
@@ -34,5 +31,4 @@ one_shot = true
 spawn_point_count = 2
 
 [connection signal="timeout" from="AimTimer" to="." method="_on_AimTimer_timeout"]
-[connection signal="timeout" from="ShotTimer" to="." method="_on_ShotTimer_timeout"]
-[connection signal="timeout" from="chargeLag" to="." method="_on_chargeLag_timeout"]
+[connection signal="timeout" from="ChargeLag" to="." method="_on_chargeLag_timeout"]

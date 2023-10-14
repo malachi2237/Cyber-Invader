@@ -1,8 +1,6 @@
 extends Enemy
 
 # TODO!
-# issue with resetting the sequence
-# needs the player position to be the attack position
 # would prefer the aim to be a spin to point, look_at() is instant
 
 # Declare member variables here.
@@ -12,8 +10,7 @@ export var attackPos: Vector2 = Vector2(0,0)
 export var speed: float = 10
 
 onready var aimTimer: Timer = $AimTimer
-onready var shotTimer: Timer = $ShotTimer
-onready var chargeLag: Timer = $chargeLag
+onready var chargeLag: Timer = $ChargeLag
 onready var bulletSpawner: BulletSpawner = $BulletSpawner
 
 var moveDir:Vector2 = Vector2(0,0)
@@ -72,27 +69,13 @@ func charge(targetPos, delta) -> void:
 	# periodically shoot while charging
 	bulletSpawner.shotsEnabled = true
 	translate(speed*moveDir*delta)
-	if position.distance_to(targetPos) < 0.5:
-		print(targetPos)
-		chargeLag.start()
 	# charge goes to target position, with a follow through
-
-
-
-#func shoot() -> void:
-#	pass
-#	print("BANG!")
-	# periodically shoot a bullet
-	# from each left/right side
+	if position.distance_to(targetPos) < 0.5:
+		chargeLag.start()
 
 
 func _on_AimTimer_timeout() -> void:
 	curSeq = Sequence.charge
 
-
-#func _on_ShotTimer_timeout() -> void:
-#	shoot()
-
 func _on_chargeLag_timeout() -> void:
-	print("reset")
 	curSeq = Sequence.repeat
