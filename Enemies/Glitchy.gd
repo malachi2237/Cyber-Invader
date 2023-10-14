@@ -4,6 +4,8 @@ extends Enemy
 onready var warpTimer: Timer = $WarpTimer
 onready var shadowClone: Sprite = $ShadowClone
 onready var warpAnim: AnimationPlayer = $GlitchyAnimationPlayer
+onready var bulletSpawner: BulletSpawner = $BulletSpawner
+
 onready var screenSize:Vector2 = get_viewport().get_visible_rect().size
 onready var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 onready var newSpot: Vector2 = self.position
@@ -49,6 +51,7 @@ func deathShot() -> void:
 func _on_WarpTimer_timeout() -> void:
 	if not warping:
 		warpOut()
+		bulletSpawner.shotsEnabled = false
 	elif warping:
 		warpIn()
 
@@ -57,7 +60,7 @@ func _on_AnimationPlayer_animation_finished(_anim_name: String) -> void:
 		chooseSpot()
 		warping = true
 	elif warping:
-		makeShot()
+		bulletSpawner.shotsEnabled = true
 		warping = false
 	warpTimer.start()
 
