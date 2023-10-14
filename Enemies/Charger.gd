@@ -70,7 +70,7 @@ func charge(targetPos, delta) -> void:
 	if shotTimer.is_stopped():
 		shotTimer.start()
 	translate(speed*moveDir*delta)
-	if position.distance_to(targetPos) < 0.1:
+	if position.distance_to(targetPos) < 0.5:
 		print(targetPos)
 		chargeLag.start()
 	# charge goes to target position, with a follow through

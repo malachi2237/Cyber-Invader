@@ -8,7 +8,8 @@ radius = 15.0
 
 [node name="Charger" type="Area2D"]
 script = ExtResource( 1 )
-attackPos = Vector2( 10, 10 )
+attackPos = Vector2( 200, 200 )
+speed = 100.0
 
 [node name="ChargerSprite" type="Sprite" parent="."]
 modulate = Color( 0.12549, 0.352941, 0.0313726, 1 )
