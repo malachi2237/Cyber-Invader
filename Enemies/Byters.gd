@@ -6,7 +6,7 @@ export(bool) var facing_right = true
 
 func _process(delta) -> void:
 	var direction = Vector2.RIGHT.rotated(deg2rad(movement_angle))
-	direction.normalized()
+	direction = direction.normalized()
 
 	if (!facing_right):
 		direction.x = -direction.x

@@ -2,9 +2,9 @@ extends Node2D
 
 class_name BulletSpawner
 
-export(String) var bullet_override;
+export(PackedScene) var bullet_override = preload("res://Bullets/Bullet.tscn")
 
-onready var bullet_prefab = preload("res://Bullets/Bullet.tscn")
+onready var bullet_prefab = null
 
 var shoot_timer
 var rotator
@@ -23,7 +23,7 @@ func _ready():
 	var step = 2 * PI / spawn_point_count
 
 	if (bullet_override):
-		bullet_prefab = load(bullet_override)
+		bullet_prefab = bullet_override
 
 	if useTimer:
 		shoot_timer = Timer.new()

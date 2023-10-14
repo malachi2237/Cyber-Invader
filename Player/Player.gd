@@ -12,7 +12,7 @@ var dir: Vector2 = Vector2(0,0)
 export var speed: float = 10.0
 var hurt:bool = false
 
-export var bullet = preload("res://Bullets/Bullet.tscn")
+export var bullet = preload("res://Bullets/PlayerBullet.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
