@@ -7,12 +7,14 @@ extends Enemy
 
 # Declare member variables here.
 export var homePos: Vector2 = self.position
+#export var attackTarget: Player = preload("res://Player/Player.tscn")
 export var attackPos: Vector2 = Vector2(0,0)
 export var speed: float = 10
 
 onready var aimTimer: Timer = $AimTimer
 onready var shotTimer: Timer = $ShotTimer
 onready var chargeLag: Timer = $chargeLag
+onready var bulletSpawner: BulletSpawner = $BulletSpawner
 
 var moveDir:Vector2 = Vector2(0,0)
 
@@ -60,6 +62,7 @@ func sequence(nextMood, targetPos, delta) -> void:
 			curSeq = Sequence.aim
 
 func aim(targetPos, _delta) -> void:
+	bulletSpawner.shotsEnabled = false
 	if aimTimer.is_stopped():
 		aimTimer.start()
 	look_at(targetPos)
@@ -67,8 +70,7 @@ func aim(targetPos, _delta) -> void:
 
 func charge(targetPos, delta) -> void:
 	# periodically shoot while charging
-	if shotTimer.is_stopped():
-		shotTimer.start()
+	bulletSpawner.shotsEnabled = true
 	translate(speed*moveDir*delta)
 	if position.distance_to(targetPos) < 0.5:
 		print(targetPos)
@@ -77,9 +79,9 @@ func charge(targetPos, delta) -> void:
 
 
 
-func shoot() -> void:
-	pass
-	print("BANG!")
+#func shoot() -> void:
+#	pass
+#	print("BANG!")
 	# periodically shoot a bullet
 	# from each left/right side
 
@@ -88,8 +90,8 @@ func _on_AimTimer_timeout() -> void:
 	curSeq = Sequence.charge
 
 
-func _on_ShotTimer_timeout() -> void:
-	shoot()
+#func _on_ShotTimer_timeout() -> void:
+#	shoot()
 
 func _on_chargeLag_timeout() -> void:
 	print("reset")

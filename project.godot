@@ -28,12 +28,18 @@ _global_script_classes=[ {
 "class": "Enemy",
 "language": "GDScript",
 "path": "res://Enemies/Enemy.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Player",
+"language": "GDScript",
+"path": "res://Player/Player.gd"
 } ]
 _global_script_class_icons={
 "AK": "",
 "AkUtils": "",
 "BulletSpawner": "",
-"Enemy": ""
+"Enemy": "",
+"Player": ""
 }
 
 [application]
