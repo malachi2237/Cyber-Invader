@@ -23,7 +23,7 @@ export(int) var spawn_point_count = 1
 
 export(bool) var useTimer = true
 
-signal wave_ended
+signal stopped_firing
 
 func _ready():
 	var step = 2 * PI / spawn_point_count
@@ -38,8 +38,10 @@ func _ready():
 
 	if enable_duration:
 		duration_timer = Timer.new()
-		duration_timer.connect("timeout", self, "stop_firing")
+		add_child(duration_timer)
 		duration_timer.one_shot = true
+		duration_timer.connect("timeout", self, "stop_firing")
+		
 		
 	rotator = Node2D.new()
 	add_child(rotator)
@@ -58,7 +60,7 @@ func _ready():
 		
 func start_firing():
 	if useTimer:
-			shoot_timer.start(shot_timer)
+		shoot_timer.start(shot_timer)
 			
 	if duration_timer:
 		duration_timer.start(duration)
@@ -66,6 +68,8 @@ func start_firing():
 func stop_firing():
 	if useTimer:
 		shoot_timer.stop()
+	
+	emit_signal("stopped_firing")
 		
 func _process(delta):
 	var new_rotation = rotator.rotation_degrees + rotation_speed * delta
