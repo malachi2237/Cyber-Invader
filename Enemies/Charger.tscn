@@ -19,10 +19,14 @@ texture = ExtResource( 2 )
 shape = SubResource( 1 )
 
 [node name="AimTimer" type="Timer" parent="."]
+one_shot = true
 
 [node name="ShotTimer" type="Timer" parent="."]
+one_shot = true
 
 [node name="chargeLag" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
 
 [connection signal="timeout" from="AimTimer" to="." method="_on_AimTimer_timeout"]
 [connection signal="timeout" from="ShotTimer" to="." method="_on_ShotTimer_timeout"]
