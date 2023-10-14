@@ -15,4 +15,4 @@ data_*/
 mono_crash.*.json
 
 # Wwise addon binaries
-./addons/wwise
+addons/wwise
