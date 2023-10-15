@@ -5,14 +5,12 @@ extends Enemy
 
 # Declare member variables here.
 export var homePos: Vector2 = self.position
-#export var attackTarget: Player = preload("res://Player/Player.tscn")
+var attackTarget: Node2D
 export var attackPos: Vector2 = Vector2(0,0)
 export var speed: float = 10
-
 onready var aimTimer: Timer = $AimTimer
 onready var chargeLag: Timer = $ChargeLag
 onready var bulletSpawner: BulletSpawner = $BulletSpawner
-onready var player
 var hasPlayer: bool = false
 var moveDir:Vector2 = Vector2(0,0)
 
@@ -40,6 +38,10 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 
+func set_attack_target(targetNode: Node2D) -> void:
+	if targetNode:
+		attackTarget = targetNode
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	match curMood:
@@ -49,8 +51,8 @@ func _physics_process(delta: float) -> void:
 			regroup(delta)
 
 func attack(delta) -> void:
-	if curSeq == Sequence.aim and hasPlayer:
-		attackPos = player.position
+	if curSeq == Sequence.aim and attackTarget:
+		attackPos = attackTarget.position
 	sequence(Mood.regroup, attackPos, delta)
 
 func regroup(delta) -> void:
@@ -65,9 +67,9 @@ func sequence(nextMood, targetPos, delta) -> void:
 		Sequence.repeat:
 			curMood = nextMood
 			curSeq = Sequence.aim
+			bulletSpawner.stop_firing()
 
 func aim(targetPos, _delta) -> void:
-	bulletSpawner.stop_firing()
 	if aimTimer.is_stopped():
 		aimTimer.start()
 	look_at(targetPos)
@@ -75,7 +77,6 @@ func aim(targetPos, _delta) -> void:
 
 func charge(targetPos, delta) -> void:
 	# periodically shoot while charging
-	bulletSpawner.start_firing()
 	translate(speed*moveDir*delta)
 	# charge goes to target position, with a follow through
 	if position.distance_to(targetPos) < 1:
@@ -84,6 +85,7 @@ func charge(targetPos, delta) -> void:
 
 func _on_AimTimer_timeout() -> void:
 	curSeq = Sequence.charge
+	bulletSpawner.start_firing()
 
 func _on_chargeLag_timeout() -> void:
 	curSeq = Sequence.repeat
