@@ -12,4 +12,3 @@ func _process(delta) -> void:
 		direction.x = -direction.x
 
 	translate(direction * movement_speed * delta)
-

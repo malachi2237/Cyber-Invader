@@ -3,6 +3,7 @@ extends Enemy
 # Declare member variables here.
 onready var warpTimer: Timer = $WarpTimer
 onready var shadowClone: Sprite = $ShadowClone
+onready var spriteAnim : AnimatedSprite = $GlitchySprite
 onready var warpAnim: AnimationPlayer = $GlitchyAnimationPlayer
 onready var bulletSpawner: BulletSpawner = $BulletSpawner
 
@@ -52,6 +53,7 @@ func _on_WarpTimer_timeout() -> void:
 	if not warping:
 		warpOut()
 		bulletSpawner.stop_firing()
+		spriteAnim.play("default")
 	elif warping:
 		warpIn()
 
@@ -61,6 +63,7 @@ func _on_AnimationPlayer_animation_finished(_anim_name: String) -> void:
 		warping = true
 	elif warping:
 		bulletSpawner.start_firing()
+		spriteAnim.play("shoot")
 		warping = false
 	warpTimer.start()
 

@@ -10,12 +10,7 @@
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 2 ) ],
-"loop": true,
-"name": "default",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 2 ), ExtResource( 7 ), ExtResource( 6 ) ],
+"frames": [ ExtResource( 2 ), ExtResource( 7 ), ExtResource( 6 ), ExtResource( 7 ) ],
 "loop": true,
 "name": "shoot",
 "speed": 5.0
@@ -28,14 +23,17 @@ radius = 21.0238
 script = ExtResource( 1 )
 movement_speed = 100.0
 
-[node name="BulletSpawner" parent="." instance=ExtResource( 3 )]
-bullet_override = ExtResource( 4 )
-
 [node name="EnemySprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 0.25, 0.25 )
 frames = SubResource( 2 )
+animation = "shoot"
+frame = 1
+playing = true
 
 [node name="EnemyBox" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
 [node name="HurtAnimation" parent="." instance=ExtResource( 5 )]
+
+[node name="BulletSpawner" parent="." instance=ExtResource( 3 )]
+bullet_override = ExtResource( 4 )

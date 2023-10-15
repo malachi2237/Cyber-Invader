@@ -1,24 +1,11 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Enemies/Glitchy.gd" type="Script" id=1]
 [ext_resource path="res://Enemies/Sprites/byter.png" type="Texture" id=2]
 [ext_resource path="res://Bullets/BulletSpawner.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Bullets/ForwardBullet.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Animations/HurtAnimation.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Enemies/Sprites/byter_mouthopen.png" type="Texture" id=6]
-
-[sub_resource type="SpriteFrames" id=4]
-animations = [ {
-"frames": [ ExtResource( 2 ) ],
-"loop": true,
-"name": "default",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 2 ), ExtResource( 6 ) ],
-"loop": true,
-"name": "shoot",
-"speed": 5.0
-} ]
+[ext_resource path="res://Enemies/Sprites/GlitchyAnim.tres" type="SpriteFrames" id=6]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 41.0
@@ -65,7 +52,7 @@ spawn_point_count = 6
 [node name="GlitchySprite" type="AnimatedSprite" parent="."]
 modulate = Color( 1, 1, 1, 0 )
 scale = Vector2( 0.5, 0.5 )
-frames = SubResource( 4 )
+frames = ExtResource( 6 )
 
 [node name="ShadowClone" type="Sprite" parent="."]
 modulate = Color( 1, 1, 1, 0.247059 )
