@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Gamejamfinal.mp3" type="AudioStream" id=1]
 [ext_resource path="res://Enemies/Glitchy.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Enemies/Byters.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Enemies/Radial.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Enemies/Charger.tscn" type="PackedScene" id=5]
 
 [node name="EnemyTestZone" type="Node2D"]
 
@@ -15,6 +16,9 @@ position = Vector2( 314, 158 )
 
 [node name="Radial" parent="." instance=ExtResource( 4 )]
 position = Vector2( 414, 203 )
+
+[node name="Charger" parent="." instance=ExtResource( 5 )]
+position = Vector2( 915, 229 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 1 )
