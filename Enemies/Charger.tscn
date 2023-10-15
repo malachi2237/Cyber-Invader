@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Enemies/Charger.gd" type="Script" id=1]
-[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://Enemies/Sprites/firewall.png" type="Texture" id=2]
 [ext_resource path="res://Bullets/BulletSpawner.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Bullets/ForwardBullet.tscn" type="PackedScene" id=4]
 
@@ -14,9 +14,9 @@ attackPos = Vector2( 200, 200 )
 speed = 100.0
 
 [node name="ChargerSprite" type="Sprite" parent="."]
-modulate = Color( 0.12549, 0.352941, 0.0313726, 1 )
-scale = Vector2( 0.5, 0.5 )
+position = Vector2( 0, -21.589 )
 texture = ExtResource( 2 )
+region_rect = Rect2( 0, 46, 200, 148 )
 
 [node name="EnemyBox" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
