@@ -48,13 +48,13 @@ func _ready():
 		add_child(burst_timer)
 		burst_timer.one_shot = true
 		burst_timer.connect("timeout", self, "_end_burst")
-		
+
 		if !single_burst:
 			interval_timer = Timer.new()
 			add_child(interval_timer)
 			interval_timer.one_shot = true
 			interval_timer.connect("timeout", self, "start_firing")
-		
+
 	rotator = Node2D.new()
 	add_child(rotator)
 
@@ -66,7 +66,7 @@ func _ready():
 		rotator.add_child(spawn_point)
 
 	rotator.rotate(deg2rad(initial_rotation))
-	
+
 	if fire_on_start and initial_delay > 0.0:
 		var start_timer = Timer.new()
 		add_child(start_timer)
@@ -75,20 +75,20 @@ func _ready():
 		start_timer.start(initial_delay)
 	elif fire_on_start:
 		start_firing()
-		
+
 func start_firing():
 	if useTimer:
 		shoot_timer.start(shot_timer)
-			
+
 	if burst_timer:
 		burst_timer.start(burst_duration)
-	
+
 func stop_firing():
 	if useTimer:
 		shoot_timer.stop()
-	
+
 	emit_signal("stopped_firing")
-		
+
 func _end_burst():
 	if useTimer:
 		shoot_timer.stop()

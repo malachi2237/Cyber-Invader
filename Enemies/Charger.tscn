@@ -1,12 +1,13 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Enemies/Charger.gd" type="Script" id=1]
 [ext_resource path="res://Enemies/Sprites/firewall.png" type="Texture" id=2]
 [ext_resource path="res://Bullets/BulletSpawner.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Bullets/ForwardBullet.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Animations/HurtAnimation.tscn" type="PackedScene" id=5]
 
-[sub_resource type="CircleShape2D" id=1]
-radius = 15.0
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 49, 29 )
 
 [node name="Charger" type="Area2D"]
 script = ExtResource( 1 )
@@ -14,11 +15,14 @@ attackPos = Vector2( 200, 200 )
 speed = 100.0
 
 [node name="ChargerSprite" type="Sprite" parent="."]
-position = Vector2( 0, -21.589 )
+position = Vector2( -17, 0 )
+rotation = 4.71239
+scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
 region_rect = Rect2( 0, 46, 200, 148 )
 
 [node name="EnemyBox" type="CollisionShape2D" parent="."]
+rotation = 4.71239
 shape = SubResource( 1 )
 
 [node name="AimTimer" type="Timer" parent="."]
@@ -31,6 +35,8 @@ one_shot = true
 [node name="BulletSpawner" parent="." instance=ExtResource( 3 )]
 bullet_override = ExtResource( 4 )
 spawn_point_count = 2
+
+[node name="HurtAnimation" parent="." instance=ExtResource( 5 )]
 
 [connection signal="timeout" from="AimTimer" to="." method="_on_AimTimer_timeout"]
 [connection signal="timeout" from="ChargeLag" to="." method="_on_chargeLag_timeout"]

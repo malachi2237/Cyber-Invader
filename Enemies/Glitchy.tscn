@@ -1,12 +1,13 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Enemies/Glitchy.gd" type="Script" id=1]
 [ext_resource path="res://Enemies/Sprites/byter.png" type="Texture" id=2]
 [ext_resource path="res://Bullets/BulletSpawner.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Bullets/ForwardBullet.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Animations/HurtAnimation.tscn" type="PackedScene" id=5]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 15.0
+radius = 41.0
 
 [sub_resource type="Animation" id=2]
 resource_name = "GlitchyFadeIn"
@@ -20,7 +21,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Color( 0.85098, 0.0901961, 0.768627, 0 ), Color( 0.85098, 0.0901961, 0.768627, 1 ) ]
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -34,26 +35,26 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.9 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Color( 0.85098, 0.0901961, 0.768627, 1 ), Color( 0.85098, 0.0901961, 0.768627, 0 ) ]
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
 [node name="Glitchy" type="Area2D"]
 script = ExtResource( 1 )
 
 [node name="GlitchySprite" type="Sprite" parent="."]
-modulate = Color( 0.85098, 0.0901961, 0.768627, 1 )
-rotation = -0.785398
+modulate = Color( 1, 1, 1, 0 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
 
 [node name="ShadowClone" type="Sprite" parent="."]
 modulate = Color( 1, 1, 1, 0.247059 )
-rotation = -0.785398
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
 
 [node name="EnemyBox" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
+
+[node name="HurtAnimation" parent="." instance=ExtResource( 5 )]
 
 [node name="GlitchyAnimationPlayer" type="AnimationPlayer" parent="."]
 anims/GlitchyFadeIn = SubResource( 2 )
