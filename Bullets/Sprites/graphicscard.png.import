@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/graphicscard.png-7bd90b3a8a9f09ab793aa64aeec253eb.stex"
+path="res://.import/graphicscard.png-38d75ebb63e4f4cf8d80f7628df33a9f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Enemies/Sprites/graphicscard.png"
-dest_files=[ "res://.import/graphicscard.png-7bd90b3a8a9f09ab793aa64aeec253eb.stex" ]
+source_file="res://Bullets/Sprites/graphicscard.png"
+dest_files=[ "res://.import/graphicscard.png-38d75ebb63e4f4cf8d80f7628df33a9f.stex" ]
 
 [params]
 

@@ -1,6 +1,5 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Enemies/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://Enemies/Enemy.tscn" type="PackedScene" id=2]
 
 [sub_resource type="Curve2D" id=1]
@@ -16,6 +15,5 @@ position = Vector2( 48, 1 )
 rotation = 1.46337
 rotate = false
 
-[node name="Enemy" type="Area2D" parent="EnemyFollowPath" instance=ExtResource( 2 )]
+[node name="Enemy" parent="EnemyFollowPath" instance=ExtResource( 2 )]
 rotation = -1.46337
-script = ExtResource( 1 )
