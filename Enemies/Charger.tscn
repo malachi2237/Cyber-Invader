@@ -6,8 +6,8 @@
 [ext_resource path="res://Bullets/BrickBullet.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Animations/HurtAnimation.tscn" type="PackedScene" id=5]
 
-[sub_resource type="CircleShape2D" id=1]
-radius = 15.0
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 49, 29 )
 
 [node name="Charger" type="Area2D"]
 script = ExtResource( 1 )

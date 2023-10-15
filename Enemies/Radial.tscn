@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Enemies/Radial.gd" type="Script" id=1]
 [ext_resource path="res://Bullets/Sprites/graphicscard.png" type="Texture" id=2]
@@ -6,6 +6,23 @@
 [ext_resource path="res://Bullets/LightningBullet.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Animations/HurtAnimation.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Bullets/EthereumBullet.tscn" type="PackedScene" id=7]
+
+[sub_resource type="Animation" id=2]
+resource_name = "Spinning"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("EnemySprite:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 180.0, 360.0 ]
+}
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 39.0
@@ -39,7 +56,14 @@ spawn_point_count = 7
 
 [node name="EnemySprite" type="Sprite" parent="."]
 position = Vector2( -1, 0 )
+rotation = 4.95136
 texture = ExtResource( 2 )
+
+[node name="SpinningCard" type="AnimationPlayer" parent="."]
+autoplay = "Spinning"
+reset_on_save = false
+method_call_mode = 1
+anims/Spinning = SubResource( 2 )
 
 [node name="HurtAnimation" parent="." instance=ExtResource( 5 )]
 
