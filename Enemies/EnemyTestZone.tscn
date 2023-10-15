@@ -29,5 +29,5 @@ position = Vector2( 524, 104 )
 [node name="Byter" parent="." instance=ExtResource( 3 )]
 position = Vector2( 314, 158 )
 
-[node name="Enemy" parent="." instance=ExtResource( 4 )]
+[node name="Radial" parent="." instance=ExtResource( 4 )]
 position = Vector2( 414, 203 )

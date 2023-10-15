@@ -6,6 +6,7 @@
 [sub_resource type="CapsuleShape2D" id=5]
 
 [node name="Bullet" type="Area2D"]
+z_index = -2
 script = ExtResource( 1 )
 is_from_player = true
 

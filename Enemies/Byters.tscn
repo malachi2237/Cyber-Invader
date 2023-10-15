@@ -1,27 +1,41 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Enemies/Byters.gd" type="Script" id=1]
-[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://Enemies/Sprites/floppyEnemy.png" type="Texture" id=2]
 [ext_resource path="res://Bullets/BulletSpawner.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Bullets/ForwardBullet.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Animations/HurtAnimation.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Enemies/Sprites/floppyEnemy_open.png" type="Texture" id=6]
+[ext_resource path="res://Enemies/Sprites/floppyEnemy_halfway.png" type="Texture" id=7]
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 7 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "shoot",
+"speed": 5.0
+} ]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 15.0
+radius = 21.0238
 
 [node name="Byter" type="Area2D"]
 script = ExtResource( 1 )
 movement_speed = 100.0
 
-[node name="EnemySprite" type="Sprite" parent="."]
-modulate = Color( 0.85098, 0.0901961, 0.768627, 1 )
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 2 )
+[node name="BulletSpawner" parent="." instance=ExtResource( 3 )]
+bullet_override = ExtResource( 4 )
+
+[node name="EnemySprite" type="AnimatedSprite" parent="."]
+scale = Vector2( 0.25, 0.25 )
+frames = SubResource( 2 )
 
 [node name="EnemyBox" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
-
-[node name="BulletSpawner" parent="." instance=ExtResource( 3 )]
-bullet_override = ExtResource( 4 )
 
 [node name="HurtAnimation" parent="." instance=ExtResource( 5 )]
