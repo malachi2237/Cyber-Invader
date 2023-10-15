@@ -4,7 +4,7 @@ extends Enemy
 # would prefer the aim to be a spin to point, look_at() is instant
 
 # Declare member variables here.
-export var homePos: Vector2 = self.position
+onready var homePos: Vector2 = self.position
 var attackTarget: Node2D
 export var attackPos: Vector2 = Vector2(0,0)
 export var speed: float = 10
