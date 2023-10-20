@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Level/Scripts/WavePhase.gd" type="Script" id=1]
+[ext_resource path="res://Enemies/SpawnGroups/RightByters.tscn" type="PackedScene" id=2]
+
+[node name="WavePhase" type="Node2D"]
+script = ExtResource( 1 )
+auto_start = true
+spawn_group_stack = [ ExtResource( 2 ) ]
+spawn_point_stack = [ NodePath("SpawnPoints/right_upper") ]
+spawn_delay_stack = [ 1.0 ]
+
+[node name="SpawnPoints" type="Node2D" parent="."]
+
+[node name="top_left" type="Node2D" parent="SpawnPoints"]
+position = Vector2( 300, -100 )
+
+[node name="top_right" type="Node2D" parent="SpawnPoints"]
+position = Vector2( 700, -100 )
+
+[node name="left_upper" type="Node2D" parent="SpawnPoints"]
+position = Vector2( -100, 150 )
+
+[node name="left_lower" type="Node2D" parent="SpawnPoints"]
+position = Vector2( -100, 300 )
+
+[node name="right_upper" type="Node2D" parent="SpawnPoints"]
+position = Vector2( 1150, 150 )
+
+[node name="right_lower" type="Node2D" parent="SpawnPoints"]
+position = Vector2( 1150, 300 )

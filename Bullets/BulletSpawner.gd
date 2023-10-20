@@ -13,7 +13,8 @@ var rotator
 
 export(float) var arc_size = 360.0
 export(bool) var fire_on_start = true
-export(float) var initial_delay = 0.0
+export(float) var initial_delay_min = 0.0
+export(float) var initial_delay_max = 0.0
 
 export(bool) var enable_bursts = false
 export(bool) var single_burst = false
@@ -34,7 +35,8 @@ signal stopped_firing
 
 func _ready():
 	var step = deg2rad(arc_size) / spawn_point_count
-
+	var delay_condition = initial_delay_min >= 0.0 and initial_delay_min < initial_delay_max
+	
 	if (bullet_override):
 		bullet_prefab = bullet_override
 
@@ -67,12 +69,14 @@ func _ready():
 
 	rotator.rotate(deg2rad(initial_rotation))
 
-	if fire_on_start and initial_delay > 0.0:
+	if fire_on_start and delay_condition:
+		var delay = rand_range(initial_delay_min, initial_delay_max)
 		var start_timer = Timer.new()
+		
 		add_child(start_timer)
 		start_timer.one_shot = true
 		start_timer.connect("timeout", self, "start_firing")
-		start_timer.start(initial_delay)
+		start_timer.start(delay)
 	elif fire_on_start:
 		start_firing()
 

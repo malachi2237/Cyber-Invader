@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://Enemies/Byters.gd" type="Script" id=1]
+[ext_resource path="res://Enemies/Scripts/Byters.gd" type="Script" id=1]
 [ext_resource path="res://Enemies/Sprites/floppyEnemy.png" type="Texture" id=2]
 [ext_resource path="res://Bullets/BulletSpawner.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Bullets/OneBullet.tscn" type="PackedScene" id=4]
@@ -27,7 +27,7 @@ movement_speed = 100.0
 scale = Vector2( 0.25, 0.25 )
 frames = SubResource( 2 )
 animation = "shoot"
-frame = 1
+frame = 2
 playing = true
 
 [node name="EnemyBox" type="CollisionShape2D" parent="."]
@@ -37,3 +37,5 @@ shape = SubResource( 1 )
 
 [node name="BulletSpawner" parent="." instance=ExtResource( 3 )]
 bullet_override = ExtResource( 4 )
+initial_delay_max = 0.5
+shot_timer = 1.0

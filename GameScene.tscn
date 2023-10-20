@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://Level/Scripts/GameManager.gd" type="Script" id=2]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Enemies/Charger.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Level/WavePhases/InitialPhase.tscn" type="PackedScene" id=4]
 
 [sub_resource type="VisualShaderNodeTexture" id=1]
 texture = ExtResource( 1 )
@@ -58,5 +59,7 @@ material = SubResource( 3 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 
-[node name="Charger" parent="." instance=ExtResource( 4 )]
-position = Vector2( 426, 67 )
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource( 2 )
+stage_queue = [ ExtResource( 4 ) ]
+player = NodePath("../Player")

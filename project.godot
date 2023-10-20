@@ -27,9 +27,14 @@ _global_script_classes=[ {
 "base": "Area2D",
 "class": "Enemy",
 "language": "GDScript",
-"path": "res://Enemies/Enemy.gd"
+"path": "res://Enemies/Scripts/Enemy.gd"
 }, {
 "base": "Node",
+"class": "GameManager",
+"language": "GDScript",
+"path": "res://Level/Scripts/GameManager.gd"
+}, {
+"base": "Node2D",
 "class": "LevelPhase",
 "language": "GDScript",
 "path": "res://Level/Scripts/LevelPhase.gd"
@@ -38,14 +43,21 @@ _global_script_classes=[ {
 "class": "Player",
 "language": "GDScript",
 "path": "res://Player/Player.gd"
+}, {
+"base": "LevelPhase",
+"class": "WavePhase",
+"language": "GDScript",
+"path": "res://Level/Scripts/WavePhase.gd"
 } ]
 _global_script_class_icons={
 "AkUtils": "",
 "Bullet": "",
 "BulletSpawner": "",
 "Enemy": "",
+"GameManager": "",
 "LevelPhase": "",
-"Player": ""
+"Player": "",
+"WavePhase": ""
 }
 
 [application]
