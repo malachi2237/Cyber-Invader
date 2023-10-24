@@ -18,7 +18,7 @@ func _ready():
 		spawn_timer = Timer.new()
 		add_child(spawn_timer)
 		spawn_timer.one_shot = true
-		print(spawn_timer.connect("timeout", self, "_spawn_next_group"))
+		spawn_timer.connect("timeout", self, "_spawn_next_group")
 		
 		if auto_start:
 			_start_phase()

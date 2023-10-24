@@ -7,7 +7,6 @@
 [ext_resource path="res://Animations/HurtAnimation.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Bullets/EthereumBullet.tscn" type="PackedScene" id=7]
 
-
 [sub_resource type="Animation" id=2]
 resource_name = "Spinning"
 length = 2.0
@@ -45,7 +44,6 @@ spawn_point_count = 7
 [node name="SmallFast" type="Node2D" parent="."]
 script = ExtResource( 3 )
 bullet_override = ExtResource( 4 )
-initial_delay = 2.0
 enable_bursts = true
 burst_duration = 0.5
 burst_interval = 2.5
