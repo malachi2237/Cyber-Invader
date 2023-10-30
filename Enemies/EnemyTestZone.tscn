@@ -15,7 +15,9 @@ position = Vector2( 524, 104 )
 position = Vector2( 314, 158 )
 
 [node name="Radial" parent="." instance=ExtResource( 4 )]
-position = Vector2( 414, 203 )
+position = Vector2( 405, -109 )
+entry_speed = 75.0
+entry_travel_distance = 300.0
 
 [node name="Charger" parent="." instance=ExtResource( 5 )]
 position = Vector2( 915, 229 )

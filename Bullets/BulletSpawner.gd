@@ -35,7 +35,7 @@ signal stopped_firing
 
 func _ready():
 	var step = deg2rad(arc_size) / spawn_point_count
-	var delay_condition = initial_delay_min >= 0.0 and initial_delay_min < initial_delay_max
+	var delay_condition = initial_delay_min >= 0.0 and initial_delay_min <= initial_delay_max
 	
 	if (bullet_override):
 		bullet_prefab = bullet_override

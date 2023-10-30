@@ -8,7 +8,7 @@
 [node name="Bullet" type="Area2D"]
 z_index = -2
 script = ExtResource( 1 )
-shot_speed = 900
+shot_speed = 750
 
 [node name="BulletSprite" type="Sprite" parent="."]
 position = Vector2( -1, 0 )
