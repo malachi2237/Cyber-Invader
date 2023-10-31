@@ -66,6 +66,16 @@ config/name="Digi Bullet Hell"
 run/main_scene="res://GameScene.tscn"
 config/icon="res://icon.png"
 
+[display]
+
+window/size/width=1920
+window/size/height=1080
+window/size/always_on_top=true
+window/handheld/orientation="portrait"
+window/stretch/mode="2d"
+window/stretch/aspect="keep"
+window/stretch/shrink=0.33
+
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
