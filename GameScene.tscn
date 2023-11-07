@@ -54,3 +54,19 @@ collision_layer = 32
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayLayer/right_boundary"]
 scale = Vector2( 1, 500 )
 shape = SubResource( 1 )
+
+[node name="top_boundary" type="StaticBody2D" parent="PlayLayer"]
+position = Vector2( 2880, 50 )
+collision_layer = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayLayer/top_boundary"]
+scale = Vector2( 500, 1 )
+shape = SubResource( 1 )
+
+[node name="bottom_boundary" type="StaticBody2D" parent="PlayLayer"]
+position = Vector2( 2880, 3200 )
+collision_layer = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayLayer/bottom_boundary"]
+scale = Vector2( 500, 1 )
+shape = SubResource( 1 )
