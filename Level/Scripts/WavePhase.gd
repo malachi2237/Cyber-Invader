@@ -9,26 +9,34 @@ export(Array, float) var spawn_delay_stack: Array
 
 var spawn_timer: Timer
 
+func nonZeroCondition() -> bool:
+	return !spawn_point_stack.empty()
+
 func equalSizeCondition() -> bool:
 	return (spawn_point_stack.size() == spawn_group_stack.size() and
 		 spawn_point_stack.size() == spawn_delay_stack.size())
 
+func phaseError() -> void:
+	printerr("Spawn stacks do not contain the same amount of elements")
+	queue_free()
+
 func _ready():
-	var non_zero_condition = !spawn_point_stack.empty()
-	var equal_size_condition = equalSizeCondition()
-
-	if non_zero_condition and equal_size_condition:
-		spawn_timer = Timer.new()
-		add_child(spawn_timer)
-		spawn_timer.one_shot = true
-		var _connectSpawnTimer = spawn_timer.connect(
-			"timeout", self, "_spawn_next_group")
-
-		if auto_start:
-			_start_phase()
+	if nonZeroCondition() and equalSizeCondition():
+		makePhase()
 	else:
-		printerr("Spawn stacks do not contain the same amount of elements")
-		queue_free()
+		phaseError()
+
+func connectSpawnTimer(spawnTimer:Timer) -> void:
+	spawn_timer.connect("timeout", self, "_spawn_next_group")
+
+func makePhase() -> void:
+	spawn_timer = Timer.new()
+	add_child(spawn_timer)
+	spawn_timer.one_shot = true
+	connectSpawnTimer(spawn_timer)
+
+	if auto_start:
+		_start_phase()
 
 func _start_phase():
 	spawn_timer.start(spawn_delay_stack.pop_front())
