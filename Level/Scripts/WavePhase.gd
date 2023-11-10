@@ -20,23 +20,21 @@ func phaseError() -> void:
 	printerr("Spawn stacks do not contain the same amount of elements")
 	queue_free()
 
+func makePhase() -> void:
+	spawn_timer = Timer.new()
+	add_child(spawn_timer)
+	spawn_timer.one_shot = true
+	connectSpawnTimer()
+	if auto_start: _start_phase()
+
 func _ready():
 	if nonZeroCondition() and equalSizeCondition():
 		makePhase()
 	else:
 		phaseError()
 
-func connectSpawnTimer(spawnTimer:Timer) -> void:
-	spawn_timer.connect("timeout", self, "_spawn_next_group")
-
-func makePhase() -> void:
-	spawn_timer = Timer.new()
-	add_child(spawn_timer)
-	spawn_timer.one_shot = true
-	connectSpawnTimer(spawn_timer)
-
-	if auto_start:
-		_start_phase()
+func connectSpawnTimer() -> void:
+	var _toss = spawn_timer.connect("timeout", self, "_spawn_next_group")
 
 func _start_phase():
 	spawn_timer.start(spawn_delay_stack.pop_front())
