@@ -36,30 +36,20 @@ signal stopped_firing
 func _ready():
 	var step = deg2rad(arc_size) / spawn_point_count
 	var delay_condition = initial_delay_min >= 0.0 and initial_delay_min <= initial_delay_max
-	
-	if (bullet_override):
-		bullet_prefab = bullet_override
 
-	if useTimer:
-		shoot_timer = Timer.new()
-		add_child(shoot_timer)
-		shoot_timer.connect("timeout", self, "_volley")
-
-	if enable_bursts:
-		burst_timer = Timer.new()
-		add_child(burst_timer)
-		burst_timer.one_shot = true
-		burst_timer.connect("timeout", self, "_end_burst")
-
-		if !single_burst:
-			interval_timer = Timer.new()
-			add_child(interval_timer)
-			interval_timer.one_shot = true
-			interval_timer.connect("timeout", self, "start_firing")
+	setBulletInstance()
+	setUpShootTimer()
+	setUpBurstTimer()
 
 	rotator = Node2D.new()
 	add_child(rotator)
 
+	makeSpawnPoints(step)
+
+	rotator.rotate(deg2rad(initial_rotation))
+	setFireOnStart(delay_condition)
+
+func makeSpawnPoints(step:int) -> void:
 	for i in range(spawn_point_count):
 		var spawn_point = Node2D.new()
 		var pos = Vector2(radius, 0).rotated(step * i)
@@ -67,12 +57,36 @@ func _ready():
 		spawn_point.rotation = pos.angle()
 		rotator.add_child(spawn_point)
 
-	rotator.rotate(deg2rad(initial_rotation))
+func setBulletInstance() -> void:
+	if (bullet_override):
+		bullet_prefab = bullet_override
 
+func setUpShootTimer() -> void:
+	if useTimer:
+		shoot_timer = Timer.new()
+		add_child(shoot_timer)
+		shoot_timer.connect("timeout", self, "_volley")
+
+func setUpRepeatBursts() -> void:
+	if !single_burst:
+			interval_timer = Timer.new()
+			add_child(interval_timer)
+			interval_timer.one_shot = true
+			interval_timer.connect("timeout", self, "start_firing")
+
+func setUpBurstTimer() -> void:
+	if enable_bursts:
+		burst_timer = Timer.new()
+		add_child(burst_timer)
+		burst_timer.one_shot = true
+		burst_timer.connect("timeout", self, "_end_burst")
+		setUpRepeatBursts()
+
+func setFireOnStart(delay_condition:bool) -> void:
 	if fire_on_start and delay_condition:
 		var delay = rand_range(initial_delay_min, initial_delay_max)
 		var start_timer = Timer.new()
-		
+
 		add_child(start_timer)
 		start_timer.one_shot = true
 		start_timer.connect("timeout", self, "start_firing")
@@ -113,5 +127,3 @@ func _volley() -> void:
 
 		bullet.position = s.global_position
 		bullet.rotation = s.global_rotation + deg2rad(90)
-
-
