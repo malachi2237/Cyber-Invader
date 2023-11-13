@@ -82,7 +82,6 @@ func charge(targetPos, delta) -> void:
 	if position.distance_to(targetPos) < 1:
 		chargeLag.start()
 
-
 func _on_AimTimer_timeout() -> void:
 	curSeq = Sequence.charge
 	bulletSpawner.start_firing()
