@@ -35,10 +35,6 @@ func chooseSpot() -> void:
 func warpOut() -> void:
 	warpAnim.play("GlitchyFadeOut")
 
-func makeShot() -> void:
-	pass
-	#shoot bullet pattern
-
 func deathShot() -> void:
 	pass
 	#shoot death bullet pattern
@@ -51,7 +47,7 @@ func _on_WarpTimer_timeout() -> void:
 	elif warping:
 		warpIn()
 
-func _on_AnimationPlayer_animation_finished(_anim_name: String) -> void:
+func _on_GlitchyAnimationPlayer_animation_finished(anim_name):
 	if not warping:
 		chooseSpot()
 		warping = true
@@ -60,4 +56,3 @@ func _on_AnimationPlayer_animation_finished(_anim_name: String) -> void:
 		spriteAnim.play("shoot")
 		warping = false
 	warpTimer.start()
-

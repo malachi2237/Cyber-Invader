@@ -85,5 +85,5 @@ func _on_AimTimer_timeout() -> void:
 	curSeq = Sequence.charge
 	bulletSpawner.start_firing()
 
-func _on_chargeLag_timeout() -> void:
+func _on_ChargeLag_timeout():
 	curSeq = Sequence.repeat

@@ -1,19 +1,16 @@
-extends Area2D
+extends Node2D
 
 class_name Enemy
 
-onready var hitbox = $EnemyBox
+onready var hit_box : Area2D = $HitBox
+onready var collide_box : Area2D = $CollideBox
+
 onready var hurtAnim = $HurtAnimation
 export(int) var health = 10
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	monitoring = true
-
-func _on_Enemy_area_entered(area):
-	if ("damage" in area):
-		_take_damage(area.damage)
-
+func _on_hit_box_area_entered(area):
+	_take_damage(area.damage)
+	
 func _take_damage(var damage: int) -> void:
 	health -= damage
 	hurtAnim.play("Hurt")

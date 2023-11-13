@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Enemies/Scripts/Charger.gd" type="Script" id=1]
 [ext_resource path="res://Enemies/Sprites/firewall.png" type="Texture" id=2]
@@ -6,25 +6,22 @@
 [ext_resource path="res://Bullets/BrickBullet.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Animations/HurtAnimation.tscn" type="PackedScene" id=5]
 
-
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 49, 29 )
+extents = Vector2( 53, 40.5 )
 
-[node name="Charger" type="Area2D"]
+[sub_resource type="CircleShape2D" id=2]
+radius = 21.0238
+
+[node name="Charger" type="Node2D"]
+scale = Vector2( 4.25, 4.25 )
 script = ExtResource( 1 )
-attackPos = Vector2( 200, 200 )
-speed = 100.0
 
 [node name="ChargerSprite" type="Sprite" parent="."]
 position = Vector2( -17, 0 )
-rotation = 4.71239
+rotation = -1.5708
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
 region_rect = Rect2( 0, 46, 200, 148 )
-
-[node name="EnemyBox" type="CollisionShape2D" parent="."]
-rotation = 4.71239
-shape = SubResource( 1 )
 
 [node name="AimTimer" type="Timer" parent="."]
 one_shot = true
@@ -39,5 +36,19 @@ spawn_point_count = 2
 
 [node name="HurtAnimation" parent="." instance=ExtResource( 5 )]
 
+[node name="HitBox" type="Area2D" parent="."]
+
+[node name="EnemyBox" type="CollisionShape2D" parent="HitBox"]
+position = Vector2( -6.5, -2.38419e-06 )
+rotation = -1.5708
+shape = SubResource( 1 )
+
+[node name="CollideBox" type="Area2D" parent="."]
+scale = Vector2( 1.25, 1.25 )
+
+[node name="CollisionCircle" type="CollisionShape2D" parent="CollideBox"]
+scale = Vector2( 0.5, 0.5 )
+shape = SubResource( 2 )
+
 [connection signal="timeout" from="AimTimer" to="." method="_on_AimTimer_timeout"]
-[connection signal="timeout" from="ChargeLag" to="." method="_on_chargeLag_timeout"]
+[connection signal="timeout" from="ChargeLag" to="." method="_on_ChargeLag_timeout"]
