@@ -17,12 +17,7 @@ var animationList
 func _ready() -> void:
 	randomize()
 	animationList = warpAnim.get_animation_list()
-	pass
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta: float) -> void:
-#	pass
+	pass	
 
 func warpIn() -> void:
 	self.position = newSpot
