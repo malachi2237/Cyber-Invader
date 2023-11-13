@@ -37,7 +37,6 @@ func _ready() -> void:
 	#	hasPlayer = true
 	pass # Replace with function body.
 
-
 func set_attack_target(targetNode: Node2D) -> void:
 	if targetNode:
 		attackTarget = targetNode
