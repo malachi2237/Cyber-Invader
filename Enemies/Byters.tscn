@@ -23,6 +23,7 @@ extents = Vector2( 17.6667, 17 )
 radius = 21.0238
 
 [node name="Byter" type="Node2D"]
+scale = Vector2( 3, 3 )
 script = ExtResource( 1 )
 
 [node name="EnemySprite" type="AnimatedSprite" parent="."]
