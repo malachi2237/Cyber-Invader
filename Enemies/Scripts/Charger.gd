@@ -37,7 +37,6 @@ func _ready() -> void:
 	#	hasPlayer = true
 	pass # Replace with function body.
 
-
 func set_attack_target(targetNode: Node2D) -> void:
 	if targetNode:
 		attackTarget = targetNode
@@ -81,7 +80,6 @@ func charge(targetPos, delta) -> void:
 	# charge goes to target position, with a follow through
 	if position.distance_to(targetPos) < 1:
 		chargeLag.start()
-
 
 func _on_AimTimer_timeout() -> void:
 	curSeq = Sequence.charge

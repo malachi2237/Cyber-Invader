@@ -9,20 +9,15 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Reference",
-"class": "AkUtils",
-"language": "GDScript",
-"path": "res://addons/wwise/runtime/helpers/ak_utils.gd"
-}, {
 "base": "Area2D",
 "class": "Bullet",
 "language": "GDScript",
-"path": "res://Bullets/Bullet.gd"
+"path": "res://Bullets/Scripts/Bullet.gd"
 }, {
 "base": "Node2D",
 "class": "BulletSpawner",
 "language": "GDScript",
-"path": "res://Bullets/BulletSpawner.gd"
+"path": "res://Bullets/Scripts/BulletSpawner.gd"
 }, {
 "base": "Node2D",
 "class": "Enemy",
@@ -50,7 +45,6 @@ _global_script_classes=[ {
 "path": "res://Level/Scripts/WavePhase.gd"
 } ]
 _global_script_class_icons={
-"AkUtils": "",
 "Bullet": "",
 "BulletSpawner": "",
 "Enemy": "",
