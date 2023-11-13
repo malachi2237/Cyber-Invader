@@ -43,7 +43,6 @@ func deathShot() -> void:
 	pass
 	#shoot death bullet pattern
 
-
 func _on_WarpTimer_timeout() -> void:
 	if not warping:
 		warpOut()

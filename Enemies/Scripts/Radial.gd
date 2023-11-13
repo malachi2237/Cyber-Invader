@@ -25,7 +25,6 @@ func _process(delta):
 		if (distance_traveled >= entry_travel_distance):
 			_begin_attacking()
 
-
 func _begin_attacking():
 	var small_delay_timer = Timer.new()
 	
