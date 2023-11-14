@@ -29,8 +29,6 @@ export(float) var radius = 1.0
 
 export(int) var spawn_point_count = 1
 
-export(bool) var useTimer = true
-
 signal stopped_firing
 
 func _ready():
@@ -42,8 +40,10 @@ func _ready():
 func _process(delta):
 	rotatorSpins(delta)
 
+
 func setBulletPrefab() -> void:
 	if (bullet_override): bullet_prefab = bullet_override
+
 
 func makeSpawnPoints() -> void:
 	var step = deg2rad(arc_size) / spawn_point_count
@@ -60,8 +60,10 @@ func newSpawnPoint(pos) -> Node2D:
 func positionOnArc(step, id):
 	return Vector2(radius, 0).rotated(step * id)
 
+
 func setupShootTimer() -> void:
-	if useTimer: shoot_timer = setupTimer(false, 0, "_volley")
+	shoot_timer = setupTimer(false, 0, "_volley")
+
 
 func setupBurstTimer() -> void:
 	if enable_bursts:
@@ -69,6 +71,7 @@ func setupBurstTimer() -> void:
 		setupRepeatBursts()
 func setupRepeatBursts() -> void:
 	if !single_burst: interval_timer = setupTimer(true, 0, "start_firing")
+
 
 func setFireOnStart() -> void:
 	if fire_on_start and delayCondition():
@@ -79,9 +82,11 @@ func delayCondition() -> bool:
 func randomDelay() -> float:
 	return rand_range(initial_delay_min, initial_delay_max)
 
+
 func rotatorSpins(delta:float) -> void:
 	var new_rotation = rotator.rotation_degrees + rotation_speed * delta
 	rotator.rotation_degrees = fmod(new_rotation, 360)
+
 
 func _volley() -> void:
 	for spawnPoint in rotator.get_children(): addBulletAtPoint(spawnPoint)
@@ -91,15 +96,17 @@ func addBulletAtPoint(spawnPoint) -> void:
 	bullet.position = spawnPoint.global_position
 	bullet.rotation = spawnPoint.global_rotation + deg2rad(90)
 
+
 func start_firing():
-	if useTimer: shoot_timer.start(shot_timer)
+	shoot_timer.start(shot_timer)
 	if burst_timer: burst_timer.start(burst_duration)
 func stop_firing():
-	if useTimer: shoot_timer.stop()
+	shoot_timer.stop()
 	emit_signal("stopped_firing")
 func _end_burst():
-	if useTimer: shoot_timer.stop()
+	shoot_timer.stop()
 	if interval_timer: interval_timer.start(burst_interval)
+
 
 func getScene():
 	var root = get_tree().get_root()
