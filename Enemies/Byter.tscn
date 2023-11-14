@@ -3,7 +3,7 @@
 [ext_resource path="res://Enemies/Sprites/floppyEnemy_open.png" type="Texture" id=1]
 [ext_resource path="res://Enemies/Sprites/floppyEnemy.png" type="Texture" id=2]
 [ext_resource path="res://Enemies/Sprites/floppyEnemy_halfway.png" type="Texture" id=3]
-[ext_resource path="res://Bullets/OneBullet.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Bullets/BulletTypes/OneBullet.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Bullets/BulletSpawner.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Enemies/Enemy.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Enemies/Scripts/Byters.gd" type="Script" id=7]
@@ -29,7 +29,7 @@ position = Vector2( -1.419, -2.023 )
 scale = Vector2( 0.75, 0.75 )
 frames = SubResource( 1 )
 animation = "shoot"
-frame = 2
+frame = 1
 playing = true
 
 [node name="BulletSpawner" parent="." index="1" instance=ExtResource( 5 )]

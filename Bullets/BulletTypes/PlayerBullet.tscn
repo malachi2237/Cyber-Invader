@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Bullets/BulletTypes/Bullet.tscn" type="PackedScene" id=2]
+
+[node name="PlayerBullet" instance=ExtResource( 2 )]
+collision_layer = 8
+
+[node name="BulletSprite" parent="." index="0"]
+position = Vector2( -1, 2 )
+scale = Vector2( 0.5, 0.5 )
+
+[node name="BulletBox" parent="." index="1"]
+scale = Vector2( 1.689, 2.354 )

@@ -69,5 +69,5 @@ func power() -> void:
 func _on_FireRate_timeout() -> void:
 	canFire = true
 
-func _on_HitBox_area_entered(area):
+func _on_HitBox_area_entered(_area):
 	die()

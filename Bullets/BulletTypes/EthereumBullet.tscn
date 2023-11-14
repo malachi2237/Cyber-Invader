@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Bullets/ForwardBullet.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Bullets/BulletTypes/ForwardBullet.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Enemies/Sprites/ramiel.png" type="Texture" id=2]
 [ext_resource path="res://Enemies/Sprites/ramiel_rotated.png" type="Texture" id=3]
 
