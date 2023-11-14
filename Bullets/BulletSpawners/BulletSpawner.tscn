@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Bullets/Scripts/BulletSpawner.gd" type="Script" id=1]
-[ext_resource path="res://Bullets/RandomizeTimer.gd" type="Script" id=2]
-[ext_resource path="res://Bullets/SpawnPointsContainer.gd" type="Script" id=3]
+[ext_resource path="res://Bullets/Scripts/RandomizeTimer.gd" type="Script" id=2]
+[ext_resource path="res://Bullets/Scripts/SpawnPointsContainer.gd" type="Script" id=3]
 
 [node name="BulletSpawner" type="Node2D"]
 z_index = -2
