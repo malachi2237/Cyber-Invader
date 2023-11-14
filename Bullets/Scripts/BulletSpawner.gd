@@ -2,7 +2,7 @@ extends Node2D
 
 class_name BulletSpawner
 
-export(PackedScene) var bullet_override = preload("res://Bullets/Bullet.tscn")
+export(PackedScene) var bullet_override = preload("res://Bullets/BulletTypes/Bullet.tscn")
 
 onready var bullet_prefab = null
 

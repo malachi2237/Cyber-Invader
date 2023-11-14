@@ -13,7 +13,7 @@ export var speed: float = 10.0
 var hurt:bool = false
 
 export(Array, NodePath) var gun_paths
-export var bullet = preload("res://Bullets/PlayerBullet.tscn")
+export var bullet = preload("res://Bullets/BulletTypes/PlayerBullet.tscn")
 
 onready var guns: Array
 
