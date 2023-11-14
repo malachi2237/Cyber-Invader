@@ -32,7 +32,7 @@ func _addBulletAtPoint(spawnPoint) -> void:
 	Utility.getScene(self).add_child(bullet)
 	bullet.position = spawnPoint.global_position
 	# rotation forward ?
-	# bullet.rotation = spawnPoint.global_rotation + deg2rad(90)
+	bullet.rotation = spawnPoint.global_rotation + deg2rad(90)
 #------------------------------------------------
 
 #------------------------------------------------

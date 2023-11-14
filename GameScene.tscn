@@ -38,6 +38,7 @@ player = NodePath("../Player")
 [node name="Player" parent="PlayLayer" instance=ExtResource( 3 )]
 position = Vector2( 2880, 2700 )
 collision_mask = 0
+gun_paths = [  ]
 
 [node name="left_boundary" type="StaticBody2D" parent="PlayLayer"]
 position = Vector2( 1420, 0 )
