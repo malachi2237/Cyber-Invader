@@ -47,7 +47,7 @@ func _on_WarpTimer_timeout() -> void:
 	elif warping:
 		warpIn()
 
-func _on_GlitchyAnimationPlayer_animation_finished(anim_name):
+func _on_GlitchyAnimationPlayer_animation_finished(_anim_name):
 	if not warping:
 		chooseSpot()
 		warping = true

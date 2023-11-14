@@ -10,7 +10,7 @@ export var attackPos: Vector2 = Vector2(0,0)
 export var speed: float = 10
 onready var aimTimer: Timer = $AimTimer
 onready var chargeLag: Timer = $ChargeLag
-onready var bulletSpawner: BulletSpawner = $BulletSpawner
+onready var bulletSpawner: BulletSpawner = $BrickSpawner
 var hasPlayer: bool = false
 var moveDir:Vector2 = Vector2(0,0)
 

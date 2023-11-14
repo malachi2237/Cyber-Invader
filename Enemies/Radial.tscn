@@ -1,10 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Bullets/Scripts/BulletSpawner.gd" type="Script" id=1]
+[ext_resource path="res://Bullets/BulletSpawners/RadialSmallFast.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Enemies/Scripts/Radial.gd" type="Script" id=2]
 [ext_resource path="res://Bullets/Sprites/graphicscard.png" type="Texture" id=3]
-[ext_resource path="res://Bullets/BulletTypes/LightningBullet.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Bullets/BulletTypes/EthereumBullet.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Bullets/BulletSpawners/RadialBigSlow.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Enemies/Enemy.tscn" type="PackedScene" id=6]
 
 [sub_resource type="Animation" id=1]
@@ -31,30 +30,9 @@ entry_direction = 0.0
 entry_travel_distance = 0.0
 small_attack_delay = 4.0
 
-[node name="BigSlow" type="Node2D" parent="." index="0"]
-script = ExtResource( 1 )
-bullet_override = ExtResource( 5 )
-fire_on_start = false
-enable_bursts = true
-burst_duration = 1.5
-burst_interval = 1.6
-shot_timer = 0.75
-radius = 10.0
-spawn_point_count = 7
+[node name="RadialBigSlow" parent="." index="0" instance=ExtResource( 5 )]
 
-[node name="SmallFast" type="Node2D" parent="." index="1"]
-script = ExtResource( 1 )
-bullet_override = ExtResource( 4 )
-fire_on_start = false
-initial_delay_min = 4.0
-initial_delay_max = 4.0
-enable_bursts = true
-burst_duration = 0.6
-burst_interval = 2.5
-initial_rotation = 25.71
-shot_timer = 0.15
-radius = 10.0
-spawn_point_count = 7
+[node name="RadialSmallFast" parent="." index="1" instance=ExtResource( 1 )]
 
 [node name="EnemySprite" type="Sprite" parent="." index="2"]
 position = Vector2( 3.5, 0 )

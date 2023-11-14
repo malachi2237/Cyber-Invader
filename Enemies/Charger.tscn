@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Enemies/Scripts/Charger.gd" type="Script" id=1]
 [ext_resource path="res://Enemies/Sprites/firewall.png" type="Texture" id=2]
-[ext_resource path="res://Bullets/BulletSpawners/BulletSpawner.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Bullets/BulletTypes/BrickBullet.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Bullets/BulletSpawners/BrickSpawner.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Enemies/Enemy.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -27,9 +26,7 @@ one_shot = true
 wait_time = 0.1
 one_shot = true
 
-[node name="BulletSpawner" parent="." index="3" instance=ExtResource( 3 )]
-bullet_override = ExtResource( 4 )
-spawn_point_count = 2
+[node name="BrickSpawner" parent="." index="3" instance=ExtResource( 3 )]
 
 [node name="CollisionCircle" parent="HitBox" index="0"]
 scale = Vector2( 19, 24 )

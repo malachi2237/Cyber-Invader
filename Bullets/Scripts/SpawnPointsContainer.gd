@@ -17,8 +17,9 @@ func _process(delta):
 
 #---------------------------------------
 func _rotatorSpins(delta:float) -> void:
-	var new_rotation = self.rotation_degrees + rotation_speed * delta
-	self.rotation_degrees = fmod(new_rotation, 360)
+	if(rotation_speed > 0.0):
+		var new_rotation = self.rotation_degrees + rotation_speed * delta
+		self.rotation_degrees = fmod(new_rotation, 360)
 #---------------------------------------
 
 #---------------------------------------
