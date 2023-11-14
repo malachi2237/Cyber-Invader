@@ -22,6 +22,9 @@ var currentMode = 0
 func _ready():
 	startModeTimer()
 
+func _process(_delta) -> void:
+	pass
+
 func nextModeValid() -> bool:
 	return currentMode < modeCount -1
 

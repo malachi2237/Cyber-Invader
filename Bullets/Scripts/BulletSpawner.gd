@@ -23,9 +23,9 @@ export(float) var burst_duration = 1.0
 export(float) var burst_interval = 1.0
 
 export(float) var initial_rotation = 0.0
-export(float) var rotation_speed = 100.0
+export(float) var rotation_speed = 0.0
 export(float) var shot_timer = .2
-export(float) var radius = 100.0
+export(float) var radius = 1.0
 
 export(int) var spawn_point_count = 1
 
@@ -34,96 +34,81 @@ export(bool) var useTimer = true
 signal stopped_firing
 
 func _ready():
+	setBulletPrefab()
+	setupShootTimer()
+	setupBurstTimer()
+	makeSpawnPoints()
+	setFireOnStart()
+func _process(delta):
+	rotatorSpins(delta)
+
+func setBulletPrefab() -> void:
+	if (bullet_override): bullet_prefab = bullet_override
+
+func makeSpawnPoints() -> void:
 	var step = deg2rad(arc_size) / spawn_point_count
-	var delay_condition = initial_delay_min >= 0.0 and initial_delay_min <= initial_delay_max
-
-	setBulletInstance()
-	setUpShootTimer()
-	setUpBurstTimer()
-
 	rotator = Node2D.new()
 	add_child(rotator)
-
-	makeSpawnPoints(step)
-
+	for id in range(spawn_point_count):
+		rotator.add_child(newSpawnPoint(positionOnArc(step, id)))
 	rotator.rotate(deg2rad(initial_rotation))
-	setFireOnStart(delay_condition)
+func newSpawnPoint(pos) -> Node2D:
+	var spawn_point = Node2D.new()
+	spawn_point.position = pos
+	spawn_point.rotation = pos.angle()
+	return spawn_point
+func positionOnArc(step, id):
+	return Vector2(radius, 0).rotated(step * id)
 
-func makeSpawnPoints(step:int) -> void:
-	for i in range(spawn_point_count):
-		var spawn_point = Node2D.new()
-		var pos = Vector2(radius, 0).rotated(step * i)
-		spawn_point.position = pos
-		spawn_point.rotation = pos.angle()
-		rotator.add_child(spawn_point)
+func setupShootTimer() -> void:
+	if useTimer: shoot_timer = setupTimer(false, 0, "_volley")
 
-func setBulletInstance() -> void:
-	if (bullet_override):
-		bullet_prefab = bullet_override
-
-func setUpShootTimer() -> void:
-	if useTimer:
-		shoot_timer = Timer.new()
-		add_child(shoot_timer)
-		shoot_timer.connect("timeout", self, "_volley")
-
-func setUpRepeatBursts() -> void:
-	if !single_burst:
-			interval_timer = Timer.new()
-			add_child(interval_timer)
-			interval_timer.one_shot = true
-			interval_timer.connect("timeout", self, "start_firing")
-
-func setUpBurstTimer() -> void:
+func setupBurstTimer() -> void:
 	if enable_bursts:
-		burst_timer = Timer.new()
-		add_child(burst_timer)
-		burst_timer.one_shot = true
-		burst_timer.connect("timeout", self, "_end_burst")
-		setUpRepeatBursts()
+		burst_timer = setupTimer(true, 0, "_end_burst")
+		setupRepeatBursts()
+func setupRepeatBursts() -> void:
+	if !single_burst: interval_timer = setupTimer(true, 0, "start_firing")
 
-func setFireOnStart(delay_condition:bool) -> void:
-	if fire_on_start and delay_condition:
-		var delay = rand_range(initial_delay_min, initial_delay_max)
-		var start_timer = Timer.new()
+func setFireOnStart() -> void:
+	if fire_on_start and delayCondition():
+		var _start_timer = setupTimer(true, randomDelay(), "start_firing")
+	elif fire_on_start: start_firing()
+func delayCondition() -> bool:
+	return initial_delay_min >= 0.0 and initial_delay_min <= initial_delay_max
+func randomDelay() -> float:
+	return rand_range(initial_delay_min, initial_delay_max)
 
-		add_child(start_timer)
-		start_timer.one_shot = true
-		start_timer.connect("timeout", self, "start_firing")
-		start_timer.start(delay)
-	elif fire_on_start:
-		start_firing()
-
-func start_firing():
-	if useTimer:
-		shoot_timer.start(shot_timer)
-
-	if burst_timer:
-		burst_timer.start(burst_duration)
-
-func stop_firing():
-	if useTimer:
-		shoot_timer.stop()
-
-	emit_signal("stopped_firing")
-
-func _end_burst():
-	if useTimer:
-		shoot_timer.stop()
-	if interval_timer:
-		interval_timer.start(burst_interval)
-
-func _process(delta):
+func rotatorSpins(delta:float) -> void:
 	var new_rotation = rotator.rotation_degrees + rotation_speed * delta
 	rotator.rotation_degrees = fmod(new_rotation, 360)
 
 func _volley() -> void:
-	for s in rotator.get_children():
-		var bullet = bullet_prefab.instance()
-		var root = get_tree().get_root()
-		var scene = root.get_child(root.get_child_count()-1)
+	for spawnPoint in rotator.get_children(): addBulletAtPoint(spawnPoint)
+func addBulletAtPoint(spawnPoint) -> void:
+	var bullet = bullet_prefab.instance()
+	getScene().add_child(bullet)
+	bullet.position = spawnPoint.global_position
+	bullet.rotation = spawnPoint.global_rotation + deg2rad(90)
 
-		scene.add_child(bullet)
+func start_firing():
+	if useTimer: shoot_timer.start(shot_timer)
+	if burst_timer: burst_timer.start(burst_duration)
+func stop_firing():
+	if useTimer: shoot_timer.stop()
+	emit_signal("stopped_firing")
+func _end_burst():
+	if useTimer: shoot_timer.stop()
+	if interval_timer: interval_timer.start(burst_interval)
 
-		bullet.position = s.global_position
-		bullet.rotation = s.global_rotation + deg2rad(90)
+func getScene():
+	var root = get_tree().get_root()
+	var scene = root.get_child(root.get_child_count()-1)
+	return scene
+func setupTimer(_one_shot, _delay, _function) -> Timer:
+	var newTimer = Timer.new()
+	add_child(newTimer)
+	newTimer.one_shot = _one_shot
+	if _delay: newTimer.start(_delay) 
+	if _function: newTimer.connect("timeout", self, _function)
+	return newTimer
