@@ -3,7 +3,7 @@
 [ext_resource path="res://Enemies/Sprites/GlitchyAnim.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://Enemies/Scripts/Glitchy.gd" type="Script" id=2]
 [ext_resource path="res://Enemies/Sprites/byter.png" type="Texture" id=3]
-[ext_resource path="res://Bullets/BulletSpawners/BulletSpawner.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Bullets/BulletSpawners/GlitchyBulletsSpawner.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Enemies/Enemy.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Bullets/BulletTypes/ForwardBullet.tscn" type="PackedScene" id=7]
 
@@ -39,12 +39,8 @@ tracks/0/keys = {
 [node name="Glitchy_test" instance=ExtResource( 6 )]
 script = ExtResource( 2 )
 
-[node name="BulletSpawner" parent="." index="0" instance=ExtResource( 5 )]
+[node name="GlitchyBulletsSpawner" parent="." index="0" instance=ExtResource( 4 )]
 bullet_override = ExtResource( 7 )
-rotation_speed = 60.0
-shot_timer = 0.2
-radius = 15.0
-spawn_point_count = 4
 
 [node name="GlitchySprite" type="AnimatedSprite" parent="." index="1"]
 modulate = Color( 1, 1, 1, 0 )
