@@ -9,6 +9,16 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Reference",
+"class": "AK",
+"language": "GDScript",
+"path": "res://wwise/GeneratedSoundBanks/wwise_ids.gd"
+}, {
+"base": "Reference",
+"class": "AkUtils",
+"language": "GDScript",
+"path": "res://addons/wwise/runtime/helpers/ak_utils.gd"
+}, {
 "base": "Area2D",
 "class": "Bullet",
 "language": "GDScript",
@@ -50,6 +60,8 @@ _global_script_classes=[ {
 "path": "res://Level/Scripts/WavePhase.gd"
 } ]
 _global_script_class_icons={
+"AK": "",
+"AkUtils": "",
 "Bullet": "",
 "BulletSpawner": "",
 "Enemy": "",

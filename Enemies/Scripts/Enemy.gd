@@ -21,6 +21,7 @@ func _die() -> void:
 
 func _on_HitBox_area_entered(area):
 	_take_damage(area.damage)
+	
 
 func _on_CollideBox_area_entered(_area):
 	_take_damage(health)
