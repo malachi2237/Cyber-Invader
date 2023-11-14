@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Gamejamfinal.mp3" type="AudioStream" id=1]
 [ext_resource path="res://Enemies/Glitchy.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Enemies/Byters.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Enemies/Byter.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Enemies/Radial.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Enemies/Charger.tscn" type="PackedScene" id=5]
 
@@ -19,8 +19,8 @@ position = Vector2( 405, -109 )
 entry_speed = 75.0
 entry_travel_distance = 300.0
 
-[node name="Charger" parent="." instance=ExtResource( 5 )]
-position = Vector2( 915, 229 )
+[node name="Charger_test" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1201, 612 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 1 )
