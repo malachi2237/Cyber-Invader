@@ -44,46 +44,47 @@ func set_attack_target(targetNode: Node2D) -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	match curMood:
-		Mood.attack:
-			attack(delta)
-		Mood.regroup:
-			regroup(delta)
+		Mood.attack: attack(delta)
+		Mood.regroup: regroup(delta)
 
+#----------------------------------------------
 func attack(delta) -> void:
-	if curSeq == Sequence.aim and attackTarget:
+	if (curSeq == Sequence.aim and attackTarget): 
 		attackPos = attackTarget.position
 	sequence(Mood.regroup, attackPos, delta)
 
-func regroup(delta) -> void:
-	sequence(Mood.attack, homePos, delta)
+func regroup(delta) -> void: sequence(Mood.attack, homePos, delta)
+#----------------------------------------------
 
+#----------------------------------------------
 func sequence(nextMood, targetPos, delta) -> void:
 	match curSeq:
-		Sequence.aim:
-			aim(targetPos, delta)
-		Sequence.charge:
-			charge(targetPos, delta)
-		Sequence.repeat:
-			curMood = nextMood
-			curSeq = Sequence.aim
-			bulletSpawner.stop_firing()
+		Sequence.aim: aim(targetPos, delta)
+		Sequence.charge: charge(targetPos, delta)
+		Sequence.repeat: repeatSequence(nextMood)
+#----------------------------------------------
 
+#----------------------------------------------
 func aim(targetPos, _delta) -> void:
-	if aimTimer.is_stopped():
-		aimTimer.start()
+	if aimTimer.is_stopped(): aimTimer.start()
 	look_at(targetPos)
 	moveDir = position.direction_to(targetPos)
 
 func charge(targetPos, delta) -> void:
-	# periodically shoot while charging
 	translate(speed*moveDir*delta)
-	# charge goes to target position, with a follow through
-	if position.distance_to(targetPos) < 1:
-		chargeLag.start()
+	if (position.distance_to(targetPos) < 1): chargeLag.start()
 
+func repeatSequence(nextMood) -> void:
+	curMood = nextMood
+	curSeq = Sequence.aim
+	bulletSpawner.stop_firing()
+#----------------------------------------------
+
+#----------------------------------------------
 func _on_AimTimer_timeout() -> void:
 	curSeq = Sequence.charge
 	bulletSpawner.start_firing()
 
 func _on_ChargeLag_timeout():
 	curSeq = Sequence.repeat
+#----------------------------------------------
