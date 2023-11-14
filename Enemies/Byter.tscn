@@ -29,13 +29,11 @@ position = Vector2( -1.419, -2.023 )
 scale = Vector2( 0.75, 0.75 )
 frames = SubResource( 1 )
 animation = "shoot"
-frame = 1
+frame = 2
 playing = true
 
 [node name="BulletSpawner" parent="." index="1" instance=ExtResource( 5 )]
 bullet_override = ExtResource( 4 )
-initial_delay_max = 0.5
-shot_timer = 1.0
 
 [node name="CollisionCircle" parent="HitBox" index="0"]
 scale = Vector2( 7.5, 7.5 )
