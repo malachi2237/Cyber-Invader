@@ -17,7 +17,6 @@ var animationList
 func _ready() -> void:
 	randomize()
 	animationList = warpAnim.get_animation_list()
-	pass	
 
 func warpIn() -> void:
 	self.position = newSpot
@@ -39,13 +38,13 @@ func deathShot() -> void:
 	pass
 	#shoot death bullet pattern
 
+#--------------------------------------------
 func _on_WarpTimer_timeout() -> void:
 	if not warping:
 		warpOut()
 		bulletSpawner.stop_firing()
 		spriteAnim.play("default")
-	elif warping:
-		warpIn()
+	elif warping: warpIn()
 
 func _on_GlitchyAnimationPlayer_animation_finished(_anim_name):
 	if not warping:
@@ -56,3 +55,4 @@ func _on_GlitchyAnimationPlayer_animation_finished(_anim_name):
 		spriteAnim.play("shoot")
 		warping = false
 	warpTimer.start()
+#--------------------------------------------
