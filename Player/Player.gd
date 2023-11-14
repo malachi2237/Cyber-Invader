@@ -12,12 +12,15 @@ var dir: Vector2 = Vector2(0,0)
 export var speed: float = 10.0
 var hurt:bool = false
 
+export(Array, NodePath) var gun_paths
 export var bullet = preload("res://Bullets/PlayerBullet.tscn")
+
+onready var guns: Array
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
-
+	for path in gun_paths:
+		guns.append(get_node(path))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -51,11 +54,14 @@ func shoot() -> void:
 	if Input.is_action_pressed("player_shoot") and canFire:
 		canFire = false
 		fireTimer.start()
-		var bul_inst = bullet.instance()
-		bul_inst.position = self.position
 		var root = get_tree().get_root()
 		var current_scene = root.get_child(root.get_child_count()-1)
-		current_scene.add_child(bul_inst)
+		for gun in guns:
+			var bul_inst = bullet.instance()
+			bul_inst.position = gun.global_position
+			bul_inst.rotation = gun.global_rotation
+			
+			current_scene.add_child(bul_inst)
 
 
 func DEBUG_hurt() -> void:
