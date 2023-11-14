@@ -24,11 +24,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	DEBUG_hurt()
 	movementInput()
 	shoot()
-	test_dead()
-
 
 func _physics_process(_delta: float) -> void:
 	move()
@@ -63,16 +60,14 @@ func shoot() -> void:
 			
 			current_scene.add_child(bul_inst)
 
-
-func DEBUG_hurt() -> void:
-	hurt = Input.is_action_just_pressed("debug_player_hurt")
-
-func test_dead() -> void:
-	if hurt:
-		get_tree().quit()
-
+func die():
+	queue_free()
+	
 func power() -> void:
 	pass
 
 func _on_FireRate_timeout() -> void:
 	canFire = true
+
+func _on_HitBox_area_entered(area):
+	die()

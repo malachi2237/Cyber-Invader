@@ -1,12 +1,16 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Player/herocharacter.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 215, 170 )
 
 [sub_resource type="CircleShape2D" id=4]
 radius = 28.0179
 
 [node name="Player" type="KinematicBody2D"]
+collision_mask = 18
 script = ExtResource( 1 )
 gun_paths = [ NodePath("GunLeft"), NodePath("GunLeft2"), NodePath("GunLeft3"), NodePath("GunRight"), NodePath("GunRight2"), NodePath("GunRight3") ]
 
@@ -15,6 +19,14 @@ position = Vector2( 0, 32.946 )
 texture = ExtResource( 2 )
 
 [node name="PlayerBox" type="CollisionShape2D" parent="."]
+position = Vector2( -0.499996, 43 )
+scale = Vector2( 0.7, 0.7 )
+shape = SubResource( 5 )
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_mask = 80
+
+[node name="HitCircle" type="CollisionShape2D" parent="HitBox"]
 scale = Vector2( 0.7, 0.7 )
 shape = SubResource( 4 )
 
@@ -43,4 +55,5 @@ rotation = 0.00523599
 position = Vector2( 65, -47 )
 rotation = 0.0349066
 
+[connection signal="area_entered" from="HitBox" to="." method="_on_HitBox_area_entered"]
 [connection signal="timeout" from="FireRate" to="." method="_on_FireRate_timeout"]

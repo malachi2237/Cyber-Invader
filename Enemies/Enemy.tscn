@@ -21,7 +21,7 @@ scale = Vector2( 1.5, 1.5 )
 shape = SubResource( 1 )
 
 [node name="CollideBox" type="Area2D" parent="."]
-collision_layer = 2
+collision_layer = 64
 
 [node name="CollisionCircle" type="CollisionShape2D" parent="CollideBox"]
 scale = Vector2( 0.5, 0.5 )
