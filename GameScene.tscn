@@ -36,7 +36,7 @@ stage_queue = [ ExtResource( 4 ) ]
 player = NodePath("../Player")
 
 [node name="Player" parent="PlayLayer" instance=ExtResource( 3 )]
-position = Vector2( 1920, 2700 )
+position = Vector2( 2880, 2700 )
 collision_mask = 0
 
 [node name="left_boundary" type="StaticBody2D" parent="PlayLayer"]
