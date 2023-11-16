@@ -41,7 +41,7 @@ func _popNextSpawnPoint() -> Vector2:
 	var spawn_point: Node2D = get_node(spawn_points.pop_front())
 	return spawn_point.global_position
 
-func _loopThroughSpawns() -> void:
+func _continueThroughSpawns() -> void:
 	if spawn_delays.empty():
 		_end_phase()
 		queue_free()
@@ -49,7 +49,7 @@ func _loopThroughSpawns() -> void:
 
 func _spawn_next_group():
 	_spawnGroup(_popNextGroup(), _popNextSpawnPoint())
-	_loopThroughSpawns()
+	_continueThroughSpawns()
 
 func _on_SpawnTimer_timeout() -> void:
 	_spawn_next_group()
