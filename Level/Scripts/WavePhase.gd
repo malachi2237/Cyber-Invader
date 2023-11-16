@@ -30,23 +30,26 @@ func _ready():
 func _start_phase():
 	spawn_timer.start(spawn_delays.pop_front())
 
-func _spawn_next_group():
-	var spawn_node: Node2D = get_node(spawn_points.pop_front())
-	var pos = spawn_node.global_position
-
-	var group_instance = spawn_groups.pop_front().instance()
-
-	var current_scene = Utility.getScene(self)
-
-	current_scene.add_child(group_instance)
+func _spawnGroup(group_instance, pos) -> void:
+	Utility.getScene(self).add_child(group_instance)
 	group_instance.global_position = pos
 
+func _popNextGroup():
+	return spawn_groups.pop_front().instance()
+
+func _popNextSpawnPoint() -> Vector2:
+	var spawn_point: Node2D = get_node(spawn_points.pop_front())
+	return spawn_point.global_position
+
+func _loopThroughSpawns() -> void:
 	if spawn_delays.empty():
 		_end_phase()
 		queue_free()
-	else:
-		_start_phase()
+	else: _start_phase()
 
+func _spawn_next_group():
+	_spawnGroup(_popNextGroup(), _popNextSpawnPoint())
+	_loopThroughSpawns()
 
 func _on_SpawnTimer_timeout() -> void:
 	_spawn_next_group()
