@@ -41,6 +41,9 @@ func _popNextSpawnPoint() -> Vector2:
 	var spawn_point: Node2D = get_node(spawn_points.pop_front())
 	return spawn_point.global_position
 
+func _end_phase():
+	print_debug("Extended_endPhase")
+
 func _continueThroughSpawns() -> void:
 	if spawn_delays.empty():
 		_end_phase()

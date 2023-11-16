@@ -7,7 +7,7 @@
 script = ExtResource( 1 )
 auto_start = true
 spawn_groups = [ ExtResource( 2 ) ]
-spawn_points = [ NodePath("SpawnPoints") ]
+spawn_points = [ NodePath("SpawnPoints/left_upper") ]
 spawn_delays = [ 1.0 ]
 
 [node name="SpawnPoints" type="Node2D" parent="."]
