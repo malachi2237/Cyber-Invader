@@ -9,7 +9,23 @@ export(Array, float) var spawn_delays: Array
 
 onready var spawn_timer: Timer = $SpawnTimer
 
-func nonZeroCondition() -> bool:
+#-------------------------------------------
+func _ready():
+	if (notEmptyCondition() and equalSizeCondition()): autoStartPhase()
+	else: phaseError()
+
+func _start_phase():
+	spawn_timer.start(spawn_delays.pop_front())
+
+func _end_phase():
+	._end_phase()
+	queue_free()
+	print_debug("Extended")
+
+#-------------------------------------------
+
+#-------------------------------------------
+func notEmptyCondition() -> bool:
 	return !spawn_points.empty()
 
 func equalSizeCondition() -> bool:
@@ -22,17 +38,12 @@ func phaseError() -> void:
 
 func autoStartPhase() -> void:
 	if auto_start: _start_phase()
+#-------------------------------------------
 
-func _ready():
-	if (nonZeroCondition() and equalSizeCondition()): autoStartPhase()
-	else: phaseError()
-
-func _start_phase():
-	spawn_timer.start(spawn_delays.pop_front())
-
-func _spawnGroup(group_instance, pos) -> void:
-	Utility.getScene(self).add_child(group_instance)
-	group_instance.global_position = pos
+#------------------------------------------
+func _spawn_next_group():
+	Utility.placeInScene(self, _popNextGroup(), _popNextSpawnPoint())
+	_continueThroughSpawns()
 
 func _popNextGroup():
 	return spawn_groups.pop_front().instance()
@@ -41,18 +52,12 @@ func _popNextSpawnPoint() -> Vector2:
 	var spawn_point: Node2D = get_node(spawn_points.pop_front())
 	return spawn_point.global_position
 
-func _end_phase():
-	print_debug("Extended_endPhase")
-
 func _continueThroughSpawns() -> void:
-	if spawn_delays.empty():
-		_end_phase()
-		queue_free()
+	if spawn_delays.empty(): _end_phase()
 	else: _start_phase()
+#------------------------------------------
 
-func _spawn_next_group():
-	_spawnGroup(_popNextGroup(), _popNextSpawnPoint())
-	_continueThroughSpawns()
-
+#------------------------------------------
 func _on_SpawnTimer_timeout() -> void:
 	_spawn_next_group()
+#------------------------------------------

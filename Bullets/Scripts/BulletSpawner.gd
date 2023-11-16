@@ -25,7 +25,8 @@ func _setBulletPrefab() -> void:
 
 #------------------------------------------------
 func _volley() -> void:
-	for spawnPoint in spawnPointsParent.get_children(): _addBulletAtPoint(spawnPoint)
+	for spawnPoint in spawnPointsParent.get_children():
+		_addBulletAtPoint(spawnPoint)
 
 func _addBulletAtPoint(spawnPoint) -> void:
 	var bullet = bullet_prefab.instance()

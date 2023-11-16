@@ -12,7 +12,12 @@ static func setupTimer(targetNode, _one_shot, _delay, _function) -> Timer:
 	var newTimer = Timer.new()
 	targetNode.add_child(newTimer)
 	newTimer.one_shot = _one_shot
-	if _delay: newTimer.start(_delay) 
+	if _delay: newTimer.start(_delay)
 	if _function: newTimer.connect("timeout", targetNode, _function)
 	return newTimer
+
+static func placeInScene(targetNode, item, _pos):
+	getScene(targetNode).add_child(item)
+	item.global_position = _pos
+
 #-------------------------------------------------
