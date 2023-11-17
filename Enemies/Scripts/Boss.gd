@@ -18,33 +18,37 @@ var currentMode = 0
 #Mode 2: Shifting Blocks and Sweeping Lazers
 #Mode 3: Crazy Bullet snow, attop combinations of the previous patterns
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
 	startModeTimer()
 
 func _process(_delta) -> void:
 	pass
 
+
+#Can move between modes via Health milestones
+#----------------------------------------
+func healthModeSwitchTest() -> void:
+	if(nextModeValid() and healthMilestoneReached()): startNextMode()
+
 func nextModeValid() -> bool:
 	return currentMode < modeCount -1
 
 func healthMilestoneReached() -> bool:
-	return (self.health/maxHealth) <= healthMilestones[currentMode] 
+	return ((self.health/maxHealth) <= healthMilestones[currentMode])
+#----------------------------------------
 
-#Can move between modes via Health milestones
-func healthModeSwitchTest() -> void:
-	if(nextModeValid() and healthMilestoneReached()): startNextMode()
-
+#Has a timer that moves between Modes
+#----------------------------------------
 func startNextMode() -> void:
-	if(nextModeValid()): 
+	if(nextModeValid()):
 		currentMode += 1
 		startModeTimer()
 
 func startModeTimer() -> void:
-	modeTimer.one_shot = true
 	modeTimer.wait_time = modeLength[currentMode]
 	modeTimer.start()
+#--------------------------------------
 
-#Has a timer that moves between Modes
 func _on_ModeTimer_timeout():
 	startNextMode()

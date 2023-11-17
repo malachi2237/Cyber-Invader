@@ -8,6 +8,8 @@ static func getScene(targetNode):
 	var scene = root.get_child(root.get_child_count()-1)
 	return scene
 
+#TODO: Refactor pattern for fewer arguments, while maintaining D.N.R
+#D.N.R (DO NOT REPEAT)
 static func setupTimer(targetNode, _one_shot, _delay, _function) -> Timer:
 	var newTimer = Timer.new()
 	targetNode.add_child(newTimer)
