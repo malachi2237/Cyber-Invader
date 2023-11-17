@@ -8,7 +8,7 @@ export(int) var spawnShapeOption = 0
 export(float) var rotation_speed = 0.0
 
 onready var spawn_shape: SpawnShape = _makeSpawnShape()
-onready var _step: float = spawn_shape.()
+onready var _step: float = spawn_shape.solveSteps(spawn_point_count)
 enum SpawnShapes{
 	ARC,
 	BOX,
