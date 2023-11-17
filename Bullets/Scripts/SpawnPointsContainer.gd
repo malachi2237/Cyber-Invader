@@ -4,16 +4,17 @@ export(float) var arc_size = 360.0
 export(int) var spawn_point_count = 1
 export(float) var initial_rotation = 0.0
 export(float) var radius = 1.0
-export(int) var spawnShape = 0
+export(int) var spawnShapeOption = 0
 export(float) var rotation_speed = 0.0
 
+onready var spawn_shape: SpawnShape = _makeSpawnShape()
+onready var _step: float = spawn_shape.()
 enum SpawnShapes{
 	ARC,
-	BOX
+	BOX,
 }
 
 
-onready var _step: float = solveStepsOnArc()
 
 #---------------------------------------
 func _ready():
@@ -22,6 +23,16 @@ func _ready():
 
 func _process(delta):
 	_rotatorSpins(delta)
+#---------------------------------------
+
+#---------------------------------------
+#TODO Easier type management of shape, match is very manual
+#TODO SpawnShapeArc.new() will not compile here, needs investigation
+func _makeSpawnShape() -> SpawnShape:
+	match spawnShapeOption:
+		SpawnShapes.ARC: return SpawnShape.new()
+		SpawnShapes.BOX: return SpawnShape.new()
+	return SpawnShape.new()
 #---------------------------------------
 
 #---------------------------------------
@@ -38,10 +49,10 @@ func _fullRotationMod() -> void:
 #---------------------------------------
 
 #---------------------------------------
-# TODO: Reconsider assumption of circular shape
 func _makeSpawnPoints() -> void:
 	for current_spawn_point in range(spawn_point_count):
-		self.add_child(_newSpawnPoint(_positionOnArc(_step, current_spawn_point)))
+		self.add_child(_newSpawnPoint(
+					spawn_shape.getPoint(_step, current_spawn_point)))
 
 func _newSpawnPoint(pos) -> Node2D:
 	var spawn_point = Node2D.new()
