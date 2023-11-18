@@ -8,5 +8,4 @@ func start_phase():
 	pass
 
 func _end_phase():
-	print_debug("Level_endPhase")
 	emit_signal("phase_ended")

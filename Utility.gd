@@ -2,7 +2,6 @@ extends Node
 
 class_name Utility
 
-#------------------------------------------------
 static func getScene(targetNode):
 	var root = targetNode.get_tree().get_root()
 	var scene = root.get_child(root.get_child_count()-1)
@@ -20,5 +19,5 @@ static func setupTimer(targetNode, _one_shot, _delay, _function) -> Timer:
 
 static func placeInScene(targetNode, item, _pos):
 	getScene(targetNode).add_child(item)
-	item.global_position = _pos
-#-------------------------------------------------
+	if _pos != null: item.global_position = _pos
+

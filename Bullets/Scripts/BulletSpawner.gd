@@ -13,17 +13,12 @@ onready var spawnPointsParent: Node2D = $SpawnPoints
 
 signal stopped_firing
 
-#----------------------------------------------
 func _ready():
 	_setBulletPrefab()
-#---------------------------------------------
 
-#---------------------------------------------
 func _setBulletPrefab() -> void:
 	if (bullet_override): bullet_prefab = bullet_override
-#---------------------------------------------
 
-#------------------------------------------------
 func _volley() -> void:
 	for spawnPoint in spawnPointsParent.get_children():
 		_addBulletAtPoint(spawnPoint)
@@ -33,12 +28,11 @@ func _addBulletAtPoint(spawnPoint) -> void:
 	Utility.getScene(self).add_child(bullet)
 	bullet.position = spawnPoint.global_position
 	bullet.rotation = spawnPoint.global_rotation + deg2rad(90)
-#------------------------------------------------
 
-#------------------------------------------------
 func start_firing():
 	shotTiming.start()
-	if burstDuration.wait_time: burstDuration.start()
+	if burstDuration.wait_time:
+		burstDuration.start()
 
 func stop_firing():
 	shotTiming.stop()
@@ -46,5 +40,5 @@ func stop_firing():
 
 func _end_burst():
 	shotTiming.stop()
-	if burstCooldown.wait_time: burstCooldown.start()
-#-------------------------------------------------
+	if burstCooldown.wait_time:
+		burstCooldown.start()

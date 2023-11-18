@@ -44,6 +44,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Player/Player.gd"
 }, {
+"base": "Node2D",
+"class": "SpawnMovementPattern",
+"language": "GDScript",
+"path": "res://SpawnMovementPattern.gd"
+}, {
+"base": "SpawnMovementPattern",
+"class": "SpawnMovementRotation",
+"language": "GDScript",
+"path": "res://SpawnMovementRotation.gd"
+}, {
 "base": "Node",
 "class": "SpawnShape",
 "language": "GDScript",
@@ -77,6 +87,8 @@ _global_script_class_icons={
 "GameManager": "",
 "LevelPhase": "",
 "Player": "",
+"SpawnMovementPattern": "",
+"SpawnMovementRotation": "",
 "SpawnShape": "",
 "SpawnShapeArc": "",
 "TimerToolbox": "",

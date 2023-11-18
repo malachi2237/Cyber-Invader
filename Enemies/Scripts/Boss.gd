@@ -1,5 +1,6 @@
 extends Enemy
 
+#TODO: Implement Boss Phase and its various modes
 #Has the player as a target
 #Has three lazer guns
 var target = null
@@ -25,21 +26,16 @@ func _ready():
 func _process(_delta) -> void:
 	pass
 
-
-#Can move between modes via Health milestones
-#----------------------------------------
 func healthModeSwitchTest() -> void:
-	if(nextModeValid() and healthMilestoneReached()): startNextMode()
+	if(nextModeValid() and healthMilestoneReached()):
+		startNextMode()
 
 func nextModeValid() -> bool:
 	return currentMode < modeCount -1
 
 func healthMilestoneReached() -> bool:
 	return ((self.health/maxHealth) <= healthMilestones[currentMode])
-#----------------------------------------
 
-#Has a timer that moves between Modes
-#----------------------------------------
 func startNextMode() -> void:
 	if(nextModeValid()):
 		currentMode += 1
@@ -48,7 +44,6 @@ func startNextMode() -> void:
 func startModeTimer() -> void:
 	modeTimer.wait_time = modeLength[currentMode]
 	modeTimer.start()
-#--------------------------------------
 
 func _on_ModeTimer_timeout():
 	startNextMode()

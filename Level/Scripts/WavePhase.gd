@@ -3,16 +3,19 @@ extends LevelPhase
 class_name WavePhase
 
 export(bool) var auto_start = false
+
+#TODO: Some Design Class "X" that makes these three arrays into one
 export(Array, PackedScene) var spawn_groups:Array
 export(Array, NodePath) var spawn_points: Array
 export(Array, float) var spawn_delays: Array
 
 onready var spawn_timer: Timer = $SpawnTimer
 
-#-------------------------------------------
 func _ready():
-	if (notEmptyCondition() and equalSizeCondition()): autoStartPhase()
-	else: phaseError()
+	if (notEmptyCondition() and equalSizeCondition()):
+		autoStartPhase()
+	else:
+		phaseError()
 
 func _start_phase():
 	spawn_timer.start(spawn_delays.pop_front())
@@ -20,11 +23,7 @@ func _start_phase():
 func _end_phase():
 	._end_phase()
 	queue_free()
-	print_debug("Extended")
 
-#-------------------------------------------
-
-#-------------------------------------------
 func notEmptyCondition() -> bool:
 	return !spawn_points.empty()
 
@@ -37,10 +36,9 @@ func phaseError() -> void:
 	queue_free()
 
 func autoStartPhase() -> void:
-	if auto_start: _start_phase()
-#-------------------------------------------
+	if auto_start:
+		_start_phase()
 
-#------------------------------------------
 func _spawn_next_group():
 	Utility.placeInScene(self, _popNextGroup(), _popNextSpawnPoint())
 	_continueThroughSpawns()
@@ -53,11 +51,11 @@ func _popNextSpawnPoint() -> Vector2:
 	return spawn_point.global_position
 
 func _continueThroughSpawns() -> void:
-	if spawn_delays.empty(): _end_phase()
-	else: _start_phase()
-#------------------------------------------
+	if spawn_delays.empty():
+		_end_phase()
+	else:
+		_start_phase()
 
-#------------------------------------------
 func _on_SpawnTimer_timeout() -> void:
 	_spawn_next_group()
-#------------------------------------------
+
