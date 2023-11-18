@@ -13,15 +13,12 @@ func _take_damage(var damage: int) -> void:
 	hurtAnim.play("Hurt")
 	if (health <= 0):
 		_die()
-	else:
-		print("Hit!")
 
 func _die() -> void:
 	queue_free()
 
 func _on_HitBox_area_entered(area):
 	_take_damage(area.damage)
-	
 
 func _on_CollideBox_area_entered(_area):
 	_take_damage(health)

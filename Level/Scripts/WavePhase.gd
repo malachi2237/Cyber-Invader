@@ -12,10 +12,25 @@ export(Array, float) var spawn_delays: Array
 onready var spawn_timer: Timer = $SpawnTimer
 
 func _ready():
-	if (notEmptyCondition() and equalSizeCondition()):
-		autoStartPhase()
+	if (_notEmptyCondition() and _equalSizeCondition()):
+		_autoStartPhase()
 	else:
-		phaseError()
+		_phaseError()
+
+func _notEmptyCondition() -> bool:
+	return !spawn_points.empty()
+
+func _equalSizeCondition() -> bool:
+	return (spawn_points.size() == spawn_groups.size() and
+		 spawn_points.size() == spawn_delays.size())
+
+func _autoStartPhase() -> void:
+	if auto_start:
+		_start_phase()
+
+func _phaseError() -> void:
+	printerr("Spawn stacks do not contain the same amount of elements")
+	queue_free()
 
 func _start_phase():
 	spawn_timer.start(spawn_delays.pop_front())
@@ -23,21 +38,6 @@ func _start_phase():
 func _end_phase():
 	._end_phase()
 	queue_free()
-
-func notEmptyCondition() -> bool:
-	return !spawn_points.empty()
-
-func equalSizeCondition() -> bool:
-	return (spawn_points.size() == spawn_groups.size() and
-		 spawn_points.size() == spawn_delays.size())
-
-func phaseError() -> void:
-	printerr("Spawn stacks do not contain the same amount of elements")
-	queue_free()
-
-func autoStartPhase() -> void:
-	if auto_start:
-		_start_phase()
 
 func _spawn_next_group():
 	Utility.placeInScene(self, _popNextGroup(), _popNextSpawnPoint())
@@ -58,4 +58,3 @@ func _continueThroughSpawns() -> void:
 
 func _on_SpawnTimer_timeout() -> void:
 	_spawn_next_group()
-
