@@ -70,5 +70,3 @@ collision_layer = 32
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayLayer/bottom_boundary"]
 scale = Vector2( 500, 1 )
 shape = SubResource( 1 )
-
-[node name="Timer" type="Timer" parent="."]
