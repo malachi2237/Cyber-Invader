@@ -19,7 +19,6 @@ export(int) var spawnShapeOption = 0
 #WARNING: these tasks will delete design data!!
 export(float) var rotation_speed = 0.0
 
-
 #TODO: Introduce Spawn Movement Patterns
 #spawnMovementPattern
 #Types:
@@ -55,6 +54,7 @@ func _process(delta):
 	spawn_movement.doMovement(delta)
 
 #TODO: (?) redundant design tool, can instead use inspector transforms
+#WARNING: this tasks will delete design data!!
 func _setInitialRotation():
 	self.rotate(deg2rad(initial_rotation))
 

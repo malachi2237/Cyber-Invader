@@ -6,8 +6,12 @@ onready var spriteAnim : AnimatedSprite = $GlitchySprite
 onready var warpAnim: AnimationPlayer = $GlitchyAnimationPlayer
 onready var bulletSpawner: BulletSpawner = $GlitchyBulletsSpawner
 
+#TODO: Utility?
 onready var screenSize:Vector2 = get_viewport().get_visible_rect().size
+
+#TODO: (?) some global RNG tool
 onready var rng: RandomNumberGenerator = RandomNumberGenerator.new()
+
 onready var newSpot: Vector2 = self.position
 onready var warping: bool = false
 onready var _animationList = warpAnim.get_animation_list()
@@ -50,6 +54,7 @@ func _prepareToWarp()-> void:
 	_shadowToNewSpot()
 	warping = true
 
+#TODO: Utility? RNG Tool?
 func _chooseRandomSpot() -> void:
 	newSpot = Vector2(
 			rng.randf_range(0, screenSize.x),
