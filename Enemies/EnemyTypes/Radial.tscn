@@ -4,7 +4,7 @@
 [ext_resource path="res://Enemies/Scripts/Radial.gd" type="Script" id=2]
 [ext_resource path="res://Bullets/Sprites/graphicscard.png" type="Texture" id=3]
 [ext_resource path="res://Bullets/BulletSpawners/RadialBigSlow.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Enemies/Enemy.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Enemies/EnemyTypes/Enemy.tscn" type="PackedScene" id=6]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Spinning"

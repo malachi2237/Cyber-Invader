@@ -67,12 +67,12 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "TimerToolbox",
 "language": "GDScript",
-"path": "res://TimerToolbox.gd"
+"path": "res://Utility/TimerToolbox.gd"
 }, {
 "base": "Node",
 "class": "Utility",
 "language": "GDScript",
-"path": "res://Utility.gd"
+"path": "res://Utility/Utility.gd"
 }, {
 "base": "LevelPhase",
 "class": "WavePhase",
@@ -99,7 +99,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Digi Bullet Hell"
-run/main_scene="res://GameScene.tscn"
+run/main_scene="res://Level/GameScene.tscn"
 config/icon="res://icon.png"
 
 [display]

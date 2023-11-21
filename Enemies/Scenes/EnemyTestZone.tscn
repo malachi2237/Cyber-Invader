@@ -1,10 +1,11 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Gamejamfinal.mp3" type="AudioStream" id=1]
-[ext_resource path="res://Enemies/Glitchy.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Enemies/Byter.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Enemies/Radial.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Enemies/Charger.tscn" type="PackedScene" id=5]
+[ext_resource path="res://SFX/Gamejamfinal.mp3" type="AudioStream" id=1]
+[ext_resource path="res://Enemies/EnemyTypes/Glitchy.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Enemies/EnemyTypes/Byter.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Enemies/EnemyTypes/Radial.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Enemies/EnemyTypes/Charger.tscn" type="PackedScene" id=5]
+
 
 [node name="EnemyTestZone" type="Node2D"]
 
