@@ -14,7 +14,6 @@ onready var bulletSpawner: BulletSpawner = $BrickSpawner
 var hasPlayer: bool = false
 var moveDir:Vector2 = Vector2(0,0)
 
-
 #TODO: Reconsider Mood/Sequence dynamic to require less functional maintenence
 enum Mood{ attack, regroup }
 

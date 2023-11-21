@@ -1,14 +1,17 @@
 extends Node2D
 
-export(float) var arc_size = 360.0
-
 export(int) var spawn_point_count = 1
 
+#TODO: (?) maybe remove initial rotation
+# redundant design data
 export(float) var initial_rotation = 0.0
 
+#TODO:These are part of the Arc Spawn Shape
+#WARNING: this tasks will delete design data!!
 export(float) var radius = 1.0
+export(float) var arc_size = 360.0
 
-#TODO: Replace with a better spawn Shape
+#TODO: Replace with a better spawn Shape selector
 export(int) var spawnShapeOption = 0
 
 #TODO: rename rotation_speed to speed to include more movement patterns
@@ -39,8 +42,7 @@ onready var _step: float = spawn_shape.solveSteps(spawn_point_count)
 
 #TODO: replace this enum with the better Shape Picker
 enum SpawnShapes{
-	ARC,
-	BOX,
+	ARC, BOX,
 }
 
 func _ready():
@@ -52,6 +54,7 @@ func _ready():
 func _process(delta):
 	spawn_movement.doMovement(delta)
 
+#TODO: (?) redundant design tool, can instead use inspector transforms
 func _setInitialRotation():
 	self.rotate(deg2rad(initial_rotation))
 
