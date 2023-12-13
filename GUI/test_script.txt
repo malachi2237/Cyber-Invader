@@ -1,0 +1,4 @@
+[nameA][nameB]
+[nameA]This line belongs to the first character.
+This one as well.
+[nameB]This belongs to the second character
