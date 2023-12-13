@@ -1,11 +1,16 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Bullets/BulletSpawners/BulletSpawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Bullets/BulletTypes/EthereumBullet.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Bullets/Scripts/SpawnShapeArc.gd" type="Script" id=3]
 
 [node name="RadialBigSlow" instance=ExtResource( 1 )]
 bullet_override = ExtResource( 2 )
 
 [node name="SpawnPoints" parent="." index="0"]
 spawn_point_count = 6
-rotation_speed = 15.0
+
+[node name="SpawnShape" parent="SpawnPoints" index="0"]
+script = ExtResource( 3 )
+arc_size = 360.0
+radius = 1.0
