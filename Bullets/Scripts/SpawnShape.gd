@@ -1,13 +1,11 @@
 extends Node
 
-
 class_name SpawnShape
 
-func _ready() -> void:
-	pass
+onready var _step: float
 
-func getPoint(dist, factor):
-	return Vector2.ZERO * dist * factor
+func solvePosition(factor):
+	return Vector2.ZERO * _step * factor
 
-func solveSteps(spawn_count: int) -> float:
-	return float(spawn_count)
+func solveSteps(spawn_count: int) -> void:
+	_step = float(spawn_count)
