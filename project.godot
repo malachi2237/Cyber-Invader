@@ -10,6 +10,11 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Reference",
+"class": "AK",
+"language": "GDScript",
+"path": "res://wwise/GeneratedSoundBanks/wwise_ids.gd"
+}, {
+"base": "Reference",
 "class": "AkUtils",
 "language": "GDScript",
 "path": "res://addons/wwise/runtime/helpers/ak_utils.gd"
@@ -24,6 +29,21 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Bullets/Scripts/BulletSpawner.gd"
 }, {
+"base": "Node",
+"class": "Dialogue",
+"language": "GDScript",
+"path": "res://GUI/dialogue.gd"
+}, {
+"base": "Control",
+"class": "DialogueFrame",
+"language": "GDScript",
+"path": "res://GUI/dialogue_frame.gd"
+}, {
+"base": "Object",
+"class": "DialogueLine",
+"language": "GDScript",
+"path": "res://GUI/dialogue_line.gd"
+}, {
 "base": "Node2D",
 "class": "Enemy",
 "language": "GDScript",
@@ -33,6 +53,11 @@ _global_script_classes=[ {
 "class": "GameManager",
 "language": "GDScript",
 "path": "res://Level/Scripts/GameManager.gd"
+}, {
+"base": "ProgressBar",
+"class": "HealthBar",
+"language": "GDScript",
+"path": "res://GUI/HealthBar.gd"
 }, {
 "base": "Node2D",
 "class": "LevelPhase",
@@ -80,11 +105,16 @@ _global_script_classes=[ {
 "path": "res://Level/Scripts/WavePhase.gd"
 } ]
 _global_script_class_icons={
+"AK": "",
 "AkUtils": "",
 "Bullet": "",
 "BulletSpawner": "",
+"Dialogue": "",
+"DialogueFrame": "",
+"DialogueLine": "",
 "Enemy": "",
 "GameManager": "",
+"HealthBar": "",
 "LevelPhase": "",
 "Player": "",
 "SpawnMovementPattern": "",
