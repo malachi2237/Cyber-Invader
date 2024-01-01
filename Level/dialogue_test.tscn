@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Level/Scripts/GameManager.gd" type="Script" id=1]
+[ext_resource path="res://Level/WavePhases/DialoguePhaseTest.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=3]
+
+[node name="GameManager" type="Node"]
+script = ExtResource( 1 )
+stage_queue = [ ExtResource( 2 ) ]
+player = NodePath("Player")
+
+[node name="Player" parent="." instance=ExtResource( 3 )]
+position = Vector2( 2107, 1579 )
