@@ -18,7 +18,6 @@ var current_frame: DialogueFrame
 
 func _ready():
 	var scene = Utility.getScene(self)
-	var test_player
 	
 	frame_a.hide()
 	frame_b.hide()
@@ -26,14 +25,20 @@ func _ready():
 	Utility.placeInScene(scene, frame_a, null)
 	Utility.placeInScene(scene, frame_b, null)
 	
+	frame_a.set_name(dialogue.character_a)
+	frame_b.set_name(dialogue.character_b)
+	
 	player = Utility.get_player(self)
+	
+	start_phase()
 
 func start_phase():
 	player.set_process_input(false)
+	player.set_process(false)
 	_advance_dialogue()
 
 func _process(_delta):
-	if Input.is_action_pressed("ui_accept"):
+	if Input.is_action_just_pressed ("ui_accept"):
 		_advance_dialogue()
 
 func _advance_dialogue():
@@ -48,10 +53,11 @@ func _advance_dialogue():
 	if frame:
 		frame.set_dialogue(line.text)
 		
-		if frame.character_name.text != line.character_name:
+		if current_frame:
 			current_frame.hide()
-			frame.show()
-			current_frame = frame
+			
+		frame.show()
+		current_frame = frame
 
 func get_frame(name: String) -> Node:
 	if name == dialogue.character_a:
@@ -63,5 +69,8 @@ func get_frame(name: String) -> Node:
 
 func _end_phase():
 	._end_phase()
-	set_process_input(true)
+	frame_a.queue_free()
+	frame_b.queue_free()
+	player.set_process_input(true)
+	player.set_process(true)
 	queue_free()
