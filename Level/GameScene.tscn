@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Level/WavePhases/InitialPhase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Level/Scripts/GameManager.gd" type="Script" id=3]
+[ext_resource path="res://GUI/pause_menu.tscn" type="PackedScene" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -70,3 +71,6 @@ collision_layer = 32
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayLayer/bottom_boundary"]
 scale = Vector2( 500, 1 )
 shape = SubResource( 1 )
+
+[node name="PauseMenu" parent="PlayLayer" instance=ExtResource( 4 )]
+visible = false

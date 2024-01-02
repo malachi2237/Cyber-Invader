@@ -38,7 +38,7 @@ func start_phase():
 	_advance_dialogue()
 
 func _process(_delta):
-	if Input.is_action_just_pressed ("ui_accept"):
+	if Input.is_action_just_pressed("ui_accept"):
 		_advance_dialogue()
 
 func _advance_dialogue():

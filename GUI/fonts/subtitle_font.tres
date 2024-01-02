@@ -3,7 +3,7 @@
 [ext_resource path="res://GUI/fonts/Data/PokemonGb-RAeo.ttf" type="DynamicFontData" id=1]
 
 [resource]
-size = 72
+size = 124
 use_filter = true
 extra_spacing_top = 25
 font_data = ExtResource( 1 )
