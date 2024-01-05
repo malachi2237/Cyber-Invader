@@ -21,3 +21,9 @@ static func placeInScene(targetNode, item, _pos):
 	getScene(targetNode).add_child(item)
 	if _pos != null: item.global_position = _pos
 
+static func get_player(node_in_scene: Node):
+	var scene = getScene(node_in_scene)
+	var player = scene.find_node("Player")
+	
+	return player
+

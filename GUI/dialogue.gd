@@ -1,30 +1,38 @@
 extends Node
 
-export(TextFile) var script_file: TextFile
+class_name Dialogue
 
-var character_A: String = ""
-var character_B: String = ""
+export(String, FILE, "*.txt") var script_file: String
+
+var character_a: String = ""
+var character_b: String = ""
 
 var script_array: Array
 
+func consume_next_line() -> DialogueLine:
+	return script_array.pop_front()
+	
 func _ready():
-	pass
+	_process_file(script_file)
 
 func _process_file(file):
 	var f = File.new()
-	f.open(script_file, File.READ)
+	f.open(file, File.READ)
 	
 	if not f.eof_reached():
-		var first_line = file.get_line()
+		var first_line = f.get_line()
 		_read_character_list(first_line)
 		
 	while not f.eof_reached():
-		var line = file.get
+		var line = f.get_line()
+		_process_next_line(line)
 
 func _read_character_list(line):
 	var name_indices: PoolIntArray
 	var last_index = 0
-		
+	
+	name_indices.resize(4)
+	
 	for i in range(2):
 		last_index = line.find("[", last_index)
 		
@@ -32,9 +40,10 @@ func _read_character_list(line):
 			_incorrect_format_error()
 			return
 		else:
-			name_indices[i] = last_index
 			last_index += 1
-		
+			name_indices[i] = last_index
+	
+	last_index = 0
 	for i in range(2, 4):
 		last_index = line.find("]", last_index)
 		
@@ -45,15 +54,15 @@ func _read_character_list(line):
 			name_indices[i] = last_index
 			last_index += 1
 	
-	character_A = line.substr(name_indices[0], name_indices[2])
-	character_B = line.substr(name_indices[1], name_indices[3])
+	character_a = line.substr(name_indices[0], name_indices[2] - name_indices[0])
+	character_b = line.substr(name_indices[1], name_indices[3] - name_indices[1])
 
 func _process_next_line(line):
 	var dialogue_line: DialogueLine = DialogueLine.new()
 	
 	if line[0] == "[":
 		var end_index = line.find("]")
-		var temp: String = line.substr(0, end_index)
+		var temp: String = line.substr(1, end_index - 1)
 		
 		if _validate_name(temp):
 			dialogue_line.character_name = temp
@@ -66,8 +75,8 @@ func _process_next_line(line):
 	dialogue_line.text = line.get_slice("]", 1)
 	script_array.append(dialogue_line)
 	
-func _validate_name(name: String):
-	return name == character_A || name == character_B
+func _validate_name(name: String) -> bool:
+	return name == character_a || name == character_b
 	
 func _incorrect_format_error():
 	pass
