@@ -1,25 +1,6 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://Bullets/Scripts/ForwardBullet.gd" type="Script" id=1]
-[ext_resource path="res://Bullets/Sprites/genericBullet.png" type="Texture" id=2]
+[ext_resource path="res://Bullets/ForwardBullet.tscn" type="PackedScene" id=1]
 
-[sub_resource type="CapsuleShape2D" id=5]
-
-[node name="Bullet" type="Area2D"]
-z_index = -2
-script = ExtResource( 1 )
+[node name="LightningBullet" instance=ExtResource( 1 )]
 shot_speed = 750
-
-[node name="BulletSprite" type="Sprite" parent="."]
-position = Vector2( -1, 0 )
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 2 )
-
-[node name="BulletBox" type="CollisionShape2D" parent="."]
-shape = SubResource( 5 )
-
-[node name="EndBullet" type="Timer" parent="."]
-wait_time = 5.0
-autostart = true
-
-[connection signal="timeout" from="EndBullet" to="." method="_on_EndBullet_timeout"]
