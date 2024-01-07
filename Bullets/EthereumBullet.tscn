@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Bullets/Scripts/ForwardBullet.gd" type="Script" id=1]
+[ext_resource path="res://Enemies/Sprites/ramiel.png" type="Texture" id=2]
+[ext_resource path="res://Enemies/Sprites/ramiel_rotated.png" type="Texture" id=3]
+
+[sub_resource type="SpriteFrames" id=6]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="CircleShape2D" id=7]
+radius = 7.01783
+
+[node name="Bullet" type="Area2D"]
+scale = Vector2( 2.5, 2.5 )
+script = ExtResource( 1 )
+shot_speed = 100
+
+[node name="BulletSprite" type="AnimatedSprite" parent="."]
+position = Vector2( -1.2, -1.6 )
+scale = Vector2( 0.25, 0.25 )
+z_index = -1
+frames = SubResource( 6 )
+frame = 1
+playing = true
+
+[node name="BulletBox" type="CollisionShape2D" parent="."]
+shape = SubResource( 7 )
+
+[node name="EndBullet" type="Timer" parent="."]
+wait_time = 20.0
+autostart = true
+
+[connection signal="timeout" from="EndBullet" to="." method="_on_EndBullet_timeout"]
