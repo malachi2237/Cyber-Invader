@@ -10,6 +10,11 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Reference",
+"class": "AK",
+"language": "GDScript",
+"path": "res://wwise/GeneratedSoundBanks/wwise_ids.gd"
+}, {
+"base": "Reference",
 "class": "AkUtils",
 "language": "GDScript",
 "path": "res://addons/wwise/runtime/helpers/ak_utils.gd"
@@ -49,6 +54,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Enemies/Scripts/Enemy.gd"
 }, {
+"base": "Bullet",
+"class": "ForwardBullet",
+"language": "GDScript",
+"path": "res://Bullets/Scripts/ForwardBullet.gd"
+}, {
 "base": "Node",
 "class": "GameManager",
 "language": "GDScript",
@@ -69,31 +79,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Player/Player.gd"
 }, {
-"base": "Node2D",
-"class": "SpawnMovementPattern",
-"language": "GDScript",
-"path": "res://Bullets/Scripts/SpawnMovementPattern.gd"
-}, {
-"base": "SpawnMovementPattern",
-"class": "SpawnMovementRotation",
-"language": "GDScript",
-"path": "res://Bullets/Scripts/SpawnMovementRotation.gd"
-}, {
-"base": "Node",
-"class": "SpawnShape",
-"language": "GDScript",
-"path": "res://Bullets/Scripts/SpawnShape.gd"
-}, {
-"base": "SpawnShape",
-"class": "SpawnShapeArc",
-"language": "GDScript",
-"path": "res://Bullets/Scripts/SpawnShapeArc.gd"
-}, {
-"base": "SpawnShape",
-"class": "SpawnShapeRect",
-"language": "GDScript",
-"path": "res://Bullets/Scripts/SpawnShapeRect.gd"
-}, {
 "base": "Node",
 "class": "TimerToolbox",
 "language": "GDScript",
@@ -110,6 +95,7 @@ _global_script_classes=[ {
 "path": "res://Level/Scripts/WavePhase.gd"
 } ]
 _global_script_class_icons={
+"AK": "",
 "AkUtils": "",
 "Bullet": "",
 "BulletSpawner": "",
@@ -118,15 +104,11 @@ _global_script_class_icons={
 "DialogueLine": "",
 "DialoguePhase": "",
 "Enemy": "",
+"ForwardBullet": "",
 "GameManager": "",
 "HealthBar": "",
 "LevelPhase": "",
 "Player": "",
-"SpawnMovementPattern": "",
-"SpawnMovementRotation": "",
-"SpawnShape": "",
-"SpawnShapeArc": "",
-"SpawnShapeRect": "",
 "TimerToolbox": "",
 "Utility": "",
 "WavePhase": ""
@@ -192,6 +174,12 @@ player_power={
 debug_player_hurt={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":82,"unicode":0,"echo":false,"script":null)
+ ]
+}
+pause={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":80,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":16777217,"unicode":0,"echo":false,"script":null)
  ]
 }
 

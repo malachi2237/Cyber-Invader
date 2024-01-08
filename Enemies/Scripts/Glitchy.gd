@@ -4,7 +4,7 @@ onready var warpTimer: Timer = $WarpTimer
 onready var shadowClone: Sprite = $ShadowClone
 onready var spriteAnim : AnimatedSprite = $GlitchySprite
 onready var warpAnim: AnimationPlayer = $GlitchyAnimationPlayer
-onready var bulletSpawner: BulletSpawner = $GlitchyBulletsSpawner
+onready var bulletSpawner: BulletSpawner = $BulletSpawner
 
 #TODO: Utility?
 onready var screenSize:Vector2 = get_viewport().get_visible_rect().size

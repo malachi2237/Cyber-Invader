@@ -1,7 +1,7 @@
 extends Enemy
 
-onready var big_attack = $RadialBigSlow
-onready var small_attack = $RadialSmallFast
+onready var big_attack = $BigSlow
+onready var small_attack = $SmallFast
 
 
 export(float) var entry_speed = 25.0

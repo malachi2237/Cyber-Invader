@@ -106,9 +106,10 @@ func _volley() -> void:
 
 func _addBulletAtPoint(spawnPoint) -> void:
 	var bullet = bullet_prefab.instance()
-	getScene().add_child(bullet)
+
 	bullet.position = spawnPoint.global_position
 	bullet.rotation = spawnPoint.global_rotation + deg2rad(90)
+	getScene().add_child(bullet)
 #------------------------------------------------
 
 #------------------------------------------------
