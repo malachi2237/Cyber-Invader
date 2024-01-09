@@ -1,38 +1,46 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Enemies/Animations/Cannon.tres" type="SpriteFrames" id=1]
+[ext_resource path="res://Enemies/Enemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Enemies/Sprites/boss_main.png" type="Texture" id=2]
-[ext_resource path="res://Enemies/Scripts/Boss.gd" type="Script" id=3]
+[ext_resource path="res://Bullets/Scripts/BulletSpawner.gd" type="Script" id=3]
+[ext_resource path="res://Enemies/Scripts/Boss.gd" type="Script" id=4]
+[ext_resource path="res://Enemies/Animations/Cannon.tres" type="SpriteFrames" id=5]
+[ext_resource path="res://Bullets/RadialBulletCCW.tscn" type="PackedScene" id=6]
 
-[sub_resource type="CapsuleShape2D" id=1]
-radius = 69.0
-height = 222.0
+[node name="Boss" instance=ExtResource( 1 )]
+script = ExtResource( 4 )
+modeCount = 3
+modeLength = [ 30, 30 ]
+healthMilestones = [ 0.6, 0.3 ]
+modes = [ "CirclePulse", "Sweeping", "HyperSnow" ]
 
-[node name="Boss" type="Node2D"]
-position = Vector2( 1, 0 )
-script = ExtResource( 3 )
-
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Sprite" type="Sprite" parent="." index="0"]
 texture = ExtResource( 2 )
 
-[node name="Bosscannon1" type="AnimatedSprite" parent="."]
+[node name="CollisionCircle" parent="HitBox" index="0"]
+scale = Vector2( 15, 15 )
+
+[node name="RadialSpawner" type="Node2D" parent="." index="4"]
+script = ExtResource( 3 )
+bullet_override = ExtResource( 6 )
+enable_bursts = true
+single_burst = true
+burst_duration = 0.2
+burst_interval = 0.25
+radius = 500.0
+spawn_point_count = 10
+
+[node name="Bosscannon1" type="AnimatedSprite" parent="." index="5"]
 position = Vector2( 8, -560 )
-frames = ExtResource( 1 )
+frames = ExtResource( 5 )
 
-[node name="Bosscannon2" type="AnimatedSprite" parent="."]
+[node name="Bosscannon2" type="AnimatedSprite" parent="." index="6"]
 position = Vector2( 522, -250 )
-frames = ExtResource( 1 )
+frames = ExtResource( 5 )
 
-[node name="Bosscannon3" type="AnimatedSprite" parent="."]
+[node name="Bosscannon3" type="AnimatedSprite" parent="." index="7"]
 position = Vector2( -439, -228 )
-frames = ExtResource( 1 )
+frames = ExtResource( 5 )
 
-[node name="ModeTimer" type="Timer" parent="."]
+[node name="ModeTimer" type="Timer" parent="." index="8"]
 one_shot = true
-
-[node name="HitBox" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
-shape = SubResource( 1 )
-
-[connection signal="timeout" from="ModeTimer" to="." method="_on_ModeTimer_timeout"]

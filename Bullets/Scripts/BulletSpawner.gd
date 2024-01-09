@@ -88,7 +88,7 @@ func _fireOnStart() -> void:
 	elif fire_on_start: start_firing()
 
 func _delayCondition() -> bool:
-	return initial_delay_min >= 0.0 and initial_delay_min <= initial_delay_max
+	return initial_delay_min >= 0.0 and initial_delay_min < initial_delay_max
 
 func _randomDelay() -> float:
 	return rand_range(initial_delay_min, initial_delay_max)
