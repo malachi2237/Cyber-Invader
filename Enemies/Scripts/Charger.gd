@@ -26,7 +26,9 @@ func set_attack_target(targetNode: Node2D) -> void:
 	if targetNode: attackTarget = targetNode
 
 func _ready() -> void:
-	pass
+	var player_test = find_node("Player")
+	if player_test is Player:
+		attackTarget = player_test
 
 func _physics_process(delta: float) -> void:
 	match curMood:
