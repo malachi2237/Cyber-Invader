@@ -14,11 +14,14 @@ func _calculate_origin():
 	
 func _apply_movement(var delta: float):
 
-	var forward_comp = Vector2.UP.rotated(get_global_transform().get_rotation())
+	var forward_comp = Vector2.UP.rotated(rotation)
 	forward_comp = forward_comp.normalized() * shot_speed
 	
 	var tangent_comp = _origin.direction_to(global_position)
+	var new_rotation = tangent_comp.rotated(deg2rad(90)).angle()
 	tangent_comp = tangent_comp.tangent()
 	tangent_comp = tangent_comp.normalized() * rotation_velocity
 	
-	translate((forward_comp + tangent_comp) * delta)
+	translate((tangent_comp) * delta)
+	rotation = new_rotation
+	translate((forward_comp) * delta)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Enemies/Enemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Enemies/Sprites/BossAnim.tres" type="SpriteFrames" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Enemies/Scripts/Boss.gd" type="Script" id=4]
 [ext_resource path="res://Enemies/Animations/Cannon.tres" type="SpriteFrames" id=5]
 [ext_resource path="res://Bullets/RadialBulletCCW.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Bullets/RadialBulletCW.tscn" type="PackedScene" id=7]
 
 [node name="Boss" instance=ExtResource( 1 )]
 script = ExtResource( 4 )
@@ -22,27 +23,37 @@ playing = true
 [node name="CollisionCircle" parent="HitBox" index="0"]
 scale = Vector2( 15, 15 )
 
-[node name="RadialSpawner" type="Node2D" parent="." index="4"]
+[node name="CCWRadialSpawner" type="Node2D" parent="." index="4"]
 script = ExtResource( 3 )
 bullet_override = ExtResource( 6 )
-enable_bursts = true
-single_burst = true
 burst_duration = 0.2
-burst_interval = 0.25
+burst_interval = 0.4
+shot_timer = 0.8
 radius = 500.0
 spawn_point_count = 10
 
-[node name="Bosscannon1" type="AnimatedSprite" parent="." index="5"]
+[node name="CWRadialSpawner" type="Node2D" parent="." index="5"]
+script = ExtResource( 3 )
+bullet_override = ExtResource( 7 )
+initial_delay_min = 0.4
+initial_delay_max = 0.4
+burst_duration = 0.2
+burst_interval = 0.4
+shot_timer = 0.8
+radius = 500.0
+spawn_point_count = 10
+
+[node name="Bosscannon1" type="AnimatedSprite" parent="." index="6"]
 position = Vector2( 8, -560 )
 frames = ExtResource( 5 )
 
-[node name="Bosscannon2" type="AnimatedSprite" parent="." index="6"]
+[node name="Bosscannon2" type="AnimatedSprite" parent="." index="7"]
 position = Vector2( 522, -250 )
 frames = ExtResource( 5 )
 
-[node name="Bosscannon3" type="AnimatedSprite" parent="." index="7"]
+[node name="Bosscannon3" type="AnimatedSprite" parent="." index="8"]
 position = Vector2( -439, -228 )
 frames = ExtResource( 5 )
 
-[node name="ModeTimer" type="Timer" parent="." index="8"]
+[node name="ModeTimer" type="Timer" parent="." index="9"]
 one_shot = true

@@ -5,10 +5,11 @@
 [ext_resource path="res://Bullets/Sprites/bosscannonbullet.png" type="Texture" id=3]
 
 [node name="RadialBullet" instance=ExtResource( 1 )]
+scale = Vector2( 0.5, 0.5 )
 script = ExtResource( 2 )
-shot_speed = 300
+shot_speed = 200
 spawn_radius = 500.0
-rotation_velocity = 300.0
+rotation_velocity = 400.0
 
 [node name="BulletSprite" parent="." index="0"]
 texture = ExtResource( 3 )
