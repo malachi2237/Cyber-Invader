@@ -38,6 +38,8 @@ tracks/0/keys = {
 
 [node name="Glitchy_test" instance=ExtResource( 6 )]
 script = ExtResource( 2 )
+play_area_path = "/root/GameScene/PlayLayer/PlayArea"
+play_area_percentage = 0.9
 
 [node name="BulletSpawner" parent="." index="0" instance=ExtResource( 5 )]
 bullet_override = ExtResource( 4 )
