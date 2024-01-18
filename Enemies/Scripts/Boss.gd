@@ -2,13 +2,17 @@ extends Enemy
 
 #TODO: Implement Boss Phase and its various modes
 #Has the player as a target
-#Has three lazer guns
 var target = null
+
+#Modes' signals
+signal CirclePulse
+signal Sweeping
+signal HyperSnow
+
 onready var Guns = [$Bosscannon1, $Bosscannon2, $Bosscannon3]
 onready var modeTimer: Timer = $ModeTimer
 onready var maxHealth = self.health
 
-export var modeCount:int = 3
 export var modeLength = [30, 30]
 export var healthMilestones = [0.6, 0.3]
 export var modes = ["CirclePulse", "Sweeping", "HyperSnow"]
@@ -20,7 +24,11 @@ var currentMode = 0
 #Mode 3: Crazy Bullet snow, attop combinations of the previous patterns
 
 
+
+#Signal to start modes?
+
 func _ready():
+	emit_Current_Mode()
 	startModeTimer()
 
 func _process(_delta) -> void:
@@ -31,7 +39,7 @@ func healthModeSwitchTest() -> void:
 		startNextMode()
 
 func nextModeValid() -> bool:
-	return currentMode < modeCount -1
+	return currentMode < modes.count() -1
 
 func healthMilestoneReached() -> bool:
 	return ((self.health/maxHealth) <= healthMilestones[currentMode])
@@ -39,6 +47,7 @@ func healthMilestoneReached() -> bool:
 func startNextMode() -> void:
 	if(nextModeValid()):
 		currentMode += 1
+		emit_Current_Mode()
 		startModeTimer()
 
 func startModeTimer() -> void:
@@ -47,3 +56,6 @@ func startModeTimer() -> void:
 
 func _on_ModeTimer_timeout():
 	startNextMode()
+
+func emit_Current_Mode():
+	emit_signal(modes[currentMode])
