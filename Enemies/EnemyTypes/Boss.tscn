@@ -20,6 +20,7 @@ modes = [ "CirclePulse", "Sweeping", "HyperSnow" ]
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="0"]
 frames = ExtResource( 2 )
+frame = 1
 playing = true
 
 [node name="CollisionCircle" parent="HitBox" index="0"]
@@ -57,7 +58,7 @@ spawn_point_count = 10
 script = ExtResource( 9 )
 
 [node name="Bosscannon1" type="AnimatedSprite" parent="Mode2" index="0"]
-position = Vector2( 8, -560 )
+position = Vector2( -5, -560 )
 frames = ExtResource( 5 )
 script = ExtResource( 8 )
 
@@ -69,9 +70,12 @@ frames = ExtResource( 5 )
 position = Vector2( -439, -228 )
 frames = ExtResource( 5 )
 
+[node name="ActionTimer" type="Timer" parent="Mode2" index="3"]
+
 [node name="Mode3" type="Node2D" parent="." index="7"]
 script = ExtResource( 10 )
 
 [connection signal="CirclePulse" from="." to="Mode1" method="_on_Boss_CirclePulse"]
 [connection signal="HyperSnow" from="." to="Mode3" method="_on_Boss_HyperSnow"]
 [connection signal="Sweeping" from="." to="Mode2" method="_on_Boss_Sweeping"]
+[connection signal="timeout" from="Mode2/ActionTimer" to="Mode2" method="_on_ActionTimer_timeout"]

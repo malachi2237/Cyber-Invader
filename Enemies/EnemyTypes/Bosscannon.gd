@@ -6,21 +6,21 @@ var cur_action = 0
 
 
 func _process(delta: float) -> void:
-	perform_action()
+	perform_action(delta)
 
-func fire():
+func fire(delta: float):
 	pass
 
-func charge():
+func charge(delta: float):
 	pass
 
-func aim():
-	self.rotate(2)
+func aim(delta: float):
+	self.rotate(2*delta)
 
 
-func perform_action():
+func perform_action(delta: float):
 	match action_order[cur_action]:
-		'aim': aim()
-		'charge': charge()
-		'fire': fire()
+		'aim': aim(delta)
+		'charge': charge(delta)
+		'fire': fire(delta)
 
