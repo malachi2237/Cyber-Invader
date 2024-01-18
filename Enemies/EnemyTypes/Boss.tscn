@@ -20,7 +20,6 @@ modes = [ "CirclePulse", "Sweeping", "HyperSnow" ]
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="0"]
 frames = ExtResource( 2 )
-frame = 1
 playing = true
 
 [node name="CollisionCircle" parent="HitBox" index="0"]
@@ -35,6 +34,7 @@ script = ExtResource( 11 )
 [node name="CCWRadialSpawner" type="Node2D" parent="Mode1" index="0"]
 script = ExtResource( 3 )
 bullet_override = ExtResource( 6 )
+fire_on_start = false
 burst_duration = 0.2
 burst_interval = 0.4
 shot_timer = 0.8
@@ -44,6 +44,7 @@ spawn_point_count = 10
 [node name="CWRadialSpawner" type="Node2D" parent="Mode1" index="1"]
 script = ExtResource( 3 )
 bullet_override = ExtResource( 7 )
+fire_on_start = false
 initial_delay_min = 0.4
 initial_delay_max = 0.4
 burst_duration = 0.2

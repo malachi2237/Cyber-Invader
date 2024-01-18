@@ -1,6 +1,7 @@
 extends Node2D
 
-
+onready var Spinners = [$CCWRadialSpawner, $CWRadialSpawner]
 
 func _on_Boss_CirclePulse() -> void:
-	pass # Replace with function body.
+	for spinner in Spinners:
+		spinner.start_firing()
