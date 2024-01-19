@@ -26,6 +26,5 @@ func _on_ActionTimer_timeout() -> void:
 	cur_action = cur_action % action_order.size()
 	start_action_timer()
 	for gun in Guns:
-		print_debug(action_order[cur_action])
 		gun.set_action(action_order[cur_action])
 
