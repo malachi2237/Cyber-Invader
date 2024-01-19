@@ -5,7 +5,7 @@ export var aim_speed = 2
 export var aim_range = 30
 var current_action = 'aiim'
 var aim_dir = 1
-
+onready var bullets : BulletSpawner = $BulletSpawner
 
 func _process(delta: float) -> void:
 	if(active):
@@ -13,8 +13,10 @@ func _process(delta: float) -> void:
 
 func fire(delta: float):
 	self.animation = 'Firing'
+	bullets.start_firing()
 
 func charge(delta: float):
+	bullets.stop_firing()
 	self.animation = 'Charging'
 
 func flip_aim_cond():
@@ -22,6 +24,7 @@ func flip_aim_cond():
 		self.rotation_degrees <= -aim_range)
 
 func aim(delta: float):
+	bullets.start_firing()
 	self.animation = 'Idle'
 	self.rotate(aim_dir*aim_speed*delta)
 	if(flip_aim_cond()):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Enemies/Enemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Enemies/Sprites/BossAnim.tres" type="SpriteFrames" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Enemies/EnemyTypes/Mode2.gd" type="Script" id=9]
 [ext_resource path="res://Enemies/EnemyTypes/Mode3.gd" type="Script" id=10]
 [ext_resource path="res://Enemies/EnemyTypes/Mode1.gd" type="Script" id=11]
+[ext_resource path="res://Bullets/ForwardBullet.tscn" type="PackedScene" id=12]
 
 [node name="Boss" instance=ExtResource( 1 )]
 script = ExtResource( 4 )
@@ -20,7 +21,6 @@ modes = [ "CirclePulse", "Sweeping", "HyperSnow" ]
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="0"]
 frames = ExtResource( 2 )
-frame = 2
 playing = true
 
 [node name="CollisionCircle" parent="HitBox" index="0"]
@@ -62,15 +62,33 @@ position = Vector2( 507, 600 )
 frames = ExtResource( 5 )
 script = ExtResource( 8 )
 
+[node name="BulletSpawner" type="Node2D" parent="Mode2/Bosscannon1" index="0"]
+rotation = 1.5708
+script = ExtResource( 3 )
+bullet_override = ExtResource( 12 )
+fire_on_start = false
+
 [node name="Bosscannon2" type="AnimatedSprite" parent="Mode2" index="1"]
 position = Vector2( 522, -250 )
 frames = ExtResource( 5 )
 script = ExtResource( 8 )
 
+[node name="BulletSpawner" type="Node2D" parent="Mode2/Bosscannon2" index="0"]
+rotation = 1.5708
+script = ExtResource( 3 )
+bullet_override = ExtResource( 12 )
+fire_on_start = false
+
 [node name="Bosscannon3" type="AnimatedSprite" parent="Mode2" index="2"]
 position = Vector2( -439, -228 )
 frames = ExtResource( 5 )
 script = ExtResource( 8 )
+
+[node name="BulletSpawner" type="Node2D" parent="Mode2/Bosscannon3" index="0"]
+rotation = 1.5708
+script = ExtResource( 3 )
+bullet_override = ExtResource( 12 )
+fire_on_start = false
 
 [node name="ActionTimer" type="Timer" parent="Mode2" index="3"]
 
