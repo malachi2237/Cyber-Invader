@@ -58,17 +58,19 @@ spawn_point_count = 10
 script = ExtResource( 9 )
 
 [node name="Bosscannon1" type="AnimatedSprite" parent="Mode2" index="0"]
-position = Vector2( -5, -560 )
+position = Vector2( 507, 600 )
 frames = ExtResource( 5 )
 script = ExtResource( 8 )
 
 [node name="Bosscannon2" type="AnimatedSprite" parent="Mode2" index="1"]
 position = Vector2( 522, -250 )
 frames = ExtResource( 5 )
+script = ExtResource( 8 )
 
 [node name="Bosscannon3" type="AnimatedSprite" parent="Mode2" index="2"]
 position = Vector2( -439, -228 )
 frames = ExtResource( 5 )
+script = ExtResource( 8 )
 
 [node name="ActionTimer" type="Timer" parent="Mode2" index="3"]
 

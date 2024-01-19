@@ -9,7 +9,7 @@ signal CirclePulse
 signal Sweeping
 signal HyperSnow
 
-onready var Guns = [$Bosscannon1, $Bosscannon2, $Bosscannon3]
+
 onready var modeTimer: Timer = $ModeTimer
 onready var maxHealth = self.health
 
