@@ -18,7 +18,13 @@ func _die() -> void:
 	queue_free()
 
 func _on_HitBox_area_entered(area):
-	_take_damage(area.damage)
+	if "damage" in area:
+		_take_damage(area.damage)
 
 func _on_CollideBox_area_entered(_area):
 	_take_damage(health)
+
+
+func _on_HitBox_area_exited(area):
+	if area is KillBoundary:
+		_die()
