@@ -2,6 +2,6 @@
 [nameA]Analyzing target
 [nameA]...
 [nameA]Something is disrupting my scans.
-[nameB]Here it is. The source of the disruption.
-[nameB]SYNCHRONIZING WEAPONS...   ENGAGING TARGET
-[nameB]Now prepare to die.
+[AI]Here it is. The source of the disruption.
+[AI]Preparing to purge disruptive entity.
+[nameA]Heh... you can try.

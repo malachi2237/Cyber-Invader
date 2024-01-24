@@ -1,2 +1,2 @@
 [nameA] Target neutralized
-[nameB] No... How... Could... You... Defeat... Me
+[AI] No... How... Could... You... Defeat... Me
