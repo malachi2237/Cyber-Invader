@@ -62,7 +62,7 @@ func _makeBulletInstance(source_gun):
 	bul_inst.rotation = source_gun.global_rotation
 	return bul_inst
 
-func die():
+func _die():
 	queue_free()
 
 #TODO: Implement powerups
@@ -73,4 +73,4 @@ func _on_FireRate_timeout() -> void:
 	canFire = true
 
 func _on_HitBox_area_entered(_area):
-	die()
+	_die()
