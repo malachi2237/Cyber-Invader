@@ -13,7 +13,7 @@ func _ready() -> void:
 
 func _on_Boss_Sweeping() -> void:
 	for gun in Guns:
-		gun.active = 1
+		gun.active = true
 
 func start_action_timer():
 	actionTimer.wait_time = action_times[cur_action]

@@ -1,17 +1,18 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Enemies/Enemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Enemies/Sprites/BossAnim.tres" type="SpriteFrames" id=2]
 [ext_resource path="res://Bullets/Scripts/BulletSpawner.gd" type="Script" id=3]
-[ext_resource path="res://Enemies/Scripts/Boss.gd" type="Script" id=4]
+[ext_resource path="res://Enemies/Scripts/Boss/Boss.gd" type="Script" id=4]
 [ext_resource path="res://Enemies/Animations/Cannon.tres" type="SpriteFrames" id=5]
 [ext_resource path="res://Bullets/RadialBulletCCW.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Bullets/RadialBulletCW.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Enemies/EnemyTypes/Bosscannon.gd" type="Script" id=8]
-[ext_resource path="res://Enemies/EnemyTypes/Mode2.gd" type="Script" id=9]
-[ext_resource path="res://Enemies/EnemyTypes/Mode3.gd" type="Script" id=10]
-[ext_resource path="res://Enemies/EnemyTypes/Mode1.gd" type="Script" id=11]
+[ext_resource path="res://Enemies/Scripts/Boss/Bosscannon.gd" type="Script" id=8]
+[ext_resource path="res://Enemies/Scripts/Boss/Mode2.gd" type="Script" id=9]
+[ext_resource path="res://Enemies/Scripts/Boss/Mode3.gd" type="Script" id=10]
+[ext_resource path="res://Enemies/Scripts/Boss/Mode1.gd" type="Script" id=11]
 [ext_resource path="res://Bullets/ForwardBullet.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Enemies/EnemyTypes/Wiggler.gd" type="Script" id=13]
 
 [node name="Boss" instance=ExtResource( 1 )]
 script = ExtResource( 4 )
@@ -21,7 +22,7 @@ modes = [ "CirclePulse", "Sweeping", "HyperSnow" ]
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="0"]
 frames = ExtResource( 2 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="CollisionCircle" parent="HitBox" index="0"]
@@ -37,6 +38,8 @@ script = ExtResource( 11 )
 script = ExtResource( 3 )
 bullet_override = ExtResource( 6 )
 fire_on_start = false
+initial_delay_min = 0.4
+initial_delay_max = 0.4
 burst_duration = 0.2
 burst_interval = 0.4
 shot_timer = 0.8
@@ -47,8 +50,6 @@ spawn_point_count = 10
 script = ExtResource( 3 )
 bullet_override = ExtResource( 7 )
 fire_on_start = false
-initial_delay_min = 0.4
-initial_delay_max = 0.4
 burst_duration = 0.2
 burst_interval = 0.4
 shot_timer = 0.8
@@ -59,17 +60,18 @@ spawn_point_count = 10
 script = ExtResource( 9 )
 
 [node name="Bosscannon1" type="AnimatedSprite" parent="Mode2" index="0"]
-position = Vector2( 5, -536 )
+position = Vector2( 873, 415 )
 frames = ExtResource( 5 )
 script = ExtResource( 8 )
 
 [node name="BulletSpawner" type="Node2D" parent="Mode2/Bosscannon1" index="0"]
 rotation = 1.5708
 script = ExtResource( 3 )
+__meta__ = {
+"_editor_description_": ""
+}
 bullet_override = ExtResource( 12 )
 fire_on_start = false
-burst_duration = 0.2
-burst_interval = 0.4
 
 [node name="Bosscannon2" type="AnimatedSprite" parent="Mode2" index="1"]
 position = Vector2( 522, -250 )
@@ -79,6 +81,9 @@ script = ExtResource( 8 )
 [node name="BulletSpawner" type="Node2D" parent="Mode2/Bosscannon2" index="0"]
 rotation = 1.5708
 script = ExtResource( 3 )
+__meta__ = {
+"_editor_description_": ""
+}
 bullet_override = ExtResource( 12 )
 fire_on_start = false
 
@@ -90,6 +95,9 @@ script = ExtResource( 8 )
 [node name="BulletSpawner" type="Node2D" parent="Mode2/Bosscannon3" index="0"]
 rotation = 1.5708
 script = ExtResource( 3 )
+__meta__ = {
+"_editor_description_": ""
+}
 bullet_override = ExtResource( 12 )
 fire_on_start = false
 
@@ -97,17 +105,28 @@ fire_on_start = false
 
 [node name="Mode3" type="Node2D" parent="." index="7"]
 script = ExtResource( 10 )
+SnowSpawn = [ NodePath("Wiggler/BulletSpawner"), NodePath("Wiggler/BulletSpawner2"), NodePath("Wiggler/BulletSpawner3") ]
 
-[node name="BulletSpawner" type="Node2D" parent="Mode3" index="0"]
+[node name="Wiggler" type="Node2D" parent="Mode3" index="0"]
+script = ExtResource( 13 )
+
+[node name="BulletSpawner" type="Node2D" parent="Mode3/Wiggler" index="0"]
 position = Vector2( 0, -1016 )
 script = ExtResource( 3 )
 
-[node name="BulletSpawner2" type="Node2D" parent="Mode3" index="1"]
+[node name="BulletSpawner2" type="Node2D" parent="Mode3/Wiggler" index="1"]
 position = Vector2( -740, -992 )
 script = ExtResource( 3 )
 
-[node name="BulletSpawner3" type="Node2D" parent="Mode3" index="2"]
+[node name="BulletSpawner3" type="Node2D" parent="Mode3/Wiggler" index="2"]
 position = Vector2( 757, -1013 )
 script = ExtResource( 3 )
 
+[node name="wiggleSwitch" type="Timer" parent="Mode3/Wiggler" index="3"]
+
+[connection signal="CirclePulse" from="." to="Mode1" method="_on_Boss_CirclePulse"]
+[connection signal="HyperSnow" from="." to="Mode3" method="_on_Boss_HyperSnow"]
+[connection signal="Sweeping" from="." to="Mode2" method="_on_Boss_Sweeping"]
+[connection signal="timeout" from="ModeTimer" to="." method="_on_ModeTimer_timeout"]
 [connection signal="timeout" from="Mode2/ActionTimer" to="Mode2" method="_on_ActionTimer_timeout"]
+[connection signal="timeout" from="Mode3/Wiggler/wiggleSwitch" to="Mode3/Wiggler" method="_on_wiggleSwitch_timeout"]
