@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Bullets/ForwardBullet.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Bullets/Sprites/bosscannonbullet.png" type="Texture" id=2]
+[ext_resource path="res://Bullets/SnowBullet.gd" type="Script" id=3]
+
+[node name="SnowBullet" instance=ExtResource( 1 )]
+modulate = Color( 0.105882, 0.713726, 0.85098, 1 )
+scale = Vector2( 0.25, 0.25 )
+script = ExtResource( 3 )
+shot_speed = 1000
+
+[node name="BulletSprite" parent="." index="0"]
+position = Vector2( 7, 0 )
+rotation = 4.71239
+texture = ExtResource( 2 )
+
+[node name="WiggleTimer" type="Timer" parent="." index="3"]
+wait_time = 1.2
+autostart = true
+
+[connection signal="timeout" from="WiggleTimer" to="." method="_on_WiggleTimer_timeout"]

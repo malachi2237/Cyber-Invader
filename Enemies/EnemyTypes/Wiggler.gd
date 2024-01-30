@@ -5,16 +5,17 @@ export var speed: float = 5
 var cur_dir = 0
 onready var wiggleSwitchTimer: Timer = $wiggleSwitch
 export var direction_time: float = 3
+
 func _ready():
 	wiggleSwitchTimer.wait_time = direction_time
 	wiggleSwitchTimer.start()
 	wiggleSwitchTimer.one_shot = false
 
-func _process(delta):
+func _physics_process(delta):
 	wiggle(delta, cur_dir)
 
 func wiggle(delta, switched):
-	translate(delta*speed*directions[cur_dir])
+	self.global_position += (delta*speed*directions[cur_dir])
 
 func next_dir():
 	cur_dir += 1
