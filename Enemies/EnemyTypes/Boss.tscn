@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Enemies/Enemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Enemies/Sprites/BossAnim.tres" type="SpriteFrames" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://Enemies/Scripts/Boss/Mode1.gd" type="Script" id=11]
 [ext_resource path="res://Bullets/ForwardBullet.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Enemies/EnemyTypes/Wiggler.gd" type="Script" id=13]
+[ext_resource path="res://Bullets/OneBullet.tscn" type="PackedScene" id=14]
 
 [node name="Boss" instance=ExtResource( 1 )]
 script = ExtResource( 4 )
@@ -22,7 +23,6 @@ modes = [ "CirclePulse", "Sweeping", "HyperSnow" ]
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="0"]
 frames = ExtResource( 2 )
-frame = 2
 playing = true
 
 [node name="CollisionCircle" parent="HitBox" index="0"]
@@ -113,14 +113,17 @@ script = ExtResource( 13 )
 [node name="BulletSpawner" type="Node2D" parent="Mode3/Wiggler" index="0"]
 position = Vector2( 0, -1016 )
 script = ExtResource( 3 )
+bullet_override = ExtResource( 14 )
 
 [node name="BulletSpawner2" type="Node2D" parent="Mode3/Wiggler" index="1"]
 position = Vector2( -740, -992 )
 script = ExtResource( 3 )
+bullet_override = ExtResource( 14 )
 
 [node name="BulletSpawner3" type="Node2D" parent="Mode3/Wiggler" index="2"]
 position = Vector2( 757, -1013 )
 script = ExtResource( 3 )
+bullet_override = ExtResource( 14 )
 
 [node name="wiggleSwitch" type="Timer" parent="Mode3/Wiggler" index="3"]
 

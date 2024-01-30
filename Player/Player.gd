@@ -59,6 +59,7 @@ func _shotCooldown() -> void:
 func _makeBulletInstance(source_gun):
 	var bul_inst = bullet.instance()
 	bul_inst.position = source_gun.global_position
+	bul_inst.z_index = 10.0
 	bul_inst.rotation = source_gun.global_rotation
 	return bul_inst
 

@@ -10,7 +10,7 @@
 [sub_resource type="Shader" id=3]
 code = "shader_type canvas_item;
 
-uniform vec2 direction = vec2(0.0, -1.0);
+uniform vec2 direction = vec2(-1.0, -1.0);
 uniform float speed_scale = 0.1;
 
 void fragment(){
@@ -20,8 +20,8 @@ void fragment(){
 
 [sub_resource type="ShaderMaterial" id=4]
 shader = SubResource( 3 )
-shader_param/direction = Vector2( 0, -1 )
-shader_param/speed_scale = 0.1
+shader_param/direction = Vector2( -1, -1 )
+shader_param/speed_scale = 1.0
 
 [sub_resource type="RectangleShape2D" id=2]
 
@@ -30,11 +30,13 @@ shader_param/speed_scale = 0.1
 [node name="GameScene" type="Node2D"]
 
 [node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color( 0.00784314, 0.211765, 0.0784314, 1 )
 material = SubResource( 4 )
-margin_left = 487.0
-margin_top = -24.0
-margin_right = 5110.0
-margin_bottom = 3336.0
+margin_left = 2718.0
+margin_top = -2255.0
+margin_right = 7973.0
+margin_bottom = 3022.0
+rect_rotation = 45.0
 texture = ExtResource( 5 )
 stretch_mode = 2
 
