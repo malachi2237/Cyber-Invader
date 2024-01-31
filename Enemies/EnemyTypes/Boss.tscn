@@ -25,7 +25,7 @@ modes = [ "CirclePulse", "Sweeping", "HyperSnow" ]
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="0"]
 frames = ExtResource( 2 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="CollisionCircle" parent="HitBox" index="0"]

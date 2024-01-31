@@ -1,7 +1,35 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
-[ext_resource path="res://Player/herocharacter.png" type="Texture" id=2]
+[ext_resource path="res://Player/herocharacteranimated-Sheet.png" type="Texture" id=2]
+
+[sub_resource type="AtlasTexture" id=6]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 400, 400 )
+
+[sub_resource type="AtlasTexture" id=7]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 400, 0, 400, 400 )
+
+[sub_resource type="AtlasTexture" id=8]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 800, 0, 400, 400 )
+
+[sub_resource type="AtlasTexture" id=9]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 1200, 0, 400, 400 )
+
+[sub_resource type="SpriteFrames" id=10]
+animations = [ {
+"frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
 
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 215, 170 )
@@ -15,9 +43,12 @@ script = ExtResource( 1 )
 speed = 15.0
 gun_paths = [ NodePath("GunLeft"), NodePath("GunLeft2"), NodePath("GunLeft3"), NodePath("GunRight"), NodePath("GunRight2"), NodePath("GunRight3") ]
 
-[node name="PlayerSprite" type="Sprite" parent="."]
+[node name="PlayerSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0, 32.946 )
-texture = ExtResource( 2 )
+frames = SubResource( 10 )
+frame = 3
+speed_scale = 2.0
+playing = true
 
 [node name="PlayerBox" type="CollisionShape2D" parent="."]
 position = Vector2( -0.499996, 43 )
