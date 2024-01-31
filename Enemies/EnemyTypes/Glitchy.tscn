@@ -64,9 +64,6 @@ autostart = true
 anims/GlitchyFadeIn = SubResource( 1 )
 anims/GlitchyFadeOut = SubResource( 2 )
 
-[node name="HurtAnimation" parent="." index="5"]
-root_node = NodePath("../GlitchyAnimationPlayer")
-
 [node name="HitBox" parent="." index="6"]
 scale = Vector2( 3.25, 3.254 )
 
