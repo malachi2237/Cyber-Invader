@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Level/WavePhases/InitialPhase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Backgrounds/pixel_backgrounds_Color_1_edit.png" type="Texture" id=6]
 [ext_resource path="res://Level/Scripts/KillBoundary.gd" type="Script" id=7]
 [ext_resource path="res://Backgrounds/pixel_backgrounds_output.png" type="Texture" id=8]
+[ext_resource path="res://BossPhase.tscn" type="PackedScene" id=9]
 
 [sub_resource type="Shader" id=3]
 code = "shader_type canvas_item;
@@ -122,7 +123,7 @@ anchor_bottom = 1.0
 
 [node name="GameManager" type="Node" parent="PlayLayer"]
 script = ExtResource( 3 )
-stage_queue = [ ExtResource( 1 ) ]
+stage_queue = [ ExtResource( 1 ), ExtResource( 9 ) ]
 player = NodePath("../Player")
 
 [node name="Player" parent="PlayLayer" instance=ExtResource( 2 )]
