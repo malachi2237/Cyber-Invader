@@ -2,6 +2,7 @@ extends AnimatedSprite
 
 var active = true
 export var aim_speed = 2
+export var firing_turn_speed = 1
 export var aim_range = 30
 var current_action = 'aim'
 var aim_dir = 1

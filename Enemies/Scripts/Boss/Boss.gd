@@ -39,7 +39,7 @@ func healthModeSwitchTest() -> void:
 		startNextMode()
 
 func nextModeValid() -> bool:
-	return currentMode+1 <= (modes.size()-1)
+	return currentMode+1 < (modes.size()-1)
 
 func healthMilestoneReached() -> bool:
 	return ((self.health/maxHealth) <= healthMilestones[currentMode])
