@@ -1,2 +1,2 @@
-[nameA] Target neutralized
-[AI] No... How... Could... You... Defeat... Me
+[ALT] Target neutralized
+[CTRL] No... How... Could... You... Defeat... Me

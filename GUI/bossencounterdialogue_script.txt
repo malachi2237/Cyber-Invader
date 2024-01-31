@@ -1,7 +1,7 @@
-[nameA]I'm detecting something big headed this way.
-[nameA]Analyzing target
-[nameA]...
-[nameA]Something is disrupting my scans.
-[AI]Here it is. The source of the disruption.
-[AI]Preparing to purge disruptive entity.
-[nameA]Heh... you can try.
+[ALT]I'm detecting something big headed this way.
+[ALT]Analyzing target
+[ALT]...
+[ALT]Something is disrupting my scans.
+[CTRL]Here it is. The source of the disruption.
+[CTRL]Preparing to purge disruptive entity.
+[ALT]Heh... you can try.
