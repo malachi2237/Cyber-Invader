@@ -19,9 +19,11 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=2]
 
 [node name="Byter_test" instance=ExtResource( 6 )]
+scale = Vector2( 1.5, 1.5 )
 script = ExtResource( 7 )
+health = 40
 movement_angle = 20.0
-movement_speed = 50.0
+movement_speed = 450.0
 facing_right = true
 
 [node name="EnemySprite" type="AnimatedSprite" parent="." index="0"]
@@ -29,7 +31,7 @@ position = Vector2( -1.419, -2.023 )
 scale = Vector2( 0.75, 0.75 )
 frames = SubResource( 1 )
 animation = "shoot"
-frame = 3
+frame = 2
 playing = true
 
 [node name="BulletSpawner" parent="." index="1" instance=ExtResource( 5 )]

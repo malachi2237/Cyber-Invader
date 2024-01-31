@@ -1,18 +1,12 @@
 extends Enemy
 
-export(String) var play_area_path = ""
-export(float, 0, 1) var play_area_percentage = .9
-
-onready var play_area = get_node(play_area_path)
-#TODO: Utility?
-onready var screenSize: Vector2 = get_viewport().get_visible_rect().size
+export(float, 0, 1) var play_area_margin_percentage = .1
 
 onready var warpTimer: Timer = $WarpTimer
 onready var shadowClone: Sprite = $ShadowClone
 onready var spriteAnim : AnimatedSprite = $GlitchySprite
 onready var warpAnim: AnimationPlayer = $GlitchyAnimationPlayer
 onready var bulletSpawner: BulletSpawner = $BulletSpawner
-
 
 #TODO: (?) some global RNG tool
 onready var rng: RandomNumberGenerator = RandomNumberGenerator.new()
@@ -61,16 +55,12 @@ func _prepareToWarp()-> void:
 
 #TODO: Utility? RNG Tool?
 func _chooseRandomSpot() -> void:
-	if play_area and play_area is Control:
-		var size = play_area.get_size() * play_area_percentage
-		var pos = play_area.get_global_position()
-		newSpot = Vector2(
-				rng.randf_range(pos.x, size.x),
-				rng.randf_range(pos.y, size.y))
-	else:
-		newSpot = Vector2(
-				rng.randf_range(0, screenSize.x),
-				rng.randf_range(0, screenSize.y))
+	var play_bounds_x = Utility.get_play_area_x_bounds(self, play_area_margin_percentage)
+	var play_bounds_y = Utility.get_play_area_y_bounds(self, play_area_margin_percentage)
+
+	newSpot = Vector2(
+		rng.randf_range(play_bounds_x[0], play_bounds_x[1]),
+		rng.randf_range(play_bounds_y[0], play_bounds_y[1]))
 
 func _shadowToNewSpot() -> void:
 	shadowClone.visible = true

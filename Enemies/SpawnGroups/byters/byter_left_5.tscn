@@ -2,28 +2,18 @@
 
 [ext_resource path="res://Enemies/EnemyTypes/Byter.tscn" type="PackedScene" id=1]
 
-[node name="RightByters" type="Node2D"]
+[node name="LeftByters" type="Node2D"]
 
 [node name="Byter" parent="." instance=ExtResource( 1 )]
-movement_speed = 150.0
-facing_right = false
 
 [node name="Byter2" parent="." instance=ExtResource( 1 )]
-position = Vector2( 300, 0 )
-movement_speed = 150.0
-facing_right = false
+position = Vector2( -300, 0 )
 
 [node name="Byter3" parent="." instance=ExtResource( 1 )]
-position = Vector2( 600, 0 )
-movement_speed = 150.0
-facing_right = false
+position = Vector2( -600, 0 )
 
 [node name="Byter4" parent="." instance=ExtResource( 1 )]
-position = Vector2( 900, 0 )
-movement_speed = 150.0
-facing_right = false
+position = Vector2( -900, 0 )
 
 [node name="Byter5" parent="." instance=ExtResource( 1 )]
-position = Vector2( 1200, 0 )
-movement_speed = 150.0
-facing_right = false
+position = Vector2( -1200, 0 )

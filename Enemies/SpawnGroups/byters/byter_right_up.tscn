@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Enemies/EnemyTypes/Byter.tscn" type="PackedScene" id=1]
+
+[node name="Byter_test" instance=ExtResource( 1 )]
+movement_angle = 340.0
+facing_right = false
+
+[node name="EnemySprite" parent="." index="0"]
+frame = 0

@@ -25,7 +25,9 @@ tracks/0/keys = {
 }
 
 [node name="Radial_test" instance=ExtResource( 6 )]
+scale = Vector2( 1.25, 1.25 )
 script = ExtResource( 2 )
+health = 450
 entry_speed = 25.0
 entry_direction = 0.0
 entry_travel_distance = 0.0

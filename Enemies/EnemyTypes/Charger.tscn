@@ -10,8 +10,9 @@
 
 [node name="Charger" instance=ExtResource( 5 )]
 script = ExtResource( 1 )
+health = 1000
 attackPos = Vector2( 0, 0 )
-speed = 10.0
+speed = 200.0
 
 [node name="ChargerSprite" type="Sprite" parent="." index="0"]
 position = Vector2( -43.338, 0 )

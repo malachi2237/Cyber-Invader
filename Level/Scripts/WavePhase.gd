@@ -43,7 +43,7 @@ func _spawn_next_group():
 	Utility.placeInScene(self, _popNextGroup(), _popNextSpawnPoint())
 	_continueThroughSpawns()
 
-func _popNextGroup():
+func _popNextGroup(): 
 	return spawn_groups.pop_front().instance()
 
 func _popNextSpawnPoint() -> Vector2:
@@ -51,7 +51,7 @@ func _popNextSpawnPoint() -> Vector2:
 	return spawn_point.global_position
 
 func _continueThroughSpawns() -> void:
-	if spawn_delays.empty():
+	if spawn_groups.empty() or spawn_groups.front() == null:
 		_end_phase()
 	else:
 		_start_phase()
