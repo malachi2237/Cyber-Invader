@@ -25,7 +25,7 @@ modes = [ "CirclePulse", "Sweeping", "HyperSnow" ]
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="0"]
 frames = ExtResource( 2 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="CollisionCircle" parent="HitBox" index="0"]
@@ -107,7 +107,22 @@ __meta__ = {
 bullet_override = ExtResource( 12 )
 fire_on_start = false
 
-[node name="ActionTimer" type="Timer" parent="Mode2" index="3"]
+[node name="Bosscannon4" type="AnimatedSprite" parent="Mode2" index="3"]
+position = Vector2( -743, 361 )
+z_index = 11
+frames = ExtResource( 5 )
+script = ExtResource( 8 )
+
+[node name="BulletSpawner" type="Node2D" parent="Mode2/Bosscannon4" index="0"]
+rotation = 1.5708
+script = ExtResource( 3 )
+__meta__ = {
+"_editor_description_": ""
+}
+bullet_override = ExtResource( 12 )
+fire_on_start = false
+
+[node name="ActionTimer" type="Timer" parent="Mode2" index="4"]
 
 [node name="Mode3" type="Node2D" parent="." index="7"]
 script = ExtResource( 10 )

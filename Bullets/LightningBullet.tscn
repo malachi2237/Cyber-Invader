@@ -7,4 +7,6 @@
 shot_speed = 750
 
 [node name="BulletSprite" parent="." index="0"]
+position = Vector2( -1, -6 )
+scale = Vector2( 0.75, 0.75 )
 texture = ExtResource( 2 )
