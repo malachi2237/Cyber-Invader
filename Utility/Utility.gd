@@ -3,7 +3,7 @@ extends Node
 class_name Utility
 
 const play_area_path = "/root/GameScene/PlayLayer/PlayArea"
-const player_path = "/root/GameScene/PlayLayer/PlayArea/Player"
+const player_path = "/root/GameScene/PlayLayer/Player"
 
 static func getScene(targetNode):
 	var root = targetNode.get_tree().get_root()
@@ -57,7 +57,7 @@ static func placeInScene(targetNode, item, _pos):
 	if _pos != null: item.global_position = _pos
 
 static func get_player(node_in_scene: Node):
-	var scene = getScene(node_in_scene)
-	var player = scene.find_node("Player")
-	
+	var player =  node_in_scene.get_node_or_null(player_path)
+	if not player or not player.name == "Player":
+		push_error("Player not found at expected Path")
 	return player

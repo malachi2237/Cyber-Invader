@@ -26,7 +26,7 @@ func set_attack_target(targetNode: Node2D) -> void:
 	if targetNode: attackTarget = targetNode
 		
 func _ready() -> void:
-	set_attack_target(get_node("/root/GameScene/PlayLayer/Player"))
+	set_attack_target(Utility.get_player(self))
 	
 func _physics_process(delta: float) -> void:
 	match curMood:
