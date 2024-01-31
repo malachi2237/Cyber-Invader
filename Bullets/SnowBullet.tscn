@@ -6,7 +6,7 @@
 
 [node name="SnowBullet" instance=ExtResource( 1 )]
 modulate = Color( 0.105882, 0.713726, 0.85098, 1 )
-scale = Vector2( 0.25, 0.25 )
+scale = Vector2( 2.2, 2.2 )
 script = ExtResource( 3 )
 shot_speed = 1000
 
