@@ -12,6 +12,7 @@ radius = 28.0179
 [node name="Player" type="KinematicBody2D"]
 collision_mask = 18
 script = ExtResource( 1 )
+speed = 15.0
 gun_paths = [ NodePath("GunLeft"), NodePath("GunLeft2"), NodePath("GunLeft3"), NodePath("GunRight"), NodePath("GunRight2"), NodePath("GunRight3") ]
 
 [node name="PlayerSprite" type="Sprite" parent="."]

@@ -24,12 +24,10 @@ var curSeq = Sequence.aim
 
 func set_attack_target(targetNode: Node2D) -> void:
 	if targetNode: attackTarget = targetNode
-
+		
 func _ready() -> void:
-	var player_test = find_node("Player")
-	if player_test is Player:
-		attackTarget = player_test
-
+	set_attack_target(get_node("/root/GameScene/PlayLayer/Player"))
+	
 func _physics_process(delta: float) -> void:
 	match curMood:
 		Mood.attack:
@@ -40,6 +38,7 @@ func _physics_process(delta: float) -> void:
 func _attack(delta) -> void:
 	if (curSeq == Sequence.aim and attackTarget):
 		attackPos = attackTarget.position
+		
 	_sequence(Mood.regroup, attackPos, delta)
 
 func _regroup(delta) -> void:

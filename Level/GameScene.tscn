@@ -57,7 +57,7 @@ color = Color( 0, 0, 0, 1 )
 [node name="PlayLayer" type="CanvasLayer" parent="."]
 follow_viewport_enable = true
 
-[node name="Control" type="Control" parent="PlayLayer"]
+[node name="PlayArea" type="Control" parent="PlayLayer"]
 anchor_left = 0.25
 anchor_right = 0.75
 anchor_bottom = 1.0

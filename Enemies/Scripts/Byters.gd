@@ -9,12 +9,13 @@ func _physics_process(delta) -> void:
 
 func _byterMovement(delta) -> void:
 	var direction = _setDirection()
-	_faceCorrectly(direction)
+	direction = _faceCorrectly(direction)
 	translate(direction * movement_speed * delta)
 
 func _setDirection() -> Vector2:
 	return Vector2.RIGHT.rotated(deg2rad(movement_angle)).normalized()
 
-func _faceCorrectly(direction: Vector2) -> void:
+func _faceCorrectly(direction: Vector2) -> Vector2:
 	if (!facing_right):
 		direction.x = -direction.x
+	return direction
