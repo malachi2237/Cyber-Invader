@@ -2,6 +2,7 @@ extends Node
 
 class_name Utility
 
+const hud_layer_path = "/root/GameScene/HudLayer"
 const play_area_path = "/root/GameScene/PlayLayer/PlayArea"
 const player_path = "/root/GameScene/PlayLayer/Player"
 
@@ -10,17 +11,23 @@ static func getScene(targetNode):
 	var scene = root.get_child(root.get_child_count()-1)
 	return scene
 
-static func is_game_scene(targetNode) -> bool: 
-	return targetNode.get_node_or_null("/root/GameScene")
+static func is_game_scene(target_node) -> bool: 
+	return target_node.get_node_or_null("/root/GameScene")
 
-static func get_play_area(targetNode) -> Control:
-	var play_area =  targetNode.get_node_or_null(play_area_path)
+static func get_hud_layer(target_node) -> Control:
+	var hud_layer =  target_node.get_node_or_null(hud_layer_path)
+	if not hud_layer is CanvasLayer:
+		push_error("HUD Layer not found at expected path")
+	return hud_layer
+	
+static func get_play_area(target_node) -> Control:
+	var play_area =  target_node.get_node_or_null(play_area_path)
 	if not play_area is Control:
 		push_error("Play area not found at expected path")
 	return play_area
-
-static func get_play_area_x_bounds(targetNode, margin_percent: float) -> Vector2:
-	var play_area : Control = get_play_area(targetNode)
+	
+static func get_play_area_x_bounds(target_node, margin_percent: float) -> Vector2:
+	var play_area : Control = get_play_area(target_node)
 	
 	if play_area:
 		var pos = play_area.get_global_position()
@@ -29,10 +36,10 @@ static func get_play_area_x_bounds(targetNode, margin_percent: float) -> Vector2
 		
 		return Vector2(pos.x + margin, pos.x + size.x - margin)
 	else:
-		return Vector2(0, targetNode.get_viewport().get_visible_rect().size.x)
+		return Vector2(0, target_node.get_viewport().get_visible_rect().size.x)
 		
-static func get_play_area_y_bounds(targetNode, margin_percent: float = 0.0) -> Vector2:
-	var play_area : Control = get_play_area(targetNode)
+static func get_play_area_y_bounds(target_node, margin_percent: float = 0.0) -> Vector2:
+	var play_area : Control = get_play_area(target_node)
 	
 	if play_area:
 		var pos = play_area.get_global_position()
@@ -40,20 +47,20 @@ static func get_play_area_y_bounds(targetNode, margin_percent: float = 0.0) -> V
 		var margin = size.y * margin_percent
 		return Vector2(pos.y + margin, pos.y + size.y - margin)
 	else:
-		return Vector2(0, targetNode.get_viewport().get_visible_rect().size.y)
+		return Vector2(0, target_node.get_viewport().get_visible_rect().size.y)
 		
 #TODO: Refactor pattern for fewer arguments, while maintaining D.N.R
 #D.N.R (DO NOT REPEAT)
-static func setupTimer(targetNode, _one_shot, _delay, _function) -> Timer:
+static func setupTimer(target_node, _one_shot, _delay, _function) -> Timer:
 	var newTimer = Timer.new()
-	targetNode.add_child(newTimer)
+	target_node.add_child(newTimer)
 	newTimer.one_shot = _one_shot
 	if _delay: newTimer.start(_delay)
-	if _function: newTimer.connect("timeout", targetNode, _function)
+	if _function: newTimer.connect("timeout", target_node, _function)
 	return newTimer
 
-static func placeInScene(targetNode, item, _pos):
-	getScene(targetNode).add_child(item)
+static func placeInScene(target_node, item, _pos):
+	getScene(target_node).add_child(item)
 	if _pos != null: item.global_position = _pos
 
 static func get_player(node_in_scene: Node):

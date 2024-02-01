@@ -9,6 +9,16 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Reference",
+"class": "AK",
+"language": "GDScript",
+"path": "res://wwise/GeneratedSoundBanks/wwise_ids.gd"
+}, {
+"base": "Reference",
+"class": "AkUtils",
+"language": "GDScript",
+"path": "res://addons/wwise/runtime/helpers/ak_utils.gd"
+}, {
 "base": "LevelPhase",
 "class": "BossPhase",
 "language": "GDScript",
@@ -27,17 +37,17 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "Dialogue",
 "language": "GDScript",
-"path": "res://GUI/dialogue.gd"
+"path": "res://GUI/scripts/dialogue.gd"
 }, {
 "base": "Control",
 "class": "DialogueFrame",
 "language": "GDScript",
-"path": "res://GUI/dialogue_frame.gd"
+"path": "res://GUI/scripts/dialogue_frame.gd"
 }, {
 "base": "Object",
 "class": "DialogueLine",
 "language": "GDScript",
-"path": "res://GUI/dialogue_line.gd"
+"path": "res://GUI/scripts/dialogue_line.gd"
 }, {
 "base": "LevelPhase",
 "class": "DialoguePhase",
@@ -62,7 +72,7 @@ _global_script_classes=[ {
 "base": "ProgressBar",
 "class": "HealthBar",
 "language": "GDScript",
-"path": "res://GUI/HealthBar.gd"
+"path": "res://GUI/scripts/HealthBar.gd"
 }, {
 "base": "Area2D",
 "class": "KillBoundary",
@@ -100,6 +110,8 @@ _global_script_classes=[ {
 "path": "res://Level/Scripts/WavePhase.gd"
 } ]
 _global_script_class_icons={
+"AK": "",
+"AkUtils": "",
 "BossPhase": "",
 "Bullet": "",
 "BulletSpawner": "",

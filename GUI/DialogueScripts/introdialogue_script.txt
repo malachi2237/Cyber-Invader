@@ -1,3 +1,4 @@
+[ALT][CTRL]
 [ALT]...
 [ALT]I'm in
 [ALT]Scanning for enemies

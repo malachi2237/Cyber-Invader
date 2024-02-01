@@ -1,6 +1,7 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://GUI/HealthBar.gd" type="Script" id=1]
+[ext_resource path="res://GUI/scripts/HealthBar.gd" type="Script" id=1]
+
 
 [node name="HealthBar" type="ProgressBar"]
 margin_right = 4.0

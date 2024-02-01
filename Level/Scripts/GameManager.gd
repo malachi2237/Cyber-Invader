@@ -20,7 +20,7 @@ func _switch_phase():
 		_connectPhase(phase_instance)
 
 func _popNextPhase() -> Node:
-	return stage_queue.pop_front().instance()
+	return stage_queue.pop_front().instance() 
 
 func _connectPhase(phase_instance: LevelPhase) -> void:
 	var _toss = phase_instance.connect("phase_ended", self, "_switch_phase")

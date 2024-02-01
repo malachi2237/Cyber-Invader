@@ -1,3 +1,4 @@
+[ALT][CTRL]
 [ALT]I'm detecting something big headed this way.
 [ALT]Analyzing target
 [ALT]...

@@ -12,4 +12,4 @@ func get_name():
 	return _character_name.text
 	
 func set_dialogue(text: String):
-	_display_text = text
+	_display_text.text = text

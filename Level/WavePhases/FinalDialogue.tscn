@@ -13,4 +13,4 @@ character_frame_b = ExtResource( 4 )
 
 [node name="Dialogue" type="Node" parent="."]
 script = ExtResource( 1 )
-script_file = "res://GUI/test_script.txt"
+script_file = "res://GUI/DialogueScripts/victorydialogue_script.txt"

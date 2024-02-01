@@ -17,20 +17,27 @@ var player: Player = null
 var current_frame: DialogueFrame
 
 func _ready():
-	var scene = Utility.getScene(self)
+	var hud_layer = Utility.get_hud_layer(self)
 	
 	frame_a.hide()
 	frame_b.hide()
 	
-	Utility.placeInScene(scene, frame_a, null)
-	Utility.placeInScene(scene, frame_b, null)
+	if hud_layer:
+		hud_layer.add_child(frame_a)
+		hud_layer.add_child(frame_b)
+	else:
+		Utility.placeInScene(self, frame_a, null)
+		Utility.placeInScene(self, frame_b, null)
 	
 	frame_a.set_name(dialogue.character_a)
 	frame_b.set_name(dialogue.character_b)
 	
 	player = Utility.get_player(self)
 	
-	start_phase()
+	if start_delay > 0:
+		start_after_delay()
+	else:
+		start_phase()
 
 func start_phase():
 	player.set_process_input(false)
