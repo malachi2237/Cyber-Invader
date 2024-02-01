@@ -6,7 +6,7 @@ signal phase_ended
 
 export(float) var start_delay = 0.0
 
-func ready():
+func _ready():
 	if start_delay > 0.0:
 		start_after_delay()
 	else:
