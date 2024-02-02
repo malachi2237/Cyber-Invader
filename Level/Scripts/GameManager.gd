@@ -3,9 +3,9 @@ extends Node
 class_name GameManager
 
 export(Array, PackedScene) var stage_queue: Array
-export(NodePath) var player
 
-var player_reference
+export(NodePath) var score_counter_path
+onready var score_counter = get_node_or_null(score_counter_path)
 
 func _ready() -> void:
 	call_deferred("_switch_phase")
@@ -27,3 +27,10 @@ func _connectPhase(phase_instance: LevelPhase) -> void:
 
 func _switchScene() -> void:
 	pass
+
+func wipe_enemies():
+	var scene = Utility.getScene(self)
+	
+	for child in scene.get_children():
+		if child is Enemy:
+			child.queue_free()

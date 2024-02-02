@@ -38,6 +38,10 @@ func _ready():
 		start_phase()
 
 func start_phase():
+	var gm = Utility.get_game_manager(self)
+	if gm is GameManager:
+		gm.wipe_enemies()
+		
 	player.set_process_input(false)
 	player.set_process(false)
 	_advance_dialogue()
