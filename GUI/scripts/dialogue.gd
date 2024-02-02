@@ -28,7 +28,7 @@ func _process_file(file):
 		_process_next_line(line)
 
 func _read_character_list(line):
-	var name_indices: PoolIntArray
+	var name_indices: PoolIntArray = PoolIntArray()
 	var last_index = 0
 	
 	name_indices.resize(4)

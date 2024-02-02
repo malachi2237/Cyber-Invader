@@ -13,13 +13,13 @@ func _process(delta: float) -> void:
 	if(active):
 		perform_action(delta)
 
-func fire(delta: float):
+func fire(_delta: float):
 	self.animation = 'Firing'
 	if(!is_firing):
 		is_firing = true
 		bullets.start_firing()
 
-func charge(delta: float):
+func charge(_delta: float):
 	self.animation = 'Charging'
 
 func flip_aim_cond():

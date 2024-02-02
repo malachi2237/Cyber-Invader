@@ -19,8 +19,8 @@ func _on_Resume_pressed():
 
 func _on_Restart_pressed():
 	_toggle_pause()
-	get_tree().reload_current_scene()
+	var _toss = get_tree().reload_current_scene()
 
 func _on_Main_Menu_pressed():
 	_toggle_pause()
-	get_tree().change_scene(menu_scene)
+	var _toss = get_tree().change_scene(menu_scene)
