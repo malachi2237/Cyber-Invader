@@ -62,6 +62,12 @@ position = Vector2( 3.5, 0 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 3 )
 
+[node name="EnemySprite2" type="Sprite" parent="EnemySprite" index="0"]
+modulate = Color( 0.109804, 0.0117647, 0.0117647, 0.517647 )
+scale = Vector2( 1.1, 1.1 )
+z_index = -1
+texture = ExtResource( 3 )
+
 [node name="SpinningCard" type="AnimationPlayer" parent="." index="3"]
 autoplay = "Spinning"
 reset_on_save = false

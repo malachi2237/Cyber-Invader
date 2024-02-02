@@ -14,21 +14,29 @@ health = 1000
 attackPos = Vector2( 0, 0 )
 speed = 200.0
 
-[node name="ChargerSprite" type="Sprite" parent="." index="0"]
+[node name="Shadow" type="Sprite" parent="." index="0"]
+modulate = Color( 0.109804, 0.0117647, 0.0117647, 0.517647 )
+position = Vector2( -50, -10 )
+rotation = -1.5708
+scale = Vector2( 2.3, 2.3 )
+texture = ExtResource( 2 )
+region_rect = Rect2( 0, 46, 200, 148 )
+
+[node name="ChargerSprite" type="Sprite" parent="." index="1"]
 position = Vector2( -43.338, 0 )
 rotation = -1.5708
 scale = Vector2( 2.125, 2.125 )
 texture = ExtResource( 2 )
 region_rect = Rect2( 0, 46, 200, 148 )
 
-[node name="AimTimer" type="Timer" parent="." index="1"]
+[node name="AimTimer" type="Timer" parent="." index="2"]
 one_shot = true
 
-[node name="ChargeLag" type="Timer" parent="." index="2"]
+[node name="ChargeLag" type="Timer" parent="." index="3"]
 wait_time = 0.1
 one_shot = true
 
-[node name="BulletSpawner" parent="." index="3" instance=ExtResource( 3 )]
+[node name="BulletSpawner" parent="." index="4" instance=ExtResource( 3 )]
 bullet_override = ExtResource( 4 )
 spawn_point_count = 2
 

@@ -11,10 +11,7 @@ func _ready():
 		start_after_delay()
 		
 func start_after_delay():
-	var start_timer = Timer.new()
-	start_timer.one_shot = true
-	start_timer.connect("timeout", self, "start_phase")
-	start_timer.start(start_delay)
+	var _toss = Utility.setupTimer(self, true, start_delay, "start_phase")
 	
 func start_phase():
 	pass
