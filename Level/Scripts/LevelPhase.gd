@@ -9,8 +9,6 @@ export(float) var start_delay = 0.0
 func _ready():
 	if start_delay > 0.0:
 		start_after_delay()
-	else:
-		start_phase()
 		
 func start_after_delay():
 	var start_timer = Timer.new()

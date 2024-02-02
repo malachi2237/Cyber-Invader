@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/youdied.png-7321951230550af76fe4df26143c10af.stex"
+path="res://.import/youdied.png-6a7191ea86499268f1e55a96e7498608.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Backgrounds/youdied.png"
-dest_files=[ "res://.import/youdied.png-7321951230550af76fe4df26143c10af.stex" ]
+source_file="res://youdied.png"
+dest_files=[ "res://.import/youdied.png-6a7191ea86499268f1e55a96e7498608.stex" ]
 
 [params]
 

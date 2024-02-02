@@ -34,9 +34,7 @@ func _ready():
 	
 	player = Utility.get_player(self)
 	
-	if start_delay > 0:
-		start_after_delay()
-	else:
+	if start_delay >= 0:
 		start_phase()
 
 func start_phase():
