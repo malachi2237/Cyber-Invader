@@ -20,6 +20,7 @@ func _die() -> void:
 func _on_HitBox_area_entered(area):
 	if "damage" in area:
 		_take_damage(area.damage)
+		area.queue_free()
 
 func _on_CollideBox_area_entered(_area):
 	_take_damage(health)
