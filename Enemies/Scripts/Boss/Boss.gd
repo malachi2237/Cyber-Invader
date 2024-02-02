@@ -5,6 +5,7 @@ extends Enemy
 var target = null
 
 #Modes' signals
+#warning can't find the trace here.
 signal CirclePulse
 signal Sweeping
 signal HyperSnow
@@ -58,4 +59,7 @@ func _on_ModeTimer_timeout():
 	startNextMode()
 
 func emit_Current_Mode():
-	emit_signal(modes[currentMode])
+	match modes[currentMode]:
+		"CirclePulse": emit_signal("CirclePulse")
+		"Sweeping": emit_signal("Sweeping")
+		"HyperSnow": emit_signal("HyperSnow")

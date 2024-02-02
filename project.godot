@@ -22,7 +22,7 @@ _global_script_classes=[ {
 "base": "LevelPhase",
 "class": "BossPhase",
 "language": "GDScript",
-"path": "res://BossPhase.gd"
+"path": "res://Level/WavePhases/BossPhase.gd"
 }, {
 "base": "Area2D",
 "class": "Bullet",

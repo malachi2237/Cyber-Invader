@@ -12,9 +12,9 @@ func _ready():
 	wiggleSwitchTimer.one_shot = false
 
 func _physics_process(delta):
-	wiggle(delta, cur_dir)
+	wiggle(delta)
 
-func wiggle(delta, switched):
+func wiggle(delta):
 	self.global_position += (delta*speed*directions[cur_dir])
 
 func next_dir():
