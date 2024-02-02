@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Reference",
+"class": "AkUtils",
+"language": "GDScript",
+"path": "res://addons/wwise/runtime/helpers/ak_utils.gd"
+}, {
 "base": "LevelPhase",
 "class": "BossPhase",
 "language": "GDScript",
@@ -100,6 +105,7 @@ _global_script_classes=[ {
 "path": "res://Level/Scripts/WavePhase.gd"
 } ]
 _global_script_class_icons={
+"AkUtils": "",
 "BossPhase": "",
 "Bullet": "",
 "BulletSpawner": "",

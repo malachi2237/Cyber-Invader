@@ -5,7 +5,9 @@ class_name GameManager
 export(Array, PackedScene) var stage_queue: Array
 
 export(NodePath) var score_counter_path
-onready var score_counter = get_node_or_null(score_counter_path)
+onready var score_counter: Label = get_node_or_null(score_counter_path)
+
+var score: int = 0
 
 func _ready() -> void:
 	call_deferred("_switch_phase")
@@ -32,5 +34,12 @@ func wipe_enemies():
 	var scene = Utility.getScene(self)
 	
 	for child in scene.get_children():
-		if child is Enemy:
+		if child is Enemy or child is Bullet:
 			child.queue_free()
+
+func add_score(points):
+	score += points
+	_update_score_counter()
+	
+func _update_score_counter():
+	score_counter.text = "%s" % score

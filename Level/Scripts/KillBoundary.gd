@@ -7,6 +7,5 @@ func _ready():
 	var _toss = self.connect("area_exited", self, "_kill")
 
 func _kill(area: Area2D):
-	if not area.get_collision_layer_bit(2):
-		area.queue_free()
+	area.queue_free()
 

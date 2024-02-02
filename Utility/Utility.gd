@@ -71,7 +71,7 @@ static func get_player(node_in_scene: Node):
 	return player
 
 static func get_game_manager(node_in_scene: Node):
-	var gm =  node_in_scene.get_node_or_null(player_path)
+	var gm =  node_in_scene.get_node_or_null(game_manager_path)
 	if not gm or not gm.name == "GameManager":
 		push_error("Game Manager not found at expected Path")
 	return gm
