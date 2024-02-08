@@ -26,8 +26,11 @@ modes = [ "CirclePulse", "Sweeping", "HyperSnow" ]
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="0"]
 frames = ExtResource( 2 )
-frame = 2
+frame = 1
 playing = true
+
+[node name="HurtAnimation" parent="." index="1"]
+root_node = NodePath("../AnimatedSprite")
 
 [node name="CollisionCircle" parent="HitBox" index="0"]
 scale = Vector2( 15, 15 )
