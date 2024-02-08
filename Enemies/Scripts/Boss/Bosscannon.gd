@@ -32,7 +32,11 @@ func aim(delta: float):
 		is_firing = false
 		bullets.stop_firing()
 	self.animation = 'Idle'
-	self.rotate(aim_dir*aim_speed*delta)
+	if(Utility.get_player(self)):
+		self.look_at(Utility.get_player(self).position)
+		self.rotation_degrees -= 90
+	else:
+		self.rotate(aim_dir*aim_speed*delta)
 	if(flip_aim_cond()):
 		aim_dir = -aim_dir
 

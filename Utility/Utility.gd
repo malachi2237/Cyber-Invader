@@ -67,11 +67,12 @@ static func placeInScene(target_node, item, _pos):
 static func get_player(node_in_scene: Node):
 	var player =  node_in_scene.get_node_or_null(player_path)
 	if not player or not player.name == "Player":
-		push_error("Player not found at expected Path")
+		push_warning("Player not found at expected Path")
+		return null
 	return player
 
 static func get_game_manager(node_in_scene: Node):
 	var gm =  node_in_scene.get_node_or_null(game_manager_path)
 	if not gm or not gm.name == "GameManager":
-		push_error("Game Manager not found at expected Path")
+		push_warning("Game Manager not found at expected Path")
 	return gm
