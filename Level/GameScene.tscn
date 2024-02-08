@@ -68,8 +68,8 @@ anchor_bottom = 1.0
 
 [node name="GameManager" type="Node" parent="PlayLayer"]
 script = ExtResource( 3 )
-stage_queue = [ ExtResource( 1 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 9 ), ExtResource( 13 ), ExtResource( 12 ) ]
-score_counter_path = NodePath("../../HudLayer/HBoxContainer/ScoreNumber")
+stage_queue = [ ExtResource( 9 ), ExtResource( 1 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 13 ), ExtResource( 12 ) ]
+score_counter_path = NodePath("../../HudLayer/HBoxContainer/ScoreText")
 
 [node name="Player" parent="PlayLayer" instance=ExtResource( 2 )]
 position = Vector2( 2880, 2700 )

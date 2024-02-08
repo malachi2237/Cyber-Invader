@@ -20,8 +20,8 @@
 [node name="Boss" instance=ExtResource( 1 )]
 script = ExtResource( 4 )
 health = 15000
-modeLength = [ 30, 30 ]
-healthMilestones = [ 0.6, 0.3 ]
+modeLength = [ 30, 30, 30 ]
+healthMilestones = [ 1, 0.6, 0.3 ]
 modes = [ "CirclePulse", "Sweeping", "HyperSnow" ]
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="0"]
@@ -144,6 +144,7 @@ position = Vector2( 0, -1013 )
 rotation = 1.5708
 script = ExtResource( 3 )
 bullet_override = ExtResource( 14 )
+fire_on_start = false
 shot_timer = 0.8
 
 [node name="BulletSpawner2" type="Node2D" parent="Mode3/Orbital/Wiggler" index="2"]
@@ -151,6 +152,7 @@ position = Vector2( -740, -1013 )
 rotation = 1.5708
 script = ExtResource( 3 )
 bullet_override = ExtResource( 14 )
+fire_on_start = false
 shot_timer = 0.8
 
 [node name="BulletSpawner3" type="Node2D" parent="Mode3/Orbital/Wiggler" index="3"]
@@ -158,6 +160,7 @@ position = Vector2( 757, -1013 )
 rotation = 1.5708
 script = ExtResource( 3 )
 bullet_override = ExtResource( 14 )
+fire_on_start = false
 shot_timer = 0.8
 
 [node name="BulletSpawner4" type="Node2D" parent="Mode3/Orbital/Wiggler" index="4"]
@@ -165,6 +168,7 @@ position = Vector2( 1333, -1013 )
 rotation = 1.5708
 script = ExtResource( 3 )
 bullet_override = ExtResource( 14 )
+fire_on_start = false
 shot_timer = 0.8
 
 [node name="BulletSpawner5" type="Node2D" parent="Mode3/Orbital/Wiggler" index="5"]
@@ -172,6 +176,7 @@ position = Vector2( -1456, -1001 )
 rotation = 1.5708
 script = ExtResource( 3 )
 bullet_override = ExtResource( 14 )
+fire_on_start = false
 shot_timer = 0.8
 
 [node name="wiggleSwitch" type="Timer" parent="Mode3/Orbital/Wiggler" index="6"]
