@@ -41,7 +41,7 @@ radius = 28.0179
 collision_mask = 18
 script = ExtResource( 1 )
 speed = 15.0
-gun_paths = [ NodePath("GunLeft"), NodePath("GunLeft2"), NodePath("GunLeft3"), NodePath("GunRight"), NodePath("GunRight2"), NodePath("GunRight3") ]
+gun_paths = [ NodePath("GunLeft"), NodePath("GunLeft2"), NodePath("GunLeft3"), NodePath("GunRight"), NodePath("GunRight2"), NodePath("GunRight3"), NodePath("GunLeft4"), NodePath("GunRight4") ]
 
 [node name="PlayerSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0, 32.946 )
@@ -75,6 +75,10 @@ rotation = -0.00523599
 position = Vector2( -65, -47 )
 rotation = -0.0349066
 
+[node name="GunLeft4" type="Position2D" parent="."]
+position = Vector2( -90, -60 )
+rotation = -0.0872665
+
 [node name="GunRight" type="Position2D" parent="."]
 position = Vector2( 12, -23 )
 
@@ -85,6 +89,10 @@ rotation = 0.00523599
 [node name="GunRight3" type="Position2D" parent="."]
 position = Vector2( 65, -47 )
 rotation = 0.0349066
+
+[node name="GunRight4" type="Position2D" parent="."]
+position = Vector2( 90, -60 )
+rotation = 0.0872665
 
 [connection signal="area_entered" from="HitBox" to="." method="_on_HitBox_area_entered"]
 [connection signal="timeout" from="FireRate" to="." method="_on_FireRate_timeout"]
