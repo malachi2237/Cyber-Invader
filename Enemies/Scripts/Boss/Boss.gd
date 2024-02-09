@@ -14,8 +14,8 @@ signal HyperSnow
 onready var modeTimer: Timer = $ModeTimer
 onready var maxHealth = self.health
 
-export var modeLength = [30, 30]
-export var healthMilestones = [0.6, 0.3]
+export var modeLength = [30, 30, 30]
+export var healthMilestones = [1, 0.6, 0.3]
 export var modes = ["CirclePulse", "Sweeping", "HyperSnow"]
 var currentMode = 0
 
@@ -40,7 +40,7 @@ func healthModeSwitchTest() -> void:
 		startNextMode()
 
 func nextModeValid() -> bool:
-	return currentMode+1 < (modes.size()-1)
+	return currentMode < (modes.size()-1)
 
 func healthMilestoneReached() -> bool:
 	return ((self.health/maxHealth) <= healthMilestones[currentMode])

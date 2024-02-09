@@ -1,6 +1,6 @@
 extends Node2D
 
-onready var Guns = [$Bosscannon1, $Bosscannon2, $Bosscannon3]
+onready var Guns = [$Bosscannon1, $Bosscannon2, $Bosscannon3, $Bosscannon4]
 export var action_times = [10, 10, 10]
 var action_order = ['aim', 'charge', 'fire']
 var cur_action = 0

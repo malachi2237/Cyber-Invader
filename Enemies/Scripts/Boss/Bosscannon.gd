@@ -1,6 +1,6 @@
 extends AnimatedSprite
 
-var active = true
+var active = false
 export var aim_speed = 2
 export var firing_turn_speed = 1
 export var aim_range = 30
@@ -28,9 +28,15 @@ func flip_aim_cond():
 
 
 func aim(delta: float):
-	bullets.stop_firing()
+	if(is_firing):
+		is_firing = false
+		bullets.stop_firing()
 	self.animation = 'Idle'
-	self.rotate(aim_dir*aim_speed*delta)
+	if(Utility.get_player(self)):
+		self.look_at(Utility.get_player(self).position)
+		self.rotation_degrees -= 90
+	else:
+		self.rotate(aim_dir*aim_speed*delta)
 	if(flip_aim_cond()):
 		aim_dir = -aim_dir
 
