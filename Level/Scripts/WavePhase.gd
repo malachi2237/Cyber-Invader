@@ -33,7 +33,11 @@ func _phaseError() -> void:
 	queue_free()
 
 func _start_phase():
-	spawn_timer.start(spawn_delays.pop_front())
+	var delay = spawn_delays.pop_front()
+	if delay > 0:
+		spawn_timer.start(delay)
+	else:
+		_spawn_next_group()
 
 func _end_phase():
 	._end_phase()

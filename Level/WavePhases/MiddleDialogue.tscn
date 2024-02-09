@@ -7,7 +7,7 @@
 
 [node name="DialoguePhase" type="Node2D"]
 script = ExtResource( 2 )
-start_delay = 15.0
+start_delay = 60.0
 dialogue_node = NodePath("Dialogue")
 character_frame_a = ExtResource( 3 )
 character_frame_b = ExtResource( 4 )
