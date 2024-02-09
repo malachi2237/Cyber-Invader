@@ -1,0 +1,54 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Level/Scripts/WavePhase.gd" type="Script" id=1]
+[ext_resource path="res://Enemies/EnemyInstances/radial_down_bottom.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Enemies/EnemyInstances/radial_down_top.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Enemies/EnemyInstances/byters/byter_right_horiz.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Enemies/EnemyInstances/byters/byter_left_horiz.tscn" type="PackedScene" id=6]
+
+[node name="WavePhase" type="Node2D"]
+script = ExtResource( 1 )
+auto_start = true
+spawn_groups = [ ExtResource( 2 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 2 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 3 ), ExtResource( 6 ), ExtResource( 6 ), ExtResource( 6 ), ExtResource( 6 ), ExtResource( 6 ), ExtResource( 3 ), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null ]
+spawn_points = [ NodePath("SpawnPoints/top_left"), NodePath("SpawnPoints/right_upper"), NodePath("SpawnPoints/right_upper"), NodePath("SpawnPoints/right_upper"), NodePath("SpawnPoints/right_upper"), NodePath("SpawnPoints/right_upper"), NodePath("SpawnPoints/top_right"), NodePath("SpawnPoints/right_upper"), NodePath("SpawnPoints/right_upper"), NodePath("SpawnPoints/right_upper"), NodePath("SpawnPoints/right_upper"), NodePath("SpawnPoints/right_upper"), NodePath("SpawnPoints/top_left"), NodePath("SpawnPoints/left_lower"), NodePath("SpawnPoints/left_lower"), NodePath("SpawnPoints/left_lower"), NodePath("SpawnPoints/left_lower"), NodePath("SpawnPoints/left_lower"), NodePath("SpawnPoints/top_right"), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath("") ]
+spawn_delays = [ 10.0, 5.0, 0.75, 0.75, 0.75, 0.75, 0.0, 3.0, 0.5, 0.5, 0.5, 0.5, 2.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ]
+
+[node name="SpawnPoints" type="Node2D" parent="."]
+
+[node name="top_left" type="Node2D" parent="SpawnPoints"]
+position = Vector2( 2390.4, -300 )
+
+[node name="top_right" type="Node2D" parent="SpawnPoints"]
+position = Vector2( 3340.8, -300 )
+
+[node name="left_upper" type="Node2D" parent="SpawnPoints"]
+position = Vector2( 1340, 810 )
+
+[node name="left_lower" type="Node2D" parent="SpawnPoints"]
+position = Vector2( 1340, 1620 )
+
+[node name="right_upper" type="Node2D" parent="SpawnPoints"]
+position = Vector2( 4420, 810 )
+
+[node name="right_lower" type="Node2D" parent="SpawnPoints"]
+position = Vector2( 4420, 1620 )
+
+[node name="glitchy_top_left" type="Node2D" parent="SpawnPoints"]
+position = Vector2( 2390.4, 810 )
+
+[node name="glitchy_top_right" type="Node2D" parent="SpawnPoints"]
+position = Vector2( 3340.8, 810 )
+
+[node name="glitchy_lower_left" type="Node2D" parent="SpawnPoints"]
+position = Vector2( 2390.4, 1620 )
+
+[node name="glitchy_lower_right" type="Node2D" parent="SpawnPoints"]
+position = Vector2( 3340.8, 1620 )
+
+[node name="glitchy_center" type="Node2D" parent="SpawnPoints"]
+position = Vector2( 2865.6, 1215 )
+
+[node name="SpawnTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]

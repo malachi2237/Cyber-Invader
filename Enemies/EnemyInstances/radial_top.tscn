@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=2]
-
-[ext_resource path="res://Enemies/EnemyTypes/Radial.tscn" type="PackedScene" id=1]
-
-[node name="RadialTop" type="Node2D"]
-
-[node name="Radial" parent="." instance=ExtResource( 1 )]
-entry_speed = 300.0
-entry_travel_distance = 1300.0

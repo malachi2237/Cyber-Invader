@@ -48,7 +48,7 @@ __meta__ = {
 [node name="BulletSpawner" parent="." index="2" instance=ExtResource( 5 )]
 bullet_override = ExtResource( 4 )
 initial_delay_max = 0.5
-shot_timer = 1.0
+shot_timer = 0.75
 
 [node name="HitBox" parent="." index="4"]
 __meta__ = {

@@ -24,14 +24,14 @@ tracks/0/keys = {
 "values": [ 0.0, 180.0, 360.0 ]
 }
 
-[node name="Radial_test" instance=ExtResource( 6 )]
+[node name="Radial" instance=ExtResource( 6 )]
 scale = Vector2( 1.25, 1.25 )
 z_index = 11
 script = ExtResource( 2 )
-health = 700
-entry_speed = 25.0
+health = 500
+entry_speed = 300.0
 entry_direction = 0.0
-entry_travel_distance = 0.0
+entry_travel_distance = 1300.0
 small_attack_delay = 2.35
 
 [node name="BigSlow" type="Node2D" parent="." index="0"]
@@ -41,6 +41,7 @@ fire_on_start = false
 enable_bursts = true
 burst_duration = 1.5
 burst_interval = 1.6
+rotation_speed = 5.0
 shot_timer = 0.75
 radius = 10.0
 spawn_point_count = 7
@@ -53,6 +54,7 @@ enable_bursts = true
 burst_duration = 0.6
 burst_interval = 2.5
 initial_rotation = 25.71
+rotation_speed = 5.0
 shot_timer = 0.15
 radius = 10.0
 spawn_point_count = 7
