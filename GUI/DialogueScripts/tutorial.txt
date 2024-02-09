@@ -1,0 +1,5 @@
+[ALT][CTRL]
+[ALT]Press {SPACE} to advance dialogue.
+Use {WASD} to move.
+Press or hold {SPACE} to fire.
+Good luck!

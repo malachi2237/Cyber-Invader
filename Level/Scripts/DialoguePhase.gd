@@ -43,9 +43,10 @@ func start_phase():
 	var gm = Utility.get_game_manager(self)
 	if gm is GameManager:
 		gm.wipe_enemies()
-		
-	player.set_process_input(false)
-	player.set_process(false)
+	
+	if player:
+		player.set_process_input(false)
+		player.set_process(false)
 	
 	dialogue_started = true
 	
@@ -85,6 +86,7 @@ func _end_phase():
 	._end_phase()
 	frame_a.queue_free()
 	frame_b.queue_free()
-	player.set_process_input(true)
-	player.set_process(true)
+	if player:
+		player.set_process_input(true)
+		player.set_process(true)
 	queue_free()
