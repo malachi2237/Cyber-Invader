@@ -12,6 +12,8 @@ onready var dialogue: Dialogue = get_node(dialogue_node)
 onready var frame_a: DialogueFrame = character_frame_a.instance()
 onready var frame_b: DialogueFrame = character_frame_b.instance()
 
+var dialogue_started = false
+
 var player: Player = null
 
 var current_frame: DialogueFrame
@@ -34,7 +36,7 @@ func _ready():
 	
 	player = Utility.get_player(self)
 	
-	if start_delay >= 0:
+	if start_delay <= 0:
 		start_phase()
 
 func start_phase():
@@ -44,10 +46,13 @@ func start_phase():
 		
 	player.set_process_input(false)
 	player.set_process(false)
+	
+	dialogue_started = true
+	
 	_advance_dialogue()
 
 func _process(_delta):
-	if Input.is_action_just_pressed("ui_accept"):
+	if Input.is_action_just_pressed("ui_accept") and dialogue_started:
 		_advance_dialogue()
 
 func _advance_dialogue():
