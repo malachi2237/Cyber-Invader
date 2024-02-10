@@ -5,13 +5,13 @@
 [ext_resource path="res://Bullets/SnowBullet.gd" type="Script" id=3]
 
 [node name="SnowBullet" instance=ExtResource( 1 )]
-modulate = Color( 0.105882, 0.713726, 0.85098, 1 )
-scale = Vector2( 2.2, 2.2 )
+modulate = Color( 0.0980392, 0.364706, 0.780392, 0.819608 )
+scale = Vector2( 1.8, 1.8 )
 script = ExtResource( 3 )
 shot_speed = 1000
 
 [node name="BulletSprite" parent="." index="0"]
-position = Vector2( 7, 0 )
+position = Vector2( 0, 0 )
 rotation = 4.71239
 texture = ExtResource( 2 )
 
