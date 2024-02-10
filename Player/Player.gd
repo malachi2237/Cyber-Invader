@@ -19,8 +19,17 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	_movementInput()
+	_debugAlive()
 	if _shootPressCondition():
 		_shoot()
+
+func makeAlive():
+	self.set_physics_process(true)
+	self.visible = true;
+	
+func _debugAlive():
+	if Input.is_action_just_pressed("debug_player_alive"):
+		makeAlive()
 
 func _physics_process(_delta: float) -> void:
 	_move()
@@ -64,7 +73,9 @@ func _makeBulletInstance(source_gun):
 	return bul_inst
 
 func _die():
-	queue_free()
+	self.set_physics_process(false)
+	self.visible = false;
+	#queue_free()
 
 #TODO: Implement powerups
 func power() -> void:
