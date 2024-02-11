@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Player/herocharacteranimated-Sheet.png" type="Texture" id=2]
+[ext_resource path="res://Animations/Hurt.tres" type="Animation" id=3]
 
 [sub_resource type="AtlasTexture" id=6]
 flags = 4
@@ -46,7 +47,6 @@ gun_paths = [ NodePath("GunLeft"), NodePath("GunLeft2"), NodePath("GunLeft3"), N
 [node name="PlayerSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0, 32.946 )
 frames = SubResource( 10 )
-frame = 3
 speed_scale = 2.0
 playing = true
 
@@ -95,5 +95,13 @@ rotation = 0.0349066
 position = Vector2( 90, -60 )
 rotation = 0.0872665
 
+[node name="HurtAnim" type="AnimationPlayer" parent="."]
+anims/Hurt = ExtResource( 3 )
+anims/HurtPlayer = ExtResource( 3 )
+
+[node name="InvulnTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="area_entered" from="HitBox" to="." method="_on_HitBox_area_entered"]
 [connection signal="timeout" from="FireRate" to="." method="_on_FireRate_timeout"]
+[connection signal="timeout" from="InvulnTimer" to="." method="_on_InvulnTimer_timeout"]

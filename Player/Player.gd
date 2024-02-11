@@ -4,9 +4,13 @@ class_name Player
 
 var canFire: bool = true
 onready var fireTimer = $FireRate
+onready var HurtAnim = $HurtAnim
 var dir: Vector2 = Vector2(0,0)
 export var speed: float = 10.0
 var hurt:bool = false
+export var lives: int = 5
+onready var invulnTimer = $InvulnTimer
+var alive = true
 
 export(Array, NodePath) var gun_paths
 export var bullet = preload("res://Bullets/PlayerBullet.tscn")
@@ -20,13 +24,12 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	_movementInput()
 	_debugAlive()
-	if _shootPressCondition():
+	if alive and _shootPressCondition():
 		_shoot()
 
 func makeAlive():
-	self.set_physics_process(true)
-	self.visible = true;
-	
+	alive = true
+
 func _debugAlive():
 	if Input.is_action_just_pressed("debug_player_alive"):
 		makeAlive()
@@ -72,10 +75,17 @@ func _makeBulletInstance(source_gun):
 	bul_inst.rotation = source_gun.global_rotation
 	return bul_inst
 
+func _takeDamage():
+	alive = false
+	HurtAnim.play("HurtPlayer")
+	lives -= 1
+	if lives <= 0:
+		_die()
+	else:
+		invulnTimer.start()
+
 func _die():
-	self.set_physics_process(false)
-	self.visible = false;
-	#queue_free()
+	queue_free()
 
 #TODO: Implement powerups
 func power() -> void:
@@ -85,4 +95,7 @@ func _on_FireRate_timeout() -> void:
 	canFire = true
 
 func _on_HitBox_area_entered(_area):
-	_die()
+	_takeDamage()
+
+func _on_InvulnTimer_timeout() -> void:
+	makeAlive()
