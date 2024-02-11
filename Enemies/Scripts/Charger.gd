@@ -24,10 +24,10 @@ var curSeq = Sequence.aim
 
 func set_attack_target(targetNode: Node2D) -> void:
 	if targetNode: attackTarget = targetNode
-		
+
 func _ready() -> void:
 	set_attack_target(Utility.get_player(self))
-	
+
 func _physics_process(delta: float) -> void:
 	match curMood:
 		Mood.attack:
@@ -38,7 +38,7 @@ func _physics_process(delta: float) -> void:
 func _attack(delta) -> void:
 	if (curSeq == Sequence.aim and attackTarget):
 		attackPos = attackTarget.position
-		
+
 	_sequence(Mood.regroup, attackPos, delta)
 
 func _regroup(delta) -> void:
