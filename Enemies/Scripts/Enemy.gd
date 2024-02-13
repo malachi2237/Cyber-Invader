@@ -26,7 +26,7 @@ func _die() -> void:
 
 func _calculate_score() -> int:
 	return max_health * 1000
-	
+
 func _on_HitBox_area_entered(area):
 	if "damage" in area:
 		_take_damage(area.damage)

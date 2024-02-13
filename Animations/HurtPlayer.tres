@@ -2,7 +2,6 @@
 
 [resource]
 resource_name = "Hurt"
-length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1

@@ -98,7 +98,7 @@ func _addBulletAtPoint(spawnPoint) -> void:
 	bullet.z_index = 10.0
 	bullet.rotation = spawnPoint.global_rotation + deg2rad(90)
 	getScene().add_child(bullet)
-	
+
 
 func start_firing():
 	shoot_timer.start(shot_timer)
