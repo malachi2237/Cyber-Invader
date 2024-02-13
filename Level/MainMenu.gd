@@ -2,6 +2,7 @@ extends Control
 
 export(PackedScene) var game_scene: PackedScene
 export(PackedScene) var tutorial_scene: PackedScene
+export(PackedScene) var credits_scene: PackedScene
 
 onready var start_button = $Start
 onready var tutorial_button = $Tutorial
@@ -29,3 +30,6 @@ func enable_buttons():
 	start_button.disabled = false
 	tutorial_button.disabled = false
 	credits_button.disabled = false
+	
+func _on_Credits_pressed():
+	var _a = get_tree().change_scene_to(credits_scene)
