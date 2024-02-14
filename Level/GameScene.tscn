@@ -28,6 +28,7 @@
 shader = ExtResource( 16 )
 shader_param/crt_brightness = 1.0
 shader_param/crt_ghost = 1.0
+shader_param/crt_dimming = 0.4
 
 [node name="GameScene" type="Node2D"]
 
@@ -52,8 +53,9 @@ anchor_left = 0.05
 anchor_top = 0.5
 anchor_right = 0.05
 anchor_bottom = 0.5
-margin_right = 40.0
-margin_bottom = 40.0
+margin_left = -8.0
+margin_right = 332.0
+margin_bottom = 67.0
 
 [node name="ScoreText" type="Label" parent="HudLayer/HBoxContainer"]
 margin_right = 288.0
@@ -71,12 +73,12 @@ custom_colors/font_color = Color( 0.223529, 1, 0.0784314, 1 )
 text = "0"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="HudLayer"]
-anchor_left = 0.05
-anchor_top = 0.9
-anchor_right = 0.05
-anchor_bottom = 0.9
-margin_right = 40.0
-margin_bottom = 40.0
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 88.0
+margin_top = -76.0
+margin_right = 428.0
+margin_bottom = -9.0
 
 [node name="LivesText" type="Label" parent="HudLayer/HBoxContainer2"]
 margin_right = 288.0
@@ -119,7 +121,7 @@ anchor_bottom = 1.0
 [node name="GameManager" type="Node" parent="PlayLayer"]
 script = ExtResource( 3 )
 stage_queue = [ ExtResource( 12 ), ExtResource( 1 ), ExtResource( 19 ), ExtResource( 15 ), ExtResource( 8 ), ExtResource( 14 ), ExtResource( 11 ), ExtResource( 9 ), ExtResource( 13 ) ]
-score_counter_path = NodePath("../../HudLayer/HBoxContainer/ScoreText")
+score_counter_path = NodePath("../../HudLayer/HBoxContainer/ScoreNumber")
 life_counter_path = NodePath("../../HudLayer/HBoxContainer2/LivesNumber")
 death_screen_path = NodePath("../../HudLayer/youdied")
 victory_screen_path = NodePath("../../HudLayer/VictoryScreen")
