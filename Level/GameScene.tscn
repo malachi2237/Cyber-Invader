@@ -129,6 +129,11 @@ pause_menu_path = NodePath("../../HudLayer/PauseMenu")
 position = Vector2( 2880, 2700 )
 collision_mask = 0
 
+[node name="Music" type="AudioStreamPlayer2D" parent="PlayLayer/Player"]
+stream = ExtResource( 10 )
+autoplay = true
+max_distance = 500000.0
+
 [node name="KillBoundary" type="Area2D" parent="PlayLayer"]
 position = Vector2( 2880, 1620 )
 collision_layer = 64
@@ -170,11 +175,6 @@ collision_layer = 32
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayLayer/bottom_boundary"]
 scale = Vector2( 500, 1 )
 shape = SubResource( 1 )
-
-[node name="Music" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 10 )
-autoplay = true
-max_distance = 5000.0
 
 [node name="PostProcess" type="CanvasLayer" parent="."]
 layer = 3
