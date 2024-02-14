@@ -100,8 +100,9 @@ func _addBulletAtPoint(spawnPoint) -> void:
 	bullet.z_index = 10.0
 	bullet.rotation = spawnPoint.global_rotation + deg2rad(90)
 	getScene().add_child(bullet)
-	EnemyShotSFX.pitch_scale = rand_range(0.9,1.1)
-	EnemyShotSFX.play()
+	if(EnemyShotSFX):
+		EnemyShotSFX.pitch_scale = rand_range(0.9,1.1)
+		EnemyShotSFX.play()
 
 
 func start_firing():
