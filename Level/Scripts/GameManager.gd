@@ -13,6 +13,9 @@ onready var life_counter: Label = get_node_or_null(life_counter_path)
 export(NodePath) var death_screen_path
 onready var death_screen: Panel = get_node_or_null(death_screen_path)
 
+export(NodePath) var victory_screen_path
+onready var victory_screen: ColorRect = get_node_or_null(victory_screen_path)
+
 var score: int = 0
 
 func _ready() -> void:
@@ -23,6 +26,9 @@ func _switch_phase():
 		var phase_instance: LevelPhase = _popNextPhase()
 		Utility.placeInScene(self, phase_instance, null)
 		_connectPhase(phase_instance)
+	else:
+		victory_screen.update_score(score)
+		victory_screen.show()
 
 func _popNextPhase() -> Node:
 	return stage_queue.pop_front().instance() 
