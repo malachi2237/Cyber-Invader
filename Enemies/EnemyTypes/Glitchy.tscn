@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Enemies/Sprites/GlitchyAnim.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://Enemies/Scripts/Glitchy.gd" type="Script" id=2]
@@ -6,6 +6,23 @@
 [ext_resource path="res://Bullets/ForwardBullet.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Bullets/BulletSpawner.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Enemies/Enemy.tscn" type="PackedScene" id=6]
+
+[sub_resource type="Animation" id=3]
+resource_name = "Jitter"
+length = 0.9
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8 ),
+"transitions": PoolRealArray( 1e+06, 1e+06, 1e+06, 1e+06, 1e+06 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 20, 0 ), Vector2( 0, 0 ), Vector2( -20, 0 ), Vector2( 0, 0 ) ]
+}
 
 [sub_resource type="Animation" id=1]
 resource_name = "GlitchyFadeIn"
@@ -37,42 +54,47 @@ tracks/0/keys = {
 }
 
 [node name="Glitchy_test" instance=ExtResource( 6 )]
+position = Vector2( 20, 0 )
 script = ExtResource( 2 )
 health = 200
 play_area_margin_percentage = 0.1
 
-[node name="BulletSpawner" parent="." index="0" instance=ExtResource( 5 )]
+[node name="Jitter" type="AnimationPlayer" parent="." index="0"]
+method_call_mode = 1
+anims/Jitter = SubResource( 3 )
+
+[node name="BulletSpawner" parent="." index="1" instance=ExtResource( 5 )]
 bullet_override = ExtResource( 4 )
 rotation_speed = 60.0
 shot_timer = 0.2
 radius = 15.0
 spawn_point_count = 4
 
-[node name="Shadow" type="AnimatedSprite" parent="." index="1"]
+[node name="Shadow" type="AnimatedSprite" parent="." index="2"]
 modulate = Color( 0.109804, 0.0117647, 0.0117647, 0.517647 )
 scale = Vector2( 1.1, 1.1 )
 frames = ExtResource( 1 )
 
-[node name="GlitchySprite" type="AnimatedSprite" parent="." index="2"]
+[node name="GlitchySprite" type="AnimatedSprite" parent="." index="3"]
 modulate = Color( 1, 1, 1, 0 )
 frames = ExtResource( 1 )
 
-[node name="ShadowClone" type="Sprite" parent="." index="3"]
+[node name="ShadowClone" type="Sprite" parent="." index="4"]
 modulate = Color( 1, 1, 1, 0.247059 )
 texture = ExtResource( 3 )
 
-[node name="WarpTimer" type="Timer" parent="." index="4"]
+[node name="WarpTimer" type="Timer" parent="." index="5"]
 one_shot = true
 autostart = true
 
-[node name="GlitchyAnimationPlayer" type="AnimationPlayer" parent="." index="5"]
+[node name="GlitchyAnimationPlayer" type="AnimationPlayer" parent="." index="6"]
 anims/GlitchyFadeIn = SubResource( 1 )
 anims/GlitchyFadeOut = SubResource( 2 )
 
-[node name="HitBox" parent="." index="7"]
+[node name="HitBox" parent="." index="8"]
 scale = Vector2( 3.25, 3.254 )
 
-[node name="CollideBox" parent="." index="8"]
+[node name="CollideBox" parent="." index="9"]
 scale = Vector2( 2, 2 )
 
 [connection signal="timeout" from="WarpTimer" to="." method="_on_WarpTimer_timeout"]

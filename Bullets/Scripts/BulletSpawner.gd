@@ -5,6 +5,8 @@ class_name BulletSpawner
 export(PackedScene) var bullet_override = preload("res://Bullets/Bullet.tscn")
 
 onready var bullet_prefab = null
+onready var EnemyShotSFX = $EnemyShot
+
 
 var burst_timer
 var interval_timer
@@ -98,6 +100,8 @@ func _addBulletAtPoint(spawnPoint) -> void:
 	bullet.z_index = 10.0
 	bullet.rotation = spawnPoint.global_rotation + deg2rad(90)
 	getScene().add_child(bullet)
+	EnemyShotSFX.pitch_scale = rand_range(0.9,1.1)
+	EnemyShotSFX.play()
 
 
 func start_firing():

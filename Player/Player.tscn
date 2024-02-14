@@ -1,8 +1,11 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Player/herocharacteranimated-Sheet.png" type="Texture" id=2]
 [ext_resource path="res://Animations/Hurt.tres" type="Animation" id=3]
+[ext_resource path="res://SFX/turistic-gun-shot.wav" type="AudioStream" id=4]
+[ext_resource path="res://SFX/344505__jeremysykes__explosion05.wav" type="AudioStream" id=5]
+[ext_resource path="res://SFX/402940__matrixxx__retro-explosion-01.wav" type="AudioStream" id=6]
 
 [sub_resource type="AtlasTexture" id=6]
 flags = 4
@@ -44,10 +47,19 @@ script = ExtResource( 1 )
 speed = 15.0
 gun_paths = [ NodePath("GunLeft"), NodePath("GunLeft2"), NodePath("GunLeft3"), NodePath("GunRight"), NodePath("GunRight2"), NodePath("GunRight3"), NodePath("GunLeft4"), NodePath("GunRight4") ]
 
+[node name="PlayerSprite2" type="AnimatedSprite" parent="."]
+modulate = Color( 0, 0, 0, 0.219608 )
+position = Vector2( 0, 32.946 )
+scale = Vector2( 1.1, 1.1 )
+frames = SubResource( 10 )
+frame = 1
+speed_scale = 2.0
+playing = true
+
 [node name="PlayerSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0, 32.946 )
 frames = SubResource( 10 )
-frame = 3
+frame = 2
 speed_scale = 2.0
 playing = true
 
@@ -102,6 +114,16 @@ anims/HurtPlayer = ExtResource( 3 )
 
 [node name="InvulnTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="ShotSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+volume_db = -20.0
+
+[node name="HurtSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 5 )
+
+[node name="DeathSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 6 )
 
 [connection signal="area_entered" from="HitBox" to="." method="_on_HitBox_area_entered"]
 [connection signal="timeout" from="FireRate" to="." method="_on_FireRate_timeout"]

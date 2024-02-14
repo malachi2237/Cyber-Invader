@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Bullets/Scripts/BulletSpawner.gd" type="Script" id=1]
 [ext_resource path="res://Enemies/Scripts/Radial.gd" type="Script" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://Bullets/LightningBullet.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Bullets/EthereumBullet.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Enemies/Enemy.tscn" type="PackedScene" id=6]
+[ext_resource path="res://SFX/505235__daleonfire__laser2.wav" type="AudioStream" id=7]
+[ext_resource path="res://SFX/512471__michael_grinnell__electric-zap.wav" type="AudioStream" id=8]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Spinning"
@@ -35,6 +37,7 @@ entry_travel_distance = 1300.0
 small_attack_delay = 2.35
 
 [node name="BigSlow" type="Node2D" parent="." index="0"]
+position = Vector2( 0.8, 0 )
 script = ExtResource( 1 )
 bullet_override = ExtResource( 5 )
 fire_on_start = false
@@ -45,6 +48,12 @@ rotation_speed = 5.0
 shot_timer = 0.75
 radius = 10.0
 spawn_point_count = 7
+
+[node name="EnemyShot" type="AudioStreamPlayer2D" parent="BigSlow" index="0"]
+position = Vector2( -0.8, 0 )
+scale = Vector2( 1, 1 )
+stream = ExtResource( 7 )
+volume_db = -10.0
 
 [node name="SmallFast" type="Node2D" parent="." index="1"]
 script = ExtResource( 1 )
@@ -58,6 +67,10 @@ rotation_speed = 5.0
 shot_timer = 0.15
 radius = 10.0
 spawn_point_count = 7
+
+[node name="EnemyShot" type="AudioStreamPlayer2D" parent="SmallFast" index="0"]
+stream = ExtResource( 8 )
+volume_db = -10.0
 
 [node name="EnemySprite" type="Sprite" parent="." index="2"]
 position = Vector2( 3.5, 0 )

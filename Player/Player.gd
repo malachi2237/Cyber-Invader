@@ -11,6 +11,9 @@ var hurt:bool = false
 export var lives: int = 5
 onready var invulnTimer = $InvulnTimer
 var alive = true
+onready var shotSFX = $ShotSFX 
+onready var hurtSFX = $HurtSFX
+onready var deathSFX = $DeathSFX
 
 export(Array, NodePath) var gun_paths
 export var bullet = preload("res://Bullets/PlayerBullet.tscn")
@@ -65,6 +68,8 @@ func _shootPressCondition() -> bool:
 func _shoot() -> void:
 	_shotCooldown()
 	var current_scene = Utility.getScene(self)
+	shotSFX.pitch_scale = rand_range(0.8,1.2);
+	shotSFX.play()
 	for current_gun in guns:
 		current_scene.add_child(_makeBulletInstance(current_gun))
 
@@ -81,6 +86,7 @@ func _makeBulletInstance(source_gun):
 
 func _takeDamage():
 	alive = false
+	hurtSFX.play()
 	HurtAnim.play("HurtPlayer")
 	lives -= 1
 	emit_signal("lost_life")
@@ -90,6 +96,7 @@ func _takeDamage():
 		invulnTimer.start()
 
 func _die():
+	deathSFX.play()
 	emit_signal("dead")
 	queue_free()
 
