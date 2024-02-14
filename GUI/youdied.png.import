@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/youdied.png-6a7191ea86499268f1e55a96e7498608.stex"
+path="res://.import/youdied.png-e2542dae595d23bbaa4e2fa79d3bc27f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://youdied.png"
-dest_files=[ "res://.import/youdied.png-6a7191ea86499268f1e55a96e7498608.stex" ]
+source_file="res://GUI/youdied.png"
+dest_files=[ "res://.import/youdied.png-e2542dae595d23bbaa4e2fa79d3bc27f.stex" ]
 
 [params]
 

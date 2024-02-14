@@ -17,6 +17,10 @@ export var bullet = preload("res://Bullets/PlayerBullet.tscn")
 
 onready var guns: Array
 
+signal lost_life
+signal dead
+
+
 func _ready() -> void:
 	for path in gun_paths:
 		guns.append(get_node(path))
@@ -79,12 +83,14 @@ func _takeDamage():
 	alive = false
 	HurtAnim.play("HurtPlayer")
 	lives -= 1
+	emit_signal("lost_life")
 	if lives <= 0:
 		_die()
 	else:
 		invulnTimer.start()
 
 func _die():
+	emit_signal("dead")
 	queue_free()
 
 #TODO: Implement powerups

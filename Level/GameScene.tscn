@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Level/WavePhases/InitialPhase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://Level/WavePhases/ChargerAmbush.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Level/WavePhases/FinalWave.tscn" type="PackedScene" id=15]
 [ext_resource path="res://shaders/CRT.tres" type="Shader" id=16]
+[ext_resource path="res://GUI/styleboxes/deleted.tres" type="StyleBox" id=17]
 
 [sub_resource type="RectangleShape2D" id=2]
 
@@ -67,6 +68,37 @@ theme = ExtResource( 6 )
 custom_colors/font_color = Color( 0.223529, 1, 0.0784314, 1 )
 text = "0"
 
+[node name="HBoxContainer2" type="HBoxContainer" parent="HudLayer"]
+anchor_left = 0.05
+anchor_top = 0.9
+anchor_right = 0.05
+anchor_bottom = 0.9
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="LivesText" type="Label" parent="HudLayer/HBoxContainer2"]
+margin_right = 288.0
+margin_bottom = 67.0
+theme = ExtResource( 6 )
+custom_colors/font_color = Color( 0.223529, 1, 0.0784314, 1 )
+text = "LIVES:"
+
+[node name="LivesNumber" type="Label" parent="HudLayer/HBoxContainer2"]
+margin_left = 292.0
+margin_right = 340.0
+margin_bottom = 67.0
+theme = ExtResource( 6 )
+custom_colors/font_color = Color( 0.223529, 1, 0.0784314, 1 )
+text = "5"
+
+[node name="youdied" type="Panel" parent="HudLayer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 40.0
+margin_bottom = 40.0
+custom_styles/panel = ExtResource( 17 )
+
 [node name="PlayLayer" type="CanvasLayer" parent="."]
 follow_viewport_enable = true
 
@@ -79,10 +111,13 @@ anchor_bottom = 1.0
 script = ExtResource( 3 )
 stage_queue = [ ExtResource( 12 ), ExtResource( 1 ), ExtResource( 15 ), ExtResource( 8 ), ExtResource( 14 ), ExtResource( 11 ), ExtResource( 9 ), ExtResource( 13 ) ]
 score_counter_path = NodePath("../../HudLayer/HBoxContainer/ScoreText")
+life_counter_path = NodePath("../../HudLayer/HBoxContainer2/LivesNumber")
+death_screen_path = NodePath("../../HudLayer/youdied")
 
 [node name="Player" parent="PlayLayer" instance=ExtResource( 2 )]
 position = Vector2( 2880, 2700 )
 collision_mask = 0
+lives = 2
 
 [node name="KillBoundary" type="Area2D" parent="PlayLayer"]
 position = Vector2( 2880, 1620 )
@@ -141,3 +176,6 @@ layer = 3
 material = SubResource( 3 )
 anchor_right = 1.0
 anchor_bottom = 1.0
+
+[connection signal="dead" from="PlayLayer/Player" to="PlayLayer/GameManager" method="_on_Player_dead"]
+[connection signal="lost_life" from="PlayLayer/Player" to="PlayLayer/GameManager" method="_on_Player_lost_life"]
