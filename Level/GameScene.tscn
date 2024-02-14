@@ -34,6 +34,12 @@ shader_param/crt_dimming = 0.4
 
 [node name="Background" parent="." instance=ExtResource( 5 )]
 
+[node name="Music" type="AudioStreamPlayer2D" parent="Background"]
+position = Vector2( 2879, 1636 )
+stream = ExtResource( 10 )
+autoplay = true
+max_distance = 500000.0
+
 [node name="HudLayer" type="CanvasLayer" parent="."]
 layer = 2
 
@@ -130,11 +136,6 @@ pause_menu_path = NodePath("../../HudLayer/PauseMenu")
 [node name="Player" parent="PlayLayer" instance=ExtResource( 2 )]
 position = Vector2( 2880, 2700 )
 collision_mask = 0
-
-[node name="Music" type="AudioStreamPlayer2D" parent="PlayLayer/Player"]
-stream = ExtResource( 10 )
-autoplay = true
-max_distance = 500000.0
 
 [node name="KillBoundary" type="Area2D" parent="PlayLayer"]
 position = Vector2( 2880, 1620 )
