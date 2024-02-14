@@ -102,6 +102,10 @@ custom_styles/panel = ExtResource( 17 )
 
 [node name="VictoryScreen" parent="HudLayer" instance=ExtResource( 18 )]
 visible = false
+menu_scene = "res://Level/MainMenu.tscn"
+
+[node name="PauseMenu" parent="HudLayer" instance=ExtResource( 4 )]
+visible = false
 
 [node name="PlayLayer" type="CanvasLayer" parent="."]
 follow_viewport_enable = true
@@ -117,6 +121,8 @@ stage_queue = [ ExtResource( 12 ), ExtResource( 1 ), ExtResource( 15 ), ExtResou
 score_counter_path = NodePath("../../HudLayer/HBoxContainer/ScoreText")
 life_counter_path = NodePath("../../HudLayer/HBoxContainer2/LivesNumber")
 death_screen_path = NodePath("../../HudLayer/youdied")
+victory_screen_path = NodePath("../../HudLayer/VictoryScreen")
+pause_menu_path = NodePath("../../HudLayer/PauseMenu")
 
 [node name="Player" parent="PlayLayer" instance=ExtResource( 2 )]
 position = Vector2( 2880, 2700 )
@@ -164,9 +170,6 @@ collision_layer = 32
 scale = Vector2( 500, 1 )
 shape = SubResource( 1 )
 
-[node name="PauseMenu" parent="PlayLayer" instance=ExtResource( 4 )]
-visible = false
-
 [node name="Music" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 10 )
 autoplay = true
@@ -179,6 +182,7 @@ layer = 3
 material = SubResource( 3 )
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 
 [connection signal="dead" from="PlayLayer/Player" to="PlayLayer/GameManager" method="_on_Player_dead"]
 [connection signal="lost_life" from="PlayLayer/Player" to="PlayLayer/GameManager" method="_on_Player_lost_life"]

@@ -16,6 +16,9 @@ onready var death_screen: Panel = get_node_or_null(death_screen_path)
 export(NodePath) var victory_screen_path
 onready var victory_screen: ColorRect = get_node_or_null(victory_screen_path)
 
+export(NodePath) var pause_menu_path
+onready var pause_menu: ColorRect = get_node_or_null(pause_menu_path)
+
 var score: int = 0
 
 func _ready() -> void:
@@ -27,6 +30,7 @@ func _switch_phase():
 		Utility.placeInScene(self, phase_instance, null)
 		_connectPhase(phase_instance)
 	else:
+		pause_menu.queue_free()
 		victory_screen.update_score(score)
 		victory_screen.show()
 
