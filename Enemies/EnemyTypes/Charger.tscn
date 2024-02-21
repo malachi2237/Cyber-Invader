@@ -9,6 +9,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 
 [node name="Charger" instance=ExtResource( 5 )]
+z_index = 11
 script = ExtResource( 1 )
 health = 750
 attackPos = Vector2( 0, 0 )

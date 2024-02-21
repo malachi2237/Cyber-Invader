@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Enemies/Enemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Enemies/Sprites/BossAnim.tres" type="SpriteFrames" id=2]
@@ -11,9 +11,11 @@
 [ext_resource path="res://Enemies/Scripts/Boss/Mode2.gd" type="Script" id=9]
 [ext_resource path="res://Enemies/Scripts/Boss/Mode3.gd" type="Script" id=10]
 [ext_resource path="res://Enemies/Scripts/Boss/Mode1.gd" type="Script" id=11]
-[ext_resource path="res://Bullets/ForwardBullet.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Bullets/LaserBullet.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Enemies/EnemyTypes/Wiggler.gd" type="Script" id=13]
 [ext_resource path="res://Bullets/SnowBullet.tscn" type="PackedScene" id=14]
+[ext_resource path="res://SFX/505235__daleonfire__laser2.wav" type="AudioStream" id=15]
+[ext_resource path="res://SFX/179376__stonedb__huge-laser.wav" type="AudioStream" id=16]
 
 [node name="Boss" instance=ExtResource( 1 )]
 script = ExtResource( 4 )
@@ -51,6 +53,11 @@ shot_timer = 0.7
 radius = 300.0
 spawn_point_count = 10
 
+[node name="EnemyShot" type="AudioStreamPlayer2D" parent="Mode1/CCWRadialSpawner" index="0"]
+position = Vector2( -0.8, 0 )
+stream = ExtResource( 15 )
+volume_db = -10.0
+
 [node name="CWRadialSpawner" type="Node2D" parent="Mode1" index="1"]
 script = ExtResource( 3 )
 bullet_override = ExtResource( 7 )
@@ -60,6 +67,11 @@ burst_interval = 0.4
 shot_timer = 0.7
 radius = 300.0
 spawn_point_count = 10
+
+[node name="EnemyShot" type="AudioStreamPlayer2D" parent="Mode1/CWRadialSpawner" index="0"]
+position = Vector2( -0.8, 0 )
+stream = ExtResource( 15 )
+volume_db = -10.0
 
 [node name="Mode2" type="Node2D" parent="." index="6"]
 script = ExtResource( 9 )
@@ -80,6 +92,12 @@ __meta__ = {
 bullet_override = ExtResource( 12 )
 fire_on_start = false
 
+[node name="EnemyShot" type="AudioStreamPlayer2D" parent="Mode2/Bosscannon1/BulletSpawner" index="0"]
+position = Vector2( -414.997, 873.002 )
+rotation = -1.5708
+stream = ExtResource( 16 )
+volume_db = -20.0
+
 [node name="Bosscannon2" type="AnimatedSprite" parent="Mode2" index="1"]
 position = Vector2( 522, -250 )
 z_index = 11
@@ -94,6 +112,12 @@ __meta__ = {
 }
 bullet_override = ExtResource( 12 )
 fire_on_start = false
+
+[node name="EnemyShot" type="AudioStreamPlayer2D" parent="Mode2/Bosscannon2/BulletSpawner" index="0"]
+position = Vector2( -414.997, 873.002 )
+rotation = -1.5708
+stream = ExtResource( 16 )
+volume_db = -20.0
 
 [node name="Bosscannon3" type="AnimatedSprite" parent="Mode2" index="2"]
 position = Vector2( -439, -228 )
@@ -110,6 +134,12 @@ __meta__ = {
 bullet_override = ExtResource( 12 )
 fire_on_start = false
 
+[node name="EnemyShot" type="AudioStreamPlayer2D" parent="Mode2/Bosscannon3/BulletSpawner" index="0"]
+position = Vector2( -414.997, 873.002 )
+rotation = -1.5708
+stream = ExtResource( 16 )
+volume_db = -20.0
+
 [node name="Bosscannon4" type="AnimatedSprite" parent="Mode2" index="3"]
 position = Vector2( -743, 361 )
 z_index = 11
@@ -124,6 +154,12 @@ __meta__ = {
 }
 bullet_override = ExtResource( 12 )
 fire_on_start = false
+
+[node name="EnemyShot" type="AudioStreamPlayer2D" parent="Mode2/Bosscannon4/BulletSpawner" index="0"]
+position = Vector2( -414.997, 873.002 )
+rotation = -1.5708
+stream = ExtResource( 16 )
+volume_db = -20.0
 
 [node name="ActionTimer" type="Timer" parent="Mode2" index="4"]
 
