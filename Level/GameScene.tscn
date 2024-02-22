@@ -15,7 +15,7 @@
 [ext_resource path="res://Level/DialoguePhases/FinalDialogue.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Level/WavePhases/ChargerAmbush.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Level/WavePhases/FinalWave.tscn" type="PackedScene" id=15]
-[ext_resource path="res://shaders/CRT.tres" type="Shader" id=16]
+[ext_resource path="res://shaders/Fisheye2.tres" type="Shader" id=16]
 [ext_resource path="res://GUI/styleboxes/deleted.tres" type="StyleBox" id=17]
 [ext_resource path="res://GUI/VictoryScreen.tscn" type="PackedScene" id=18]
 [ext_resource path="res://Level/DialoguePhases/MiddleDialogue.tscn" type="PackedScene" id=19]
@@ -24,11 +24,12 @@
 
 [sub_resource type="RectangleShape2D" id=1]
 
-[sub_resource type="ShaderMaterial" id=3]
+[sub_resource type="ShaderMaterial" id=4]
 shader = ExtResource( 16 )
+shader_param/effect_amount = 1.2
 shader_param/crt_brightness = 1.0
-shader_param/crt_ghost = 1.0
-shader_param/crt_dimming = 0.4
+shader_param/crt_ghost = 1.2
+shader_param/crt_dimming = 0.45
 
 [node name="GameScene" type="Node2D"]
 
@@ -60,7 +61,7 @@ anchor_left = 0.05
 anchor_top = 0.5
 anchor_right = 0.05
 anchor_bottom = 0.5
-margin_left = -8.0
+margin_left = 400.0
 margin_right = 332.0
 margin_bottom = 67.0
 
@@ -80,11 +81,12 @@ custom_colors/font_color = Color( 0.223529, 1, 0.0784314, 1 )
 text = "0"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="HudLayer"]
+anchor_left = 0.05
 anchor_top = 0.5
+anchor_right = 0.05
 anchor_bottom = 0.5
-margin_left = 88.0
+margin_left = 400.0
 margin_top = -76.0
-margin_right = 428.0
 margin_bottom = -9.0
 
 [node name="LivesText" type="Label" parent="HudLayer/HBoxContainer2"]
@@ -183,8 +185,8 @@ shape = SubResource( 1 )
 [node name="PostProcess" type="CanvasLayer" parent="."]
 layer = 3
 
-[node name="CRT" type="ColorRect" parent="PostProcess"]
-material = SubResource( 3 )
+[node name="FishEye" type="ColorRect" parent="PostProcess"]
+material = SubResource( 4 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2

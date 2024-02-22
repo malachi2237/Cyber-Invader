@@ -6,6 +6,7 @@ const hud_layer_path = "/root/GameScene/HudLayer"
 const play_area_path = "/root/GameScene/PlayLayer/PlayArea"
 const player_path = "/root/GameScene/PlayLayer/Player"
 const game_manager_path = "/root/GameScene/PlayLayer/GameManager"
+const warnings = false
 
 static func getScene(targetNode):
 	var root = targetNode.get_tree().get_root()
@@ -67,12 +68,13 @@ static func placeInScene(target_node, item, _pos):
 static func get_player(node_in_scene: Node):
 	var player =  node_in_scene.get_node_or_null(player_path)
 	if not player or not player.name == "Player":
-		push_warning("Player not found at expected Path")
+		if(warnings): push_warning("Player not found at expected Path")
 		return null
 	return player
 
 static func get_game_manager(node_in_scene: Node):
 	var gm =  node_in_scene.get_node_or_null(game_manager_path)
 	if not gm or not gm.name == "GameManager":
-		push_warning("Game Manager not found at expected Path")
+		if(warnings): push_warning("Game Manager not found at expected Path")
+		return null
 	return gm

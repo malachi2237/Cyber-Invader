@@ -18,7 +18,7 @@ func _on_How_To_Play_pressed():
 	var dialogue: DialoguePhase = tutorial_scene.instance()
 
 	disable_buttons()
-	dialogue.connect("phase_ended", self, "enable_buttons")
+	var _toss = dialogue.connect("phase_ended", self, "enable_buttons")
 	Utility.placeInScene(self, dialogue, null)
 
 func disable_buttons():

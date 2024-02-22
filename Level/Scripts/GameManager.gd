@@ -62,7 +62,7 @@ func _on_Player_lost_life():
 
 func _on_Player_dead():
 	death_screen.show()
-	Utility.setupTimer(self, true, 5, "restart_scene")
+	var _toss = Utility.setupTimer(self, true, 5, "restart_scene")
 
 func restart_scene():
-	get_tree().reload_current_scene()
+	var _toss = get_tree().reload_current_scene()

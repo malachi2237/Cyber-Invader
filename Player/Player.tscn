@@ -52,13 +52,13 @@ modulate = Color( 0, 0, 0, 0.219608 )
 position = Vector2( 0, 32.946 )
 scale = Vector2( 1.1, 1.1 )
 frames = SubResource( 10 )
-frame = 3
 speed_scale = 2.0
 playing = true
 
 [node name="PlayerSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0, 32.946 )
 frames = SubResource( 10 )
+frame = 1
 speed_scale = 2.0
 playing = true
 
@@ -117,12 +117,15 @@ one_shot = true
 [node name="ShotSFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 4 )
 volume_db = -20.0
+max_distance = 5000.0
 
 [node name="HurtSFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 5 )
+max_distance = 5000.0
 
 [node name="DeathSFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 6 )
+max_distance = 5000.0
 
 [connection signal="area_entered" from="HitBox" to="." method="_on_HitBox_area_entered"]
 [connection signal="timeout" from="FireRate" to="." method="_on_FireRate_timeout"]
