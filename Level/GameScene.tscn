@@ -185,7 +185,7 @@ shape = SubResource( 1 )
 [node name="PostProcess" type="CanvasLayer" parent="."]
 layer = 3
 
-[node name="FishEye" type="ColorRect" parent="PostProcess"]
+[node name="FishEyed_CRT" type="ColorRect" parent="PostProcess"]
 material = SubResource( 4 )
 anchor_right = 1.0
 anchor_bottom = 1.0
