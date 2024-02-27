@@ -58,7 +58,7 @@ func _update_score_counter():
 	score_counter.text = "%s" % score
 
 func _on_Player_lost_life():
-	life_counter.text = "%s" % Utility.get_player(self).lives
+	life_counter.text = "%s" % Utility.get_player(self).current_lives
 
 func _on_Player_dead():
 	death_screen.show()

@@ -8,7 +8,8 @@ onready var HurtAnim = $HurtAnim
 var dir: Vector2 = Vector2(0,0)
 export var speed: float = 10.0
 var hurt:bool = false
-export var lives: int = 5
+export var _lives: int = 5
+onready var current_lives = _lives
 onready var invulnTimer = $InvulnTimer
 var alive = true
 onready var shotSFX = $ShotSFX 
@@ -34,6 +35,10 @@ func _process(_delta: float) -> void:
 	if alive and _shootPressCondition():
 		_shoot()
 
+func reset_lives():
+	current_lives = _lives
+	emit_signal("lost_life")
+	
 func makeAlive():
 	alive = true
 
@@ -88,9 +93,9 @@ func _takeDamage():
 	alive = false
 	hurtSFX.play()
 	HurtAnim.play("HurtPlayer")
-	lives -= 1
+	current_lives -= 1
 	emit_signal("lost_life")
-	if lives <= 0:
+	if current_lives <= 0:
 		_die()
 	else:
 		invulnTimer.start()
