@@ -9,6 +9,7 @@ onready var hurtAnim = $HurtAnimation
 onready var deathSFX = $DeathSFX
 
 export(int) var health = 10
+export(bool) var die_on_collision = true
 onready var max_health = health
 
 var is_dead = false
@@ -38,5 +39,5 @@ func _on_HitBox_area_entered(area):
 		area.queue_free()
 
 func _on_CollideBox_area_entered(area):
-	if(area != Utility.get_play_area(self) and area != hit_box): 
+	if area != Utility.get_play_area(self) and area != hit_box and die_on_collision: 
 		_take_damage(health)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Enemies/Enemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Enemies/Sprites/BossAnim.tres" type="SpriteFrames" id=2]
@@ -17,9 +17,13 @@
 [ext_resource path="res://SFX/505235__daleonfire__laser2.wav" type="AudioStream" id=15]
 [ext_resource path="res://SFX/179376__stonedb__huge-laser.wav" type="AudioStream" id=16]
 
+[sub_resource type="CircleShape2D" id=1]
+radius = 21.0238
+
 [node name="Boss" instance=ExtResource( 1 )]
 script = ExtResource( 4 )
 health = 7500
+die_on_collision = false
 modeLength = [ 30, 30, 30 ]
 healthMilestones = [ 1, 0.6, 0.3 ]
 modes = [ "CirclePulse", "Sweeping", "HyperSnow" ]
@@ -33,12 +37,11 @@ texture = ExtResource( 13 )
 modulate = Color( 0.133333, 0.12549, 0.12549, 0.545098 )
 scale = Vector2( 1.1, 1.1 )
 frames = ExtResource( 2 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="2"]
 frames = ExtResource( 2 )
-frame = 2
 playing = true
 
 [node name="HurtAnimation" parent="." index="3"]
@@ -47,10 +50,19 @@ root_node = NodePath("../AnimatedSprite")
 [node name="CollisionCircle" parent="HitBox" index="0"]
 scale = Vector2( 15, 15 )
 
-[node name="ModeTimer" type="Timer" parent="." index="6"]
+[node name="CollisionCircle" parent="CollideBox" index="0"]
+scale = Vector2( 15, 15 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." index="6"]
+
+[node name="CollisionCircle" type="CollisionShape2D" parent="StaticBody2D" index="0"]
+scale = Vector2( 12, 12 )
+shape = SubResource( 1 )
+
+[node name="ModeTimer" type="Timer" parent="." index="7"]
 one_shot = true
 
-[node name="Mode1" type="Node2D" parent="." index="7"]
+[node name="Mode1" type="Node2D" parent="." index="8"]
 script = ExtResource( 11 )
 rotationSpeed = 6.0
 
@@ -88,7 +100,7 @@ stream = ExtResource( 15 )
 volume_db = -10.0
 max_distance = 5000.0
 
-[node name="Mode2" type="Node2D" parent="." index="8"]
+[node name="Mode2" type="Node2D" parent="." index="9"]
 script = ExtResource( 9 )
 action_times = [ 3, 2, 5 ]
 
@@ -186,7 +198,7 @@ max_distance = 5000.0
 
 [node name="ActionTimer" type="Timer" parent="Mode2" index="4"]
 
-[node name="Mode3" type="Node2D" parent="." index="9"]
+[node name="Mode3" type="Node2D" parent="." index="10"]
 script = ExtResource( 10 )
 SnowSpawn = [ NodePath("BulletSpawner"), NodePath("BulletSpawner2"), NodePath("BulletSpawner3"), NodePath("BulletSpawner4"), NodePath("BulletSpawner5") ]
 
