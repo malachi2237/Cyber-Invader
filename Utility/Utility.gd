@@ -25,7 +25,7 @@ static func get_hud_layer(target_node) -> Control:
 static func get_play_area(target_node) -> Control:
 	var play_area =  target_node.get_node_or_null(play_area_path)
 	if not play_area is Control:
-		push_error("Play area not found at expected path")
+		if(warnings): push_warning("Play area not found at expected path")
 	return play_area
 	
 static func get_play_area_x_bounds(target_node, margin_percent: float) -> Vector2:

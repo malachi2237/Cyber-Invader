@@ -37,5 +37,6 @@ func _on_HitBox_area_entered(area):
 		_take_damage(area.damage)
 		area.queue_free()
 
-func _on_CollideBox_area_entered(_area):
-	_take_damage(health)
+func _on_CollideBox_area_entered(area):
+	if(area != Utility.get_play_area(self) and area != hit_box): 
+		_take_damage(health)

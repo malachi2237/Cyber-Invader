@@ -7,6 +7,8 @@ onready var shadowClone: Sprite = $ShadowClone
 onready var spriteAnim : AnimatedSprite = $GlitchySprite
 onready var warpAnim: AnimationPlayer = $GlitchyAnimationPlayer
 onready var bulletSpawner: BulletSpawner = $BulletSpawner
+onready var hitBox: CollisionShape2D = $HitBox/CollisionCircle
+onready var collideBox: CollisionShape2D = $CollideBox/CollisionCircle
 
 #TODO: (?) some global RNG tool
 onready var rng: RandomNumberGenerator = RandomNumberGenerator.new()
@@ -35,11 +37,15 @@ func _ceaseFireAndLeave() -> void:
 
 func _warpOut() -> void:
 	warpAnim.play("GlitchyFadeOut")
+	#collideBox.disabled = true
+	#hitBox.disabled = true
 
 func _warpIn() -> void:
 	self.position = newSpot
 	warpAnim.play("GlitchyFadeIn")
 	shadowClone.visible = false
+	#hitBox.disabled = false
+	#collideBox.disabled = false
 
 func _on_GlitchyAnimationPlayer_animation_finished(_anim_name):
 	if not warping:
