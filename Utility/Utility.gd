@@ -3,6 +3,7 @@ extends Node
 class_name Utility
 
 const hud_layer_path = "/root/GameScene/HudLayer"
+const alt_hud_layer_path = "/root/MainMenu/HudLayer"
 const play_area_path = "/root/GameScene/PlayLayer/PlayArea"
 const player_path = "/root/GameScene/PlayLayer/Player"
 const game_manager_path = "/root/GameScene/PlayLayer/GameManager"
@@ -18,6 +19,9 @@ static func is_game_scene(target_node) -> bool:
 
 static func get_hud_layer(target_node) -> Control:
 	var hud_layer =  target_node.get_node_or_null(hud_layer_path)
+	if not hud_layer is CanvasLayer:
+		hud_layer = target_node.get_node_or_null(alt_hud_layer_path)
+		
 	if not hud_layer is CanvasLayer:
 		push_error("HUD Layer not found at expected path")
 	return hud_layer

@@ -4,9 +4,9 @@ export(PackedScene) var game_scene: PackedScene
 export(PackedScene) var tutorial_scene: PackedScene
 export(PackedScene) var credits_scene: PackedScene
 
-onready var start_button = $Start
-onready var tutorial_button = $Tutorial
-onready var credits_button = $Credits
+onready var start_button = $HudLayer/Start
+onready var tutorial_button = $HudLayer/Tutorial
+onready var credits_button = $HudLayer/Credits
 
 func _ready() -> void:
 	pass

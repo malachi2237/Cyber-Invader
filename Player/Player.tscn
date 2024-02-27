@@ -52,14 +52,13 @@ modulate = Color( 0, 0, 0, 0.219608 )
 position = Vector2( 0, 32.946 )
 scale = Vector2( 1.1, 1.1 )
 frames = SubResource( 10 )
-frame = 2
 speed_scale = 2.0
 playing = true
 
 [node name="PlayerSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0, 32.946 )
 frames = SubResource( 10 )
-frame = 3
+frame = 1
 speed_scale = 2.0
 playing = true
 
