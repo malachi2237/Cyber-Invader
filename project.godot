@@ -124,7 +124,7 @@ _global_script_class_icons={
 
 config/name="Digi Bullet Hell"
 run/main_scene="res://Level/GameScene.tscn"
-config/icon="res://icon.png"
+config/icon="res://Enemies/Sprites/bosshalo.png"
 
 [display]
 
