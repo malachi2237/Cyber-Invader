@@ -35,6 +35,17 @@ func _process(_delta: float) -> void:
 	if alive and _shootPressCondition():
 		_shoot()
 
+func pause_input(var pause: bool):
+	if pause:
+		set_process_input(false)
+		set_process(false)
+		dir = Vector2(0,0)
+		canFire = false
+	else:
+		set_process_input(true)
+		set_process(true)
+		canFire = true
+		
 func reset_lives():
 	current_lives = _lives
 	emit_signal("lost_life")

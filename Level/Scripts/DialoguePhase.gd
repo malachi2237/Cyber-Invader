@@ -45,8 +45,7 @@ func start_phase():
 		gm.wipe_enemies()
 	
 	if player:
-		player.set_process_input(false)
-		player.set_process(false)
+		player.pause_input(true)
 	
 	dialogue_started = true
 	
@@ -87,6 +86,5 @@ func _end_phase():
 	frame_a.queue_free()
 	frame_b.queue_free()
 	if player:
-		player.set_process_input(true)
-		player.set_process(true)
+		player.pause_input(false)
 	queue_free()
