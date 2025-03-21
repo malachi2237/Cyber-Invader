@@ -5,8 +5,6 @@ class_name DialoguePhase
 export var dialogue_node: NodePath
 
 export (Array, PackedScene) var character_frames
-export var character_frame_a: PackedScene
-export var character_frame_b: PackedScene
 
 onready var dialogue: Dialogue = get_node(dialogue_node)
 
@@ -80,11 +78,16 @@ func _advance_dialogue():
 		current_frame = frame
 
 func get_frame(name: String) -> Node:
-	return frame_instances[dialogue.character.find(name)]
+	var character_num = dialogue.characters.find(name)
+	if character_num == -1: return null
+	return frame_instances[character_num]
 
+	
 func _end_phase():
 	._end_phase()
 	#Mutative
+	for frame in frame_instances:
+		frame.queue_free()
 	if player:
 		player.pause_input(false)
 	queue_free()

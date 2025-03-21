@@ -9,8 +9,7 @@
 script = ExtResource( 2 )
 start_delay = 20.0
 dialogue_node = NodePath("Dialogue")
-character_frame_a = ExtResource( 3 )
-character_frame_b = ExtResource( 4 )
+character_frames = [ ExtResource( 3 ), ExtResource( 4 ) ]
 
 [node name="Dialogue" type="Node" parent="."]
 script = ExtResource( 1 )
