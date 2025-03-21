@@ -23,7 +23,7 @@ static func get_hud_layer(target_node) -> Control:
 		hud_layer = target_node.get_node_or_null(alt_hud_layer_path)
 		
 	if not hud_layer is CanvasLayer:
-		push_error("HUD Layer not found at expected path")
+		push_warning("HUD Layer not found at expected path")
 	return hud_layer
 	
 static func get_play_area(target_node) -> Control:

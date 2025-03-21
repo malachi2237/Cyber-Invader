@@ -4,13 +4,13 @@ class_name DialoguePhase
 
 export var dialogue_node: NodePath
 
+export (Array, PackedScene) var character_frames
 export var character_frame_a: PackedScene
 export var character_frame_b: PackedScene
 
 onready var dialogue: Dialogue = get_node(dialogue_node)
 
-onready var frame_a: DialogueFrame = character_frame_a.instance()
-onready var frame_b: DialogueFrame = character_frame_b.instance()
+onready var frame_instances: Array = []
 
 var dialogue_started = false
 
@@ -21,23 +21,29 @@ var current_frame: DialogueFrame
 func _ready():
 	var hud_layer = Utility.get_hud_layer(self)
 	
-	frame_a.hide()
-	frame_b.hide()
-	
-	if hud_layer:
-		hud_layer.add_child(frame_a)
-		hud_layer.add_child(frame_b)
-	else:
-		Utility.placeInScene(self, frame_a, null)
-		Utility.placeInScene(self, frame_b, null)
-	
-	frame_a.set_name(dialogue.character_a)
-	frame_b.set_name(dialogue.character_b)
+	build_character_frames(hud_layer)
+	set_dialogue_names()
 	
 	player = Utility.get_player(self)
 	
 	if start_delay <= 0:
 		start_phase()
+
+func build_character_frames(hud_layer):
+	for frame in character_frames:
+		var instance = frame.instance() as DialogueFrame
+		if instance is DialogueFrame:
+			frame_instances.append(instance)
+			instance.hide()
+		
+			#Mutation
+			if hud_layer: hud_layer.add_child(instance)
+			else: Utility.placeInScene(self, instance, null)
+
+func set_dialogue_names():
+	for i in range(frame_instances.count(DialogueFrame)):
+		var frame: DialogueFrame = frame_instances[i] as DialogueFrame
+		frame.set_name(dialogue.characters[i])
 
 func start_phase():
 	var gm = Utility.get_game_manager(self)
@@ -74,17 +80,11 @@ func _advance_dialogue():
 		current_frame = frame
 
 func get_frame(name: String) -> Node:
-	if name == dialogue.character_a:
-		return frame_a
-	elif name == dialogue.character_b:
-		return frame_b
-	
-	return null
+	return frame_instances[dialogue.character.find(name)]
 
 func _end_phase():
 	._end_phase()
-	frame_a.queue_free()
-	frame_b.queue_free()
+	#Mutative
 	if player:
 		player.pause_input(false)
 	queue_free()

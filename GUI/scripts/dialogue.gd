@@ -4,8 +4,7 @@ class_name Dialogue
 
 export(String, FILE, "*.txt") var script_file: String
 
-var character_a: String = ""
-var character_b: String = ""
+var characters: Array = [] 
 
 var script_array: Array
 
@@ -19,43 +18,29 @@ func _process_file(file):
 	var f = File.new()
 	f.open(file, File.READ)
 	
-	if not f.eof_reached():
-		var first_line = f.get_line()
-		_read_character_list(first_line)
-		
+	var firstLine = true
 	while not f.eof_reached():
 		var line = f.get_line()
-		_process_next_line(line)
+		if firstLine:
+			_read_character_list(line)
+			firstLine = false
+		else:
+			_process_next_line(line)
 
 func _read_character_list(line):
-	var name_indices: PoolIntArray = PoolIntArray()
-	var last_index = 0
+	var opened_character_name = false
+	var current_character_name: String = ""
 	
-	name_indices.resize(4)
-	
-	for i in range(2):
-		last_index = line.find("[", last_index)
+	for c in line:
 		
-		if last_index == -1:
-			_incorrect_format_error()
-			return
-		else:
-			last_index += 1
-			name_indices[i] = last_index
-	
-	last_index = 0
-	for i in range(2, 4):
-		last_index = line.find("]", last_index)
+		if !opened_character_name and c == "[": opened_character_name = true
 		
-		if last_index == -1:
-			_incorrect_format_error()
-			return
-		else:
-			name_indices[i] = last_index
-			last_index += 1
-	
-	character_a = line.substr(name_indices[0], name_indices[2] - name_indices[0])
-	character_b = line.substr(name_indices[1], name_indices[3] - name_indices[1])
+		elif opened_character_name and c == "]":
+			characters.append(current_character_name)
+			current_character_name = ""
+			opened_character_name = false
+		
+		elif opened_character_name: current_character_name += c
 
 func _process_next_line(line):
 	var dialogue_line: DialogueLine = DialogueLine.new()
@@ -76,7 +61,7 @@ func _process_next_line(line):
 	script_array.append(dialogue_line)
 	
 func _validate_name(name: String) -> bool:
-	return name == character_a || name == character_b
+	return characters.find(name) != -1
 	
 func _incorrect_format_error():
 	pass

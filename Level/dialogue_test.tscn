@@ -7,7 +7,6 @@
 [node name="GameManager" type="Node"]
 script = ExtResource( 1 )
 stage_queue = [ ExtResource( 2 ) ]
-player = NodePath("Player")
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 2107, 1579 )
