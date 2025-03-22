@@ -1,7 +1,5 @@
 extends Node
 
-class_name Utility
-
 const hud_layer_path = "/root/GameScene/HudLayer"
 const alt_hud_layer_path = "/root/MainMenu/HudLayer"
 const play_area_path = "/root/GameScene/PlayLayer/PlayArea"

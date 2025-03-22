@@ -6,19 +6,17 @@ export var dialogue_node: NodePath
 
 export (Array, PackedScene) var character_frames
 
-onready var dialogue: Dialogue = get_node(dialogue_node)
-
 onready var frame_instances: Array = []
 
 var dialogue_started = false
-
+var dialogue: Dialogue
 var player: Player = null
 
 var current_frame: DialogueFrame
 
 func _ready():
 	var hud_layer = Utility.get_hud_layer(self)
-	
+	dialogue = get_node(dialogue_node)
 	build_character_frames(hud_layer)
 	set_dialogue_names()
 	
@@ -45,17 +43,17 @@ func set_dialogue_names():
 
 func start_phase():
 	var gm = Utility.get_game_manager(self)
-	if gm is GameManager:
-		gm.wipe_enemies()
 	
-	if player:
-		player.pause_input(true)
+	if gm is GameManager: gm.wipe_enemies()
+	if player: player.pause_input(true)
 	
 	dialogue_started = true
-	
 	_advance_dialogue()
 
 func _process(_delta):
+	pass
+
+func _unhandled_input(_event):
 	if Input.is_action_just_pressed("ui_accept") and dialogue_started:
 		_advance_dialogue()
 
@@ -67,13 +65,14 @@ func _advance_dialogue():
 		return
 		
 	var frame = get_frame(line.character_name)
+	set_current_dialouge_frame(frame, line)
 	
+
+func set_current_dialouge_frame(frame, line) -> void:
 	if frame:
-		frame.set_dialogue(line.text)
+		if current_frame: current_frame.hide()
 		
-		if current_frame:
-			current_frame.hide()
-			
+		frame.set_dialogue(line.text)	
 		frame.show()
 		current_frame = frame
 
